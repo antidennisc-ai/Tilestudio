@@ -1,0 +1,859 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,viewport-fit=cover">
+<meta name="theme-color" content="#0866e9">
+<meta name="description" content="匯入平面圖、校準尺寸、圈選區域、排磚及3D紋理預覽。全部在裝置上處理。">
+<title>Tile Studio · 鋪磚設計室</title>
+<style>
+
+:root{--ink:#213a33;--green:#183d35;--green2:#2c6252;--gold:#b99259;--bg:#f5f4ef;--paper:#fffefa;--muted:#7a8178;--line:#e3e5dc;--orange:#c48649;--red:#c36759;--mint:#e8eee6;--shadow:0 12px 40px #183d3508}
+*{box-sizing:border-box}html{color-scheme:light}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Noto Sans CJK TC","Microsoft JhengHei",sans-serif;font-size:15px;line-height:1.5;-webkit-tap-highlight-color:transparent}
+button,input,select{font:inherit;color:inherit}button{cursor:pointer;border:0;background:none;touch-action:manipulation}button:disabled{opacity:.4;cursor:not-allowed}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #a4b5a9;outline-offset:2px}
+[hidden]{display:none!important}h1,h2,h3,p{margin:0}h1{font-size:29px;line-height:1.3;font-weight:650;letter-spacing:.02em}h2{font-size:19px;font-weight:650}h3{font-size:15px;font-weight:650;margin-bottom:10px}small{font-size:12px}.topbar{height:86px;padding:0 max(30px,calc((100vw - 1440px)/2));display:flex;align-items:center;justify-content:space-between;background:var(--green);color:#f9f7eb}.brand{display:flex;gap:13px;align-items:center}.brand strong{display:block;letter-spacing:.2em;font-size:18px;font-weight:600;line-height:1.5}.brand small{letter-spacing:.2em;color:#c6d3c8;font-size:11px}.brandmark{display:grid;grid-template-columns:repeat(2,14px);gap:4px;transform:rotate(-8deg)}.brandmark i{width:14px;height:20px;background:#d5bd91;display:block}.brandmark i:last-child{background:#729285}.topright{display:flex;gap:16px;align-items:center}.localbadge{font-size:12px;letter-spacing:.08em;color:#d3dfd4}.localbadge i,.liveDot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#9ebbb0;margin-right:7px;vertical-align:middle}.iconbutton{width:34px;height:34px;display:grid;place-content:center;border:1px solid #ffffff38;border-radius:50%;font-size:18px;line-height:1}main{max-width:1440px;margin:auto;padding:28px 30px 22px}.projectline{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:25px}.eyebrow{font-size:10px;color:var(--muted);letter-spacing:.18em;margin-bottom:8px}.editname{font-size:19px;color:#969e90;margin-left:12px}.projectmeta{display:flex;align-items:center;gap:16px;color:var(--muted);font-size:11px}.tag{display:inline-block;white-space:nowrap;font-size:10px;padding:5px 9px;border-radius:6px;background:#ecece1;color:#81754f;letter-spacing:.03em}.tag.good{background:#e8eee4;color:#54775d}.tag.warn{background:#f7e6d6;color:#996533}.overview{display:grid;grid-template-columns:1fr 1.2fr 1fr;margin-bottom:23px;background:var(--paper);border:1px solid var(--line);border-radius:13px;overflow:hidden}.metric{padding:17px 24px;position:relative}.metric+.metric:before{content:"";position:absolute;width:1px;height:50%;left:0;top:25%;background:var(--line)}.metric>span{font-size:12px;color:var(--muted);letter-spacing:.04em}.metric>div{display:flex;align-items:baseline;gap:8px;margin-top:1px}.metric b{font-family:ui-sans-serif,sans-serif;font-size:31px;font-weight:500;letter-spacing:-.03em}.metric small{color:var(--muted);font-size:12px}.metric em{font-style:normal;color:#959b90;font-size:10px}.metric.purchase{background:#edf1e8}.metric.purchase b{color:var(--green2)}.steps{display:flex;gap:32px;margin-bottom:19px;border-bottom:1px solid var(--line)}.steps button{display:flex;align-items:center;gap:8px;padding:0 0 13px;border-bottom:2px solid transparent;margin-bottom:-1px;color:#8c9388;font-size:13px}.steps button.active{border-color:var(--green);color:var(--green);font-weight:600}.stepno{font-size:10px;font-family:monospace;opacity:.6}.workspace{display:grid;grid-template-columns:minmax(0,1fr) 344px;gap:21px;align-items:start}.workmain{border:1px solid var(--line);border-radius:13px;background:var(--paper);overflow:hidden;box-shadow:var(--shadow)}.stageheader{height:52px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 19px;border-bottom:1px solid var(--line)}.stageheader b{font-size:12px;font-weight:600}.stageheader>span{font-size:10px;color:#90988b}.liveDot{background:#527969;width:5px;height:5px}.canvaswrap{position:relative;height:500px;overflow:hidden;background:#faf9f4}.canvaswrap canvas{width:100%;height:100%;display:block;touch-action:none}.canvascorner{position:absolute;left:16px;top:14px;pointer-events:none}.minitag{display:inline-block;font-size:10px;background:#fffef5e6;padding:5px 9px;border-radius:5px;color:#888f82;border:1px solid #e4e5da80}.zoomtools{position:absolute;bottom:17px;right:16px;display:flex;background:#fffef9;box-shadow:0 2px 12px #183d3512;border:1px solid var(--line);border-radius:7px;overflow:hidden}.zoomtools button{width:36px;height:35px;font-size:19px}.zoomtools button+button{border-left:1px solid var(--line)}.scaleLegend{position:absolute;bottom:20px;left:18px;font-size:10px;color:#858d7f;background:#faf9f4cc;padding:2px 5px}.toolstrip{display:flex;align-items:center;gap:8px;border-top:1px solid var(--line);padding:10px 15px;overflow-x:auto;scrollbar-width:none;white-space:nowrap}.toolstrip>button{padding:9px 12px;border:1px solid transparent;border-radius:7px;font-size:12px;white-space:nowrap}.toolstrip>button span{margin-right:6px;font-size:16px;vertical-align:-1px}.toolstrip>button.active{background:var(--green);color:white}.stagefoot{padding:10px 18px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:5px;font-size:9px;color:#818c7c}.stagefoot i{display:inline-block;width:6px;height:6px;border-radius:2px;margin-right:4px;margin-left:6px}.stagefoot i:first-child{margin-left:0}.legendfloor{background:#6c8b72}.legendcut{background:#c99767}.legendhole{background:#d08d7e}.stagefoot button{font-size:10px}.inspector{min-width:0}.panel{border:1px solid var(--line);border-radius:13px;background:var(--paper);padding:22px;box-shadow:var(--shadow)}.paneltitle{display:flex;gap:12px;align-items:center;margin-bottom:22px}.sectionnum{font-family:Georgia,serif;font-size:34px;font-weight:400;line-height:1;color:#b7b19a}.paneltitle p{font-size:11px;color:var(--muted);margin-top:3px}.importbox{padding:16px 12px;border:1px dashed #bfc9b6;border-radius:9px;display:flex;align-items:center;gap:9px;text-align:left;background:#f6f8ef;width:100%}.importbox>b{font-size:12px}.importbox small{display:block;font-size:9px;color:#919a86;margin-top:5px;white-space:normal}.importbox>span:last-child{margin-left:auto}.uploadicon{font-size:28px;color:#718467}.importbox b{font-size:12px}.inlinebuttons{display:flex;justify-content:space-between;padding-top:11px;gap:8px}.inlinebuttons button{font-size:11px;color:#818c73}.divider{border-top:1px solid var(--line);margin:19px 0}.sectionhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}.sectionhead h3{margin:0}.helper{font-size:11px;color:#8b9384;line-height:1.7;margin-bottom:12px}.micro{font-size:10px;line-height:1.7;color:#959c8d;margin-top:8px}.full{width:100%}.primary{background:var(--green);color:#fffdf2;border:1px solid var(--green);border-radius:7px;padding:12px 16px;font-size:12px;font-weight:600}.secondary{border:1px solid #cbd2c0;border-radius:7px;padding:10px 12px;background:#fcfdf6;font-size:12px}.small{padding:8px 12px}.gap{margin-top:10px}.textbutton{padding:0;color:#527354;font-size:11px;font-weight:500}.areaItem{border:1px solid var(--line);border-radius:8px;padding:10px 11px;display:flex;align-items:center;gap:8px;margin-bottom:7px}.areadot{width:8px;height:8px;border-radius:3px;background:#618571}.areaItem.hole .areadot{background:var(--red)}.areaItem .name{flex:1;min-width:0}.areaItem b{font-size:11px;display:block;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;font-weight:500}.areaItem small{color:#969c91;font-size:9px}.areaItem button{font-size:13px;color:#a0a594;padding:4px;min-width:26px}.tip{background:#f5f4eb;border-radius:8px;margin-top:17px;padding:13px}.tip b{font-size:11px;color:#7d8169}.tip p{font-size:10px;line-height:1.8;color:#979b85;margin-top:5px}.drawingAction{background:#eef3e9;border-top:1px solid #d8e0cd;padding:11px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:11px}.drawingAction>div{display:flex;gap:10px}.drawingAction button{font-size:11px;white-space:nowrap}.sizegrid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:12px}.sizebutton{border:1px solid var(--line);border-radius:8px;text-align:left;padding:11px;position:relative;background:#fffefa}.sizebutton.active{background:#edf1e7;border:1px solid #6f8c72}.sizebutton.active:after{content:"✓";position:absolute;right:7px;top:5px;font-size:11px;color:#617d60}.sizebutton .brick{display:block;width:32px;height:17px;background:#e6e3d5;border:1px solid #c5c5b1;margin-bottom:8px}.sizebutton .brick.square{width:22px;height:22px;margin-top:0px;margin-bottom:3px}.sizebutton b{font-size:12px;letter-spacing:.02em;font-weight:550}.sizebutton small{display:block;color:#969b88;font-size:9px;margin-top:1px}.subtle{color:#939b8a;font-weight:400;font-size:11px;margin-left:5px}.segmented{display:flex;border:1px solid var(--line);border-radius:7px;padding:3px;background:#f7f7ee;gap:3px;margin-bottom:16px}.segmented button{flex:1;padding:9px 2px;font-size:11px;border-radius:5px;white-space:nowrap}.segmented button.active{background:var(--green);color:white}.inputrow{display:flex;gap:8px;align-items:end;margin:12px 0}.inputrow label{min-width:0;flex:1;font-size:10px}.inputrow.two{display:grid;grid-template-columns:1.35fr 1fr}.inputrow>span{padding-bottom:9px;color:#989d91}.inputrow button{font-size:10px;padding:10px}.panel>label{display:block;font-size:11px;margin:13px 0}input:not([type=checkbox]):not([type=range]):not([type=file]),select{display:block;width:100%;min-width:0;padding:9px 10px;border:1px solid #dbe0d1;border-radius:6px;background:#fffefa;font-size:12px;margin-top:5px;outline-offset:1px}input[type=range]{width:100%;accent-color:#476b51;margin:12px 0 0;cursor:pointer}input[type=checkbox]{accent-color:var(--green);width:16px;height:16px;vertical-align:middle;margin-right:7px}details{font-size:11px;color:#6f8068}summary{cursor:pointer;padding:4px 0;font-size:11px}details p{margin-top:8px}.sliderlabel{display:block;margin-top:13px;font-size:11px}.sliderlabel output{float:right;font-size:10px;color:#868f7e}.miniresult{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:20px 0}.miniresult>div{border:1px solid var(--line);border-radius:8px;padding:11px}.miniresult span{display:block;font-size:10px;color:#87917d}.miniresult b{font-size:22px;display:block;font-weight:500;margin-top:4px}.miniresult small{font-size:10px;color:#8a9381;font-weight:400}.switchlabel{font-size:11px;display:flex;align-items:center;white-space:nowrap}.materialgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:15px}.materialcard{padding:0;border:1px solid var(--line);border-radius:9px;overflow:hidden;text-align:left;position:relative;background:#fffefa}.materialcard.active{border-color:#638168;box-shadow:0 0 0 1px #638168}.materialcard.active:after{content:"✓";position:absolute;right:7px;top:7px;width:18px;height:18px;line-height:18px;text-align:center;border-radius:50%;background:#183d35;color:white;font-size:10px}.materialcard canvas{display:block;width:100%;height:67px;object-fit:cover}.materialcard b{display:block;font-weight:500;font-size:10px;padding:7px 9px}.threewrap{height:500px;position:relative;background:#e8e9e0;overflow:hidden}.threewrap canvas{display:block;width:100%;height:100%;touch-action:none}.threebadge{position:absolute;left:20px;top:20px;pointer-events:none;background:#fffef3d9;border:1px solid #fff9;border-radius:7px;padding:9px 13px}.threebadge span{font-size:9px;color:#999e8d;display:block}.threebadge b{font-size:11px;display:block;letter-spacing:.04em;margin-top:3px;font-weight:500}.threetip{position:absolute;bottom:20px;left:20px;color:#7e8a75;font-size:10px;pointer-events:none}.note{font-size:10px;color:#8c9582;line-height:1.7}.under3d{padding:14px 20px;border-top:1px solid var(--line)}.reportPane{min-width:0}.reporthero{background:var(--green);padding:27px 28px;border-radius:13px;color:#fffdec;margin-bottom:17px;position:relative;overflow:hidden}.reporthero .eyebrow{color:#aabcac;margin-bottom:10px}.reporthero h2{font-size:22px;font-weight:500}.reporthero p{color:#acc0af;font-size:11px;margin-top:7px}.reportnums{display:flex;gap:38px;margin-top:24px}.reportnums span{display:block;color:#aac0ab;font-size:10px}.reportnums b{font-size:30px;display:block;font-weight:450;margin-top:4px}.reportnums small{font-size:11px;margin-left:5px;color:#d0dfcc}.reportcard{border:1px solid var(--line);background:var(--paper);border-radius:13px;overflow:hidden;margin-bottom:17px}.reportcardhead{padding:19px 23px;border-bottom:1px solid var(--line)}.reportcardhead h3{margin:0;font-size:14px}.reportcardhead p{margin-top:5px;font-size:10px;color:#929b87}.comparetable{width:100%;border-collapse:collapse;font-size:11px}.comparetable th{font-weight:500;font-size:9px;color:#909c84;padding:11px 13px;background:#f8f9f0;text-align:right}.comparetable th:first-child{text-align:left;padding-left:23px}.comparetable td{padding:13px;border-top:1px solid #eef0e6;text-align:right;font-size:11px}.comparetable td:first-child{text-align:left;padding-left:23px}.comparetable tr.selected td{background:#edf2e7}.comparetable tr[data-size]{cursor:pointer}.comparetable b{font-size:14px;font-weight:500}.comparetable small{display:block;font-size:9px;color:#9aa18e}.comparetable .pill{font-size:8px;background:#d5e2cc;color:#597453;padding:2px 5px;margin-left:4px;border-radius:3px}.detailgrid{padding:8px 23px}.detailrow{display:flex;justify-content:space-between;gap:15px;padding:10px 0;border-bottom:1px solid #edf0e6;font-size:11px}.detailrow:last-child{border:0}.detailrow>span{color:#8c9781}.detailrow b{font-weight:500}.formulanote{padding:15px 23px;background:#f7f8ef;color:#969f88;font-size:10px;line-height:1.8}.reportwarning{border:1px solid #e2ddc6;border-radius:9px;background:#f5f1e3;padding:15px 20px;font-size:10px;line-height:1.8;color:#93866b}.presetrow{display:flex;gap:8px;margin:8px 0 14px}.presetrow button{flex:1;border:1px solid var(--line);border-radius:5px;padding:6px;font-size:11px}.presetrow button.active{background:#e9efe2;border-color:#8fa17f}.pagefooter{display:flex;justify-content:space-between;padding-top:23px;font-size:10px;color:#a2a994;letter-spacing:.05em}.bottomnav{display:none}.modal{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;padding:24px}.modalshade{position:absolute;inset:0;background:#112e2770;backdrop-filter:blur(5px)}.modalbox{position:relative;background:var(--paper);width:100%;max-width:490px;border-radius:16px;box-shadow:0 20px 100px #153c3340;max-height:90vh;overflow:auto;padding:25px}.modalheader{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:20px}.modalheader .iconbutton{border-color:var(--line);color:#8e9984}.modalbox h2{font-size:20px}.modalbox p{font-size:13px;color:#7c8b70;margin-bottom:14px;line-height:1.8}.modalbox .primary{margin-top:14px}.modalbox label{display:block;font-size:12px;margin-bottom:15px}.modalbox input:not([type=checkbox]),.modalbox select{padding:12px;font-size:16px}.modalactions{display:flex;gap:10px;margin-top:13px}.modalactions button{flex:1}.menulist{display:grid;gap:9px}.menulist button{width:100%;text-align:left;padding:14px;background:#f2f4e9;border-radius:8px;font-size:13px}.menulist small{font-size:10px;color:#95a087;display:block;margin-top:3px}.emptyNotice{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:30px;text-align:center;background:#faf9f4e6}.emptyNotice b{font-size:22px}.emptyNotice p{font-size:12px;color:#89957d;max-width:260px;margin:12px 0 20px}.busy{position:fixed;inset:0;z-index:60;background:#fafaf2d9;display:flex;gap:15px;align-items:center;justify-content:center;color:#557451;font-size:14px;backdrop-filter:blur(4px)}.spinner{width:25px;height:25px;border:2px solid #d0dbca;border-top-color:#577a4b;border-radius:50%;animation:spin .9s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}#toast{position:fixed;left:50%;bottom:30px;transform:translate(-50%,20px);background:#214338;color:white;padding:12px 20px;border-radius:9px;box-shadow:0 6px 24px #16392f30;max-width:90vw;width:max-content;z-index:80;pointer-events:none;opacity:0;transition:.2s;font-size:12px}#toast.show{opacity:1;transform:translate(-50%,0)}
+@media(min-width:1440px){.canvaswrap,.threewrap{height:555px}}
+@media(max-width:1100px){.workspace{grid-template-columns:minmax(0,1fr) 305px;gap:16px}.panel{padding:18px}.metric{padding:16px 20px}.metric b{font-size:28px}.canvaswrap,.threewrap{height:480px}.toolstrip{padding:9px 10px;gap:3px}.toolstrip>button{padding:8px 9px}.stageheader{padding:0 14px}.stageheader>span{font-size:9px}}
+@media(max-width:760px){.topbar{height:68px;padding:0 20px}.brand strong{font-size:15px;letter-spacing:.18em}.brand small{font-size:9px}.brandmark{grid-template-columns:repeat(2,11px);gap:3px}.brandmark i{width:11px;height:16px}.topright{gap:11px}.localbadge{font-size:9px}.iconbutton{width:29px;height:29px;font-size:17px}main{padding:21px 16px 99px}.projectline{align-items:start;margin-bottom:17px}.eyebrow{font-size:8px;letter-spacing:.13em;margin-bottom:7px}h1{font-size:22px}.editname{font-size:16px;margin-left:8px}.projectmeta{display:block;text-align:right;max-width:118px;line-height:1.5;font-size:9px;padding-top:1px}.projectmeta>span:first-child{display:block;margin-bottom:7px}.tag{font-size:8px;padding:4px 6px}.overview{grid-template-columns:1fr 1.1fr .88fr;margin-bottom:15px;border-radius:10px}.metric{padding:11px 11px 10px}.metric>span{font-size:9px;letter-spacing:0}.metric>div{gap:4px;display:block;white-space:nowrap}.metric b{font-size:23px;line-height:1.6;letter-spacing:-.04em}.metric:nth-child(2) b{font-size:17px;line-height:2.16}.metric small{font-size:8px;margin-left:3px}.metric em{display:block;font-size:8px;line-height:1.5}.metric.purchase b{font-size:25px;line-height:1.47}.steps{gap:0;justify-content:space-between;margin-bottom:14px}.steps button{font-size:10px;padding-bottom:11px;gap:6px}.stepno{font-size:8px}.workspace{display:flex;flex-direction:column;gap:16px}.workmain,.inspector,.reportPane{width:100%}.stageheader{height:44px;padding:0 13px}.stageheader b{font-size:10px}.stageheader>span{font-size:8px;max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.canvaswrap{height:355px}.canvascorner{top:10px;left:10px}.minitag{font-size:8px;padding:4px 6px}.zoomtools{right:10px;bottom:12px}.zoomtools button{width:33px;height:33px;font-size:20px}.scaleLegend{font-size:9px;bottom:16px;left:10px}.toolstrip{padding:8px 10px;justify-content:space-between;gap:3px}.toolstrip>button{font-size:11px;padding:8px 8px}.toolstrip>button span{font-size:13px;margin-right:4px}.stagefoot{font-size:8px;padding:10px 12px}.stagefoot button{font-size:9px}.stagefoot i{width:5px;height:5px;margin-left:5px}.drawingAction{padding:10px 12px;display:block}.drawingAction>span{display:block;font-size:11px;margin-bottom:8px}.drawingAction>div{justify-content:flex-end}.drawingAction button{font-size:12px}.panel{padding:22px;border-radius:11px}.paneltitle{margin-bottom:22px}.paneltitle h2{font-size:19px}.paneltitle p{font-size:12px}.sectionnum{font-size:34px}h3{font-size:15px}.importbox{padding:16px}.importbox b{font-size:14px}.importbox small{font-size:10px}.inlinebuttons button{font-size:12px}.helper{font-size:12px}.micro{font-size:11px}.primary,.secondary{font-size:13px;min-height:44px}.textbutton{font-size:12px}.tip b{font-size:12px}.tip p{font-size:11px}.areaItem{padding:12px}.areaItem b{font-size:13px}.areaItem small{font-size:10px}.areaItem button{font-size:17px;min-width:32px;min-height:34px}.sizegrid{grid-template-columns:repeat(3,1fr);gap:8px}.sizebutton{padding:12px 9px}.sizebutton b{font-size:11px;white-space:nowrap}.sizebutton small{font-size:9px}.segmented button{font-size:12px;padding:11px 4px}.inputrow label,.panel>label{font-size:12px}input:not([type=checkbox]):not([type=range]):not([type=file]),select{font-size:16px;padding:11px;min-height:44px}.inputrow button{font-size:12px;min-height:44px}.sliderlabel{font-size:12px}.sliderlabel output{font-size:12px}summary{font-size:12px}.materialgrid{grid-template-columns:repeat(3,1fr);gap:9px}.materialcard canvas{height:76px}.materialcard b{font-size:10px;padding:8px}.threewrap{height:420px}.threebadge{top:14px;left:14px}.under3d{font-size:11px;padding:15px}.toolstrip .switchlabel{font-size:10px}.switchlabel{font-size:12px}.reporthero{padding:23px}.reporthero h2{font-size:20px}.reporthero p{font-size:11px}.reportnums{gap:24px}.reportnums b{font-size:28px}.reportnums small{font-size:10px}.reportnums span{font-size:10px}.reportcardhead{padding:17px}.comparetable th,.comparetable td{padding:10px 8px}.comparetable th:first-child,.comparetable td:first-child{padding-left:15px}.comparetable td{font-size:10px}.comparetable b{font-size:13px}.comparetable th{font-size:9px}.comparetable .pill{display:block;width:max-content;margin:3px 0 0}.detailgrid{padding:8px 17px}.detailrow{font-size:11px;padding:12px 0}.formulanote{padding:14px 17px;font-size:10px}.reportwarning{font-size:11px}.pagefooter{display:block;text-align:center;padding-top:26px;font-size:9px}.pagefooter span{display:block;margin:3px}.bottomnav{display:flex;position:fixed;bottom:0;left:0;right:0;background:#fffef9f5;border-top:1px solid #dde4d6;backdrop-filter:blur(15px);padding:6px 12px calc(7px + env(safe-area-inset-bottom));z-index:30;box-shadow:0 -4px 20px #193e3305}.bottomnav button{flex:1;color:#9ca591;padding:4px;font-size:12px}.bottomnav button>span{display:block;font-size:23px;line-height:1.15}.bottomnav button b{font-size:9px;font-weight:500;display:block;margin-top:4px;letter-spacing:.04em}.bottomnav button.active{color:var(--green);background:#edf2e5;border-radius:9px}.modal{padding:17px}.modalbox{padding:23px;border-radius:14px}.modalheader{margin-bottom:20px}.modalbox h2{font-size:19px}.modalbox p{font-size:13px}.menulist button{font-size:13px}#toast{bottom:92px;font-size:12px;max-width:calc(100vw - 32px);padding:12px 17px}.emptyNotice b{font-size:21px}.emptyNotice p{font-size:12px}}
+@media(max-width:360px){main{padding-left:11px;padding-right:11px}.metric{padding:10px 8px}.metric:nth-child(2) b{font-size:15px}.metric b{font-size:22px}.metric em{font-size:7px}.stagefoot{font-size:7px}.stagefoot button{font-size:8px}.toolstrip>button{font-size:10px;padding:8px 6px}.canvaswrap{height:325px}.sizegrid{grid-template-columns:repeat(2,1fr)}.localbadge{display:none}}
+@media print{.topbar,.steps,.bottomnav,.inspector,.drawingAction,.toolstrip,.pagefooter,.projectmeta,.editname{display:none!important}main{padding:0}.workspace{display:block}.reportPane{display:block!important}.workmain{display:none}body{background:white}.reporthero{background:white;color:#183d35;border:1px solid #ccd2c4}.reporthero .eyebrow,.reporthero p,.reportnums span,.reportnums small{color:#687c5e}.reportcard{break-inside:avoid}}
+
+
+/* Version 2: accessible mobile UI following the approved blue/white design. */
+:root{--ink:#172c49;--green:#0866e9;--green2:#075acb;--gold:#8093ae;--bg:#f3f6fb;--paper:#fff;--muted:#5e708a;--line:#dce4ef;--orange:#bd7b32;--red:#b95151;--mint:#eaf3ff;--shadow:0 10px 30px #17345008}
+body{font-size:17px;line-height:1.55;background:var(--bg);color:var(--ink)}
+button{min-height:46px}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #78b2ff}
+h1{font-size:30px}h2{font-size:24px}h3{font-size:18px}
+small{font-size:14px}input,select,textarea{font:inherit}
+textarea{width:100%;min-height:92px;padding:12px;border:1px solid var(--line);border-radius:9px;background:white;color:var(--ink);resize:vertical}
+.topbar{height:86px;background:white;color:var(--ink);border-bottom:1px solid var(--line);padding:0 max(24px,calc((100vw - 1420px)/2))}
+.brand{padding:0;text-align:left;gap:12px;max-width:calc(100% - 106px);min-height:52px}
+.newmark{display:block;width:46px;height:46px;flex-shrink:0}
+.newmark svg{width:100%;height:100%;display:block}
+.brand strong{font-size:27px;letter-spacing:-.025em;font-weight:780;line-height:1.12;text-transform:none}
+.brand small{font-size:13px;color:var(--muted);letter-spacing:.12em;line-height:1.5}
+.topright{gap:10px}.iconbutton{min-height:44px;width:44px;height:44px;background:#f2f6fc;border:1px solid var(--line);color:#36516f;border-radius:13px;font-size:23px}
+.localbadge{font-size:13px;color:var(--muted)}.localbadge i,.liveDot{background:#187ae8}
+main{padding:24px 24px 112px}
+.projectline{margin-bottom:18px}.projectline h1{font-size:25px}.eyebrow{font-size:12px;letter-spacing:.1em}.editname{min-width:42px;font-size:22px;color:var(--muted)}
+.projectmeta{font-size:13px;gap:10px}.tag{font-size:13px;color:#4e6789;background:#eef3fa;border-radius:8px;letter-spacing:0}.tag.good{color:#0963d3;background:#eaf3ff}.tag.warn{color:#895d19;background:#fff4df}
+.overview{border-radius:15px;grid-template-columns:1fr 1.25fr 1fr}.metric{padding:17px 22px}.metric>span,.metric small{font-size:14px}.metric b{font-size:33px;font-weight:730}.metric em{font-size:13px;color:var(--muted);display:block}.metric.purchase{background:#eaf3ff}
+.steps{gap:28px}.steps button{font-size:16px;padding-bottom:12px;min-height:45px}.stepno{font-size:13px}
+.workspace{grid-template-columns:minmax(0,1fr) 360px;gap:20px}
+.workmain,.panel{border-radius:16px}.panel{padding:24px}
+.stageheader{height:auto;min-height:54px;flex-wrap:wrap;padding:10px 16px;gap:4px}
+.stageheader b{font-size:17px}.stageheader>span{font-size:13px;color:var(--muted)}
+.canvaswrap{height:500px;background:#f9fbff}.canvascorner{top:10px;left:10px}
+.minitag{font-size:13px;background:#fffffff0;padding:5px 9px;border:1px solid var(--line);color:var(--muted)}
+.zoomtools button{width:46px;height:46px;font-size:24px}.zoomtools{background:white;border-radius:11px}
+.scaleLegend{font-size:13px;background:#ffffffdc;color:#435d7d}
+.guidetoggles{display:flex;align-items:center;gap:16px;flex-wrap:wrap;background:#f6f9ff;border-top:1px solid var(--line);padding:10px 14px;font-size:14px}
+.guidetoggles label{display:flex;align-items:center;gap:6px;min-height:36px}.guidetoggles input{width:19px;height:19px;accent-color:var(--green)}
+#guideReadout{font-size:13px;color:var(--muted);flex-basis:100%}
+body[data-page=layout] .guidetoggles{display:none}
+.toolstrip{padding:10px;gap:6px}
+.toolstrip>button{font-size:15px;min-height:48px;padding:10px 12px;background:#f4f7fc;border-color:#e7edf6;border-radius:10px}
+.toolstrip>button span{font-size:18px}.toolstrip>button.active{border-color:var(--green);background:var(--green)}
+.toolstrip .switchlabel{font-size:14px}.stagefoot{font-size:12px;align-items:center;flex-wrap:wrap}.stagefoot button{font-size:14px}
+.drawingAction{background:#eaf3ff;font-size:15px;padding:12px 14px}.drawingAction button{font-size:15px;min-height:44px}.drawingAction>div{gap:8px}
+.sectionnum{font-family:inherit;font-size:22px;font-weight:750;color:var(--green);background:#eaf3ff;display:grid;place-items:center;min-width:44px;height:44px;border-radius:12px}
+.paneltitle{gap:12px;margin-bottom:20px}.paneltitle p{font-size:14px}
+.importbox{background:#edf5ff;border-color:#98bdf0;padding:16px;border-radius:12px}.importbox b{font-size:18px}.importbox small{font-size:13px;color:#526d91}.uploadicon{font-size:32px;color:var(--green)}
+.inlinebuttons button{font-size:15px;color:#466891;padding:5px}
+.helper{font-size:15px;color:var(--muted);line-height:1.65}.micro{font-size:14px;color:var(--muted);line-height:1.65}
+.primary,.secondary{font-size:17px;min-height:50px;padding:12px 14px;border-radius:11px}
+.primary{background:linear-gradient(110deg,#2684f4,#0866e9);border-color:#1170eb;color:white}
+.secondary{background:#f7faff;border-color:#cddbeb;color:#214970}
+.textbutton{font-size:15px;color:var(--green);padding:4px;min-height:40px}
+.areaItem{padding:12px;border-radius:11px}.areaItem b{font-size:16px}.areaItem small{font-size:13px;color:var(--muted)}.areaItem button{font-size:20px;min-width:44px;min-height:44px}
+.tip{background:#f0f6ff;padding:15px;border-radius:12px}.tip b{font-size:16px;color:#30577f}.tip p{font-size:14px;color:#58718e}
+.sizegrid{gap:10px}.sizebutton{padding:14px;border-radius:11px}.sizebutton.active{background:#eaf3ff;border-color:#0866e9}
+.sizebutton b{font-size:17px;font-weight:650;letter-spacing:0;white-space:nowrap}.sizebutton small{font-size:13px;color:#5e708a}
+.sizebutton .brick{width:44px;height:24px;border-color:#bac8db;background:#e7e9e8}.sizebutton .brick.square{width:28px;height:28px}
+.sizebutton.active:after{font-size:15px;color:#0866e9}.subtle{font-size:14px}
+.segmented{background:#f2f6fc;border-radius:10px}.segmented button{min-height:48px;font-size:16px;border-radius:8px}
+.inputrow label,.panel>label{font-size:15px}.inputrow.two{grid-template-columns:1fr 1fr}
+input:not([type=checkbox]):not([type=range]):not([type=file]):not([type=hidden]),select{font-size:18px;min-height:50px;padding:10px 12px;border:1px solid #cdd9e8;border-radius:9px;background:white}
+input[type=checkbox]{accent-color:var(--green)}input[type=range]{accent-color:var(--green);height:36px}
+.panel>label{margin:16px 0}.sliderlabel,.sliderlabel output{font-size:16px}.presetrow button{font-size:16px;min-height:44px;min-width:70px;border-radius:9px}.presetrow button.active{background:#eaf3ff;color:var(--green)}
+summary{font-size:16px;min-height:46px;padding:8px 0}.inputrow button{font-size:15px;min-height:48px}
+.miniresult span{font-size:14px}.miniresult b{font-size:27px}.miniresult small{font-size:15px}
+.materialgrid{gap:10px;grid-template-columns:repeat(2,1fr)}.materialcard{border-radius:11px}.materialcard canvas{height:100px}.materialcard b{font-size:15px;padding:10px}.materialcard.active{border-color:#0866e9}
+.threewrap{height:500px;background:#eff4fa}.threebadge{font-size:14px;background:#ffffffdd}.threebadge span{font-size:13px}.threebadge b{font-size:16px}.threetip{font-size:14px;background:#ffffffda}.under3d{font-size:14px;color:var(--muted);padding:16px}.switchlabel{font-size:15px}
+.reporthero{padding:24px;background:#172c49;color:white;border-radius:16px}.reporthero h2{font-size:26px}.reporthero p{font-size:15px;color:#c6d6ef}.reporthero .eyebrow{color:#adcaef}.reportnums{gap:26px}.reportnums b{font-size:30px}.reportnums span,.reportnums small{font-size:14px;color:#c1d7f1}
+.reportcard{border-radius:15px}.reportcardhead{padding:20px}.reportcardhead h3{font-size:20px}.reportcardhead p{font-size:15px;color:var(--muted)}
+.detailgrid{padding:8px 20px}.detailrow{font-size:15px;padding:12px 0;gap:12px}.detailrow b{text-align:right;flex-shrink:0}.detailrow span{color:#526881}.formulanote{font-size:14px;padding:16px 20px;line-height:1.75}
+.reportwarning{font-size:14px;background:#fff5e6;color:#79603a;padding:18px;border-radius:12px}
+.quoteSummary{background:white;border:1px solid var(--line);border-radius:16px;padding:22px;margin-bottom:18px}
+.quoteSummary h2{font-size:22px}.quoteSummary .meta{font-size:14px;color:var(--muted);margin:6px 0 14px}
+.quoteTotal{margin-top:16px;padding:18px;background:#eaf3ff;border-radius:12px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.quoteTotal span{font-size:15px}.quoteTotal b{font-size:30px;color:#005ccc;letter-spacing:-.025em}
+.quoteCTA{display:flex;gap:10px;margin-top:16px}.quoteCTA button{flex:1}.priceHead{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:24px 0 12px}.priceHead h2{font-size:23px}
+.priceHelp{font-size:15px;color:var(--muted);margin-bottom:16px}
+.priceCards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.priceCard{background:white;border:1px solid var(--line);border-radius:15px;padding:20px;min-width:0}
+.priceCard.selected{border:2px solid var(--green);padding:19px;box-shadow:0 4px 20px #0866e90a}
+.priceCard .priceTitle{display:flex;align-items:center;justify-content:space-between;gap:6px}
+.priceCard h3{font-size:21px;margin:0}.priceCard h3 small{font-size:14px;color:var(--muted)}
+.priceCard .pill{font-size:12px;background:#eaf3ff;color:#005ecc;padding:4px 7px;border-radius:6px;white-space:nowrap}
+.priceCard .supplier{font-size:14px;color:var(--muted);margin-top:5px;min-height:23px;overflow-wrap:anywhere}
+.priceCard .priceAmount{font-size:27px;font-weight:750;line-height:1.2;margin:15px 0 5px;color:#173653}
+.priceCard .priceAmount.unset{font-size:21px;color:#68809b}
+.priceCard .unitPrice{font-size:14px;color:var(--muted)}
+.priceCard .countFlow{font-size:14px;background:#f4f7fc;border-radius:9px;padding:10px;margin:12px 0;color:#3a587b}
+.priceCard .cardActions{display:flex;gap:8px}.priceCard .cardActions button{flex:1;font-size:15px;padding:8px;min-height:46px}.priceCard .lowest{font-size:13px;color:#0a744f;margin-top:5px}
+.quoteMeta{display:grid;grid-template-columns:1fr 1fr;gap:12px}.quoteMeta label{font-size:15px}.quoteMeta .wide{grid-column:1/-1}
+.feePreview{background:#eaf3ff;padding:14px;border-radius:10px;margin-top:16px;font-size:15px}
+.pagefooter{font-size:14px;color:var(--muted);padding-top:28px;align-items:center}.pagefooter>span:first-child{font-weight:600;color:#3e5777}
+.bottomnav{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:30;background:#fffffff5;border-top:1px solid var(--line);backdrop-filter:blur(12px);padding:7px max(12px,calc((100vw - 700px)/2)) calc(9px + env(safe-area-inset-bottom));box-shadow:0 -3px 20px #172c4906}
+.bottomnav button{flex:1;color:#7789a1;border-radius:11px;min-height:56px;padding:3px;min-width:0}
+.bottomnav button span{display:block;font-size:26px;line-height:1.1}
+.bottomnav button b{display:block;font-size:14px;margin-top:4px;font-weight:550;letter-spacing:0;white-space:nowrap}
+.bottomnav button.active{color:#0866e9;background:#edf5ff}
+.modalbox{max-width:520px;border-radius:18px;padding:26px}.modalheader{gap:10px}.modalbox h2{font-size:24px}.modalbox p{font-size:16px}.modalbox label{font-size:16px}.modalbox input{margin-bottom:10px}
+.menulist button{font-size:17px;min-height:66px}.menulist small{font-size:14px}.modalactions{margin-top:20px}
+#toast{bottom:98px;background:#183451;font-size:16px;border-radius:12px;line-height:1.55;max-width:min(540px,calc(100vw - 28px));width:max-content}
+.homePane{max-width:670px;margin:0 auto}.homeintro{padding:18px 2px 24px}.homeintro h1{font-size:36px;line-height:1.4;margin:12px 0}.homeintro h1 span{font-size:25px;font-weight:600}.homeintro p{font-size:17px;color:#5e728e;line-height:1.8}
+.featuretiles{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:22px}
+.featuretiles>div{background:white;border-radius:15px;box-shadow:0 5px 18px #173b6a04;text-align:center;padding:18px 6px;border:1px solid #e9eff7}
+.featuretiles span{display:block;color:var(--green);font-size:30px;line-height:1.25}.featuretiles b{display:block;font-size:18px;margin:8px 0 4px}.featuretiles small{font-size:14px;color:var(--muted)}
+.homeprimary,.homecontinue{display:flex;align-items:center;width:100%;gap:18px;text-align:left;border-radius:16px;padding:23px;margin-bottom:14px}
+.homeprimary{background:linear-gradient(120deg,#348ff8,#0866e9);color:white;box-shadow:0 8px 18px #0866e91c}
+.homeprimary>span:first-child,.homecontinue>span:first-child{font-size:38px}.homeprimary>span:nth-child(2),.homecontinue>span:nth-child(2){flex:1;min-width:0}
+.homeprimary b,.homecontinue b{display:block;font-size:24px;line-height:1.3}.homeprimary small,.homecontinue small{display:block;font-size:14px;margin-top:6px;font-weight:400;overflow-wrap:anywhere}.homeprimary small{color:#e1eeff}.homeprimary>span:last-child,.homecontinue>span:last-child{font-size:25px}
+.homecontinue{background:white;border:1px solid var(--line);color:#244770}.homecontinue small{color:var(--muted)}
+.homeactions{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:24px}.homeactions>button{background:white;border:1px solid #e4ebf5;border-radius:14px;text-align:left;padding:20px}
+.homeactions span{display:block;color:var(--green);font-size:31px;line-height:1.2}.homeactions b{display:block;font-size:19px;margin:12px 0 4px}.homeactions small{font-size:14px;color:var(--muted)}
+.currentproject{border-radius:16px;background:#eaf3ff;padding:22px;border:1px solid #dbeaff}.currentproject>div:first-child{display:flex;align-items:center;justify-content:space-between;gap:8px}.currentproject h2{font-size:21px;overflow-wrap:anywhere;margin:9px 0 16px}
+.homefigures{display:grid;grid-template-columns:1fr 1fr;gap:15px}.homefigures span{font-size:14px;color:var(--muted);display:block}.homefigures b{font-size:32px;line-height:1.35}.homefigures small{font-size:15px}.currentproject p{font-size:14px;line-height:1.7;color:#577396;margin-top:15px}
+.privacyline{color:#627c9c;display:block;width:100%;text-align:center;font-size:14px;margin-top:16px;padding:10px;min-height:46px}
+.creator{font-size:15px;text-align:center;color:#476284;margin-top:18px}.creator span{display:block;font-size:13px;color:#7f90a6;margin-top:4px}
+body[data-page=home] .projectline,body[data-page=home] .overview,body[data-page=home] .steps,body[data-page=home] .workspace,body[data-page=home] .pagefooter{display:none}
+body[data-page=report] .workspace{grid-template-columns:minmax(0,1fr) 350px}
+body[data-page=report] .reportPane{min-width:0}
+@media(max-width:1100px){.workspace{grid-template-columns:minmax(0,1fr) 340px}.panel{padding:20px}.priceCards{grid-template-columns:1fr}}
+@media(max-width:760px){
+.topbar{height:78px;padding:0 16px}.newmark{width:39px;height:39px}.brand{gap:10px}.brand strong{font-size:25px}.brand small{font-size:12px}.topright{gap:6px}.localbadge{display:none}.iconbutton{min-height:44px;width:44px;height:44px}
+main{padding:17px 14px 105px}.projectline{display:block;margin-bottom:13px}.projectline h1{font-size:23px}.projectline .eyebrow{display:none}
+.projectmeta{display:flex;align-items:center;justify-content:space-between;font-size:12px;text-align:left;max-width:none;padding-top:2px}.projectmeta>span:first-child{margin:0;display:inline}
+.overview{grid-template-columns:1fr 1fr;margin-bottom:14px}.metric:nth-child(2){display:none}.metric{padding:12px 15px}.metric>span{font-size:14px}.metric>div{display:flex;gap:6px;align-items:baseline}
+.metric b,.metric.purchase b{font-size:30px;font-weight:750;line-height:1.4;letter-spacing:-.035em}.metric small{font-size:14px}.metric em{font-size:12px}
+.steps{gap:0;justify-content:space-between;margin-bottom:14px}.steps button{font-size:14px;gap:5px;min-height:43px;padding-bottom:8px}.stepno{font-size:12px}
+.workspace,body[data-page=report] .workspace{display:flex;flex-direction:column;gap:16px}
+.workmain,.inspector,.reportPane{width:100%;min-width:0}.stageheader{min-height:56px;padding:10px 14px;display:block}.stageheader b{font-size:17px}.stageheader>span{display:block;white-space:normal;max-width:none;font-size:12px;margin-top:2px}
+.canvaswrap{height:360px}.minitag{font-size:12px}.zoomtools button{width:44px;height:44px}.scaleLegend{font-size:12px;bottom:15px}
+.guidetoggles{gap:10px;padding:8px 12px;font-size:14px}.guidetoggles label{min-height:35px}
+.toolstrip{gap:4px;padding:8px;white-space:normal;align-items:stretch}
+#planTools{display:grid;grid-template-columns:repeat(4,1fr)}.toolstrip>button{font-size:14px;padding:9px 6px;min-height:50px}
+#planTools button>span{display:block;font-size:20px;margin:0 0 3px}.toolstrip>button span{font-size:18px}
+#layoutTools{flex-wrap:wrap;justify-content:flex-start;gap:8px 15px}.toolstrip .switchlabel{font-size:14px;min-height:44px}
+.stagefoot{font-size:12px;padding:9px 12px;gap:0}.stagefoot>span{font-size:11px}.stagefoot button{font-size:13px}
+.drawingAction{display:block;padding:12px}.drawingAction>span{font-size:15px;margin-bottom:8px}.drawingAction button{font-size:15px}
+.panel{padding:22px 18px}.paneltitle h2{font-size:23px}.paneltitle p{font-size:14px}.sectionnum{font-size:21px}.paneltitle{margin-bottom:20px}
+h3{font-size:18px}.helper{font-size:15px}.micro{font-size:14px}.tip b{font-size:16px}.tip p{font-size:14px}
+.importbox b{font-size:18px}.importbox small{font-size:13px}.inlinebuttons button{font-size:15px}
+.primary,.secondary{font-size:17px;min-height:51px}.textbutton{font-size:15px}.areaItem b{font-size:16px}.areaItem small{font-size:13px}.areaItem button{min-width:44px;min-height:44px}
+.sizegrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.sizebutton{padding:14px}.sizebutton b{font-size:17px}.sizebutton small{font-size:13px}.segmented button{font-size:15px;padding:10px 4px;min-height:48px}
+.inputrow label,.panel>label{font-size:15px}.inputrow button{font-size:15px;min-height:50px}summary{font-size:16px}.sliderlabel,.sliderlabel output{font-size:16px}
+input:not([type=checkbox]):not([type=range]):not([type=file]):not([type=hidden]),select{font-size:18px;min-height:50px;padding:11px}
+.materialgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.materialcard canvas{height:102px}.materialcard b{font-size:15px}
+.threewrap{height:395px}.threebadge span{font-size:13px}.threebadge b{font-size:15px}.under3d{font-size:14px;padding:15px}.switchlabel{font-size:15px}.threePane .toolstrip{display:grid;grid-template-columns:1fr 1fr}
+.reporthero{padding:21px}.reporthero h2{font-size:24px}.reporthero p{font-size:15px}.reportnums{gap:15px;flex-wrap:wrap}.reportnums b{font-size:29px}.reportnums span,.reportnums small{font-size:14px}
+.reportcardhead{padding:18px}.detailgrid{padding:7px 18px}.detailrow{font-size:15px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px}.formulanote{font-size:14px;padding:15px 18px}.reportwarning{font-size:14px}
+.quoteSummary{padding:20px 18px}.quoteSummary h2{font-size:23px}.quoteTotal{padding:15px 12px;align-items:flex-start;flex-direction:column;gap:4px}.quoteTotal b{font-size:34px}.quoteTotal span{font-size:16px}.quoteCTA{flex-direction:column}
+.priceCards{grid-template-columns:1fr}.priceCard{padding:19px}.priceCard.selected{padding:18px}.priceCard h3{font-size:23px}.priceCard .priceAmount{font-size:30px}.priceCard .cardActions button{font-size:16px}
+.quoteMeta{gap:12px}.quoteMeta label{font-size:15px}
+.pagefooter{display:block;text-align:center;font-size:14px;padding-top:22px}.pagefooter>span{display:block;margin:5px}.pagefooter>button{margin-top:4px}
+.bottomnav{padding:6px 8px calc(8px + env(safe-area-inset-bottom))}.bottomnav button{padding:4px 2px;min-height:58px}.bottomnav button b{font-size:14px}
+.modal{padding:12px}.modalbox{padding:23px 18px;border-radius:17px}.modalbox h2{font-size:23px}.modalbox p{font-size:16px}.modalheader{margin-bottom:18px}.menulist button{font-size:17px}.menulist small{font-size:14px}
+#toast{font-size:16px;bottom:92px;padding:12px 16px}
+.homeintro{padding:14px 2px 18px}.homeintro h1{font-size:31px;margin:10px 0}.homeintro h1 span{font-size:23px}.homeintro p{font-size:16px}.homeintro .eyebrow{font-size:10px}
+.featuretiles{gap:8px;margin-bottom:18px}.featuretiles>div{padding:16px 3px}.featuretiles b{font-size:17px}.featuretiles small{font-size:12px}.featuretiles span{font-size:28px}
+.homeprimary,.homecontinue{padding:20px 16px;gap:12px}.homeprimary b,.homecontinue b{font-size:23px}.homeprimary small,.homecontinue small{font-size:13px}.homeprimary>span:first-child,.homecontinue>span:first-child{font-size:32px}
+.homeactions{gap:12px;margin-bottom:20px}.homeactions>button{padding:18px}.homeactions b{font-size:19px}.homeactions small{font-size:14px}.currentproject{padding:18px}.currentproject>div:first-child .textbutton{font-size:13px}.currentproject h2{font-size:22px}
+}
+@media(max-width:360px){.topbar{padding:0 12px}.brand strong{font-size:22px}.brand small{font-size:11px}.newmark{width:35px;height:35px}.topright{gap:5px}.topright .iconbutton{width:41px;min-height:41px;height:41px}
+main{padding-left:10px;padding-right:10px}.homeprimary small{font-size:12px}.homeintro h1 span{font-size:21px}.sizebutton b{font-size:16px}.steps button{font-size:13px}.stepno{display:none}.bottomnav button b{font-size:13px}
+}
+@media print{.topbar,.bottomnav,.inspector,.steps,.homePane,.pagefooter,.projectline,.overview{display:none!important}.reportPane{display:block!important}.workspace{display:block!important}.priceCard{break-inside:avoid}.reporthero{background:white;color:var(--ink)}}
+
+</style>
+</head>
+<body>
+<header class="topbar">
+  <button class="brand" id="brandHome" aria-label="返回首頁"><span class="newmark"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Tile Studio logo"><rect x="5" y="5" width="39" height="39" rx="4" fill="#0866E9"/><rect x="52" y="5" width="39" height="39" rx="4" fill="#98A5B7"/><rect x="5" y="52" width="39" height="39" rx="4" fill="#AAB5C2"/><rect x="52" y="52" width="39" height="39" rx="4" fill="#172C49"/><path d="M0 58 L96 21 L96 30 L0 67Z" fill="white"/></svg></span><span><strong>Tile Studio</strong><small>鋪磚設計室</small></span></button>
+  <div class="topright"><span class="localbadge"><i></i>本機處理</span><button class="iconbutton" id="helpBtn" aria-label="使用說明">?</button><button class="iconbutton" id="menuBtn" aria-label="方案選單">⋯</button></div>
+</header>
+<main>
+<section id="homePane" class="homePane" hidden>
+ <div class="homeintro"><div class="eyebrow">YOUR SPACE, BEAUTIFULLY PLANNED</div><h1>您好！<br><span>一起規劃您的鋪磚方案。</span></h1><p>從平面圖到選磚、價格比較和報價，<br>每一步都看得清楚。</p></div>
+ <div class="featuretiles"><div><span>▦</span><b>用量估算</b><small>按真實輪廓排磚</small></div><div><span>⇄</span><b>價格比較</b><small>不同尺寸一起比</small></div><div><span>◇</span><b>3D 預覽</b><small>套用自訂紋理</small></div></div>
+ <button id="homeImport" class="homeprimary"><span>↥</span><span><b>導入平面圖</b><small>JPG · PNG · WebP ／ 全程本機處理</small></span><span>→</span></button>
+ <button id="homeContinue" class="homecontinue"><span>▱</span><span><b>繼續目前方案</b><small id="homeProjectName">我的鋪磚方案</small></span><span>→</span></button>
+ <div class="homeactions"><button id="homeBlank"><span>＋</span><b>新建房間</b><small>輸入已知長闊</small></button><button id="homeLoad"><span>▤</span><b>我的備份</b><small>載入 JSON 方案</small></button></div>
+ <div class="currentproject"><div><span class="tag good">目前方案</span><button id="homeDemo" class="textbutton">試用 24 m² 示範 →</button></div><h2 id="homeSavedName">我的鋪磚方案</h2><div class="homefigures"><div><span>淨鋪磚面積</span><b id="homeArea">24.00 <small>m²</small></b></div><div><span>已輸入價格</span><b id="homePriced">0 <small>款</small></b></div></div><p>先校準比例，再圈選範圍。張數包含邊位切割，可另加備料及整箱購買量。</p></div>
+ <button id="homePrivacy" class="privacyline">◇ 圖紙與價格留在裝置內 · 隱私說明</button>
+ <div class="creator">Designed by Dennis Chung <span>Tile Studio 2.0 · 測試版</span></div>
+</section>
+<section class="projectline">
+ <div><div class="eyebrow">YOUR SPACE, BEAUTIFULLY PLANNED</div><h1><span id="projectName">我的鋪磚方案</span><button id="renameBtn" class="editname" aria-label="修改方案名稱">✎</button></h1></div>
+ <div class="projectmeta"><span id="saveStatus">自動儲存於此裝置</span><span id="sourceBadge" class="tag">示範平面圖</span></div>
+</section>
+<section class="overview">
+  <div class="metric"><span>淨鋪磚面積</span><div><b id="areaValue">24.00</b><small>m²</small></div><em id="areaSub">已扣除不鋪區域</em></div>
+  <div class="metric"><span>目前瓷磚規格</span><div><b id="sizeValue">1200 × 600</b><small>mm</small></div><em id="angleSub">橫向鋪貼 · 2 mm 磚縫</em></div>
+  <div class="metric purchase"><span>建議備料</span><div><b id="qtyValue">39</b><small>張</small></div><em id="qtySub">排磚 35 張 + 10% 備料</em></div>
+</section>
+<nav class="steps" aria-label="工作流程">
+ <button data-tab="plan" class="active"><span class="stepno">01</span><span>平面圖</span></button>
+ <button data-tab="layout"><span class="stepno">02</span><span>排磚設計</span></button>
+ <button data-tab="three"><span class="stepno">03</span><span>紋理與 3D</span></button>
+ <button data-tab="report"><span class="stepno">04</span><span>比較與報價</span></button>
+</nav>
+<div class="workspace">
+<section class="workmain" id="drawingPane">
+ <div class="stageheader"><div><span class="liveDot"></span><b id="stageTitle">平面圖工作區</b></div><span id="stageBadge">6.00 × 4.00 m 示範客飯廳</span></div>
+ <div class="canvaswrap" id="canvasWrap">
+  <canvas id="planCanvas" aria-label="平面圖繪圖區，點擊新增角點"></canvas>
+  <div id="emptyNotice" class="emptyNotice" hidden><b>從你的平面圖開始</b><p>匯入圖片，設定一段已知長度，再圈選地面範圍。</p><button class="primary" data-action="import">匯入平面圖</button></div>
+  <div class="canvascorner"><span class="minitag" id="canvasMode">拖曳移動 · 雙指縮放</span></div>
+  <div class="zoomtools"><button id="zoomIn" aria-label="放大">+</button><button id="zoomOut" aria-label="縮小">−</button><button id="fitBtn" aria-label="適合畫面">⊡</button></div>
+  <div class="scaleLegend" id="scaleLegend">1 m ━━━</div>
+ </div>
+ <div class="guidetoggles"><label><input type="checkbox" id="guideToggle" checked>十字輔助線</label><label><input type="checkbox" id="snapToggle" checked>水平／垂直對齊</label><span id="guideReadout">選點時顯示輔助線</span></div>
+ <div class="toolstrip" id="planTools">
+  <button data-tool="pan" class="active"><span>✥</span>移動</button>
+  <button data-tool="polygon"><span>⬡</span>圈選地面</button>
+  <button data-tool="hole"><span>⊖</span>扣除區域</button>
+  <button data-tool="edit"><span>✎</span>調整角點</button>
+ </div>
+ <div class="toolstrip" id="layoutTools" hidden>
+  <label class="switchlabel"><input type="checkbox" id="cutToggle" checked>標示切割磚</label>
+  <label class="switchlabel"><input type="checkbox" id="planToggle" checked>顯示底圖</label>
+  <button id="layoutFitBtn">⊡ 全圖</button>
+ </div>
+ <div id="drawingAction" class="drawingAction" hidden><span id="draftHint">點擊圖面加入角點</span><div><button id="undoPoint">上一步</button><button id="cancelDraw">取消</button><button id="finishDraw" class="primary small">完成範圍</button></div></div>
+ <div class="stagefoot"><span><i class="legendfloor"></i>鋪磚範圍 <i class="legendcut"></i>切割邊位 <i class="legendhole"></i>扣除範圍</span><button id="exportPlanBtn" class="textbutton">匯出效果圖 ↗</button></div>
+</section>
+<section class="workmain threePane" id="threePane" hidden>
+ <div class="stageheader"><div><span class="liveDot"></span><b>鋪磚 3D 預覽</b></div><span id="textureName">雲霧白大理石</span></div>
+ <div class="threewrap" id="threeWrap"><canvas id="threeCanvas"></canvas><div id="threeFallback" class="emptyNotice" hidden></div><div class="threebadge"><span>由圈選範圍即時計算</span><b id="threeInfo">1200 × 600 mm</b></div><div class="threetip">單指旋轉 · 雙指縮放</div></div>
+ <div class="toolstrip"><button id="isoBtn" class="active">◈ 等角視圖</button><button id="topBtn">▱ 俯視</button><button id="reset3DBtn">↻ 重設</button><button id="export3DBtn" class="textbutton">匯出 3D 圖 ↗</button></div>
+ <div class="note under3d">依據平面範圍建立的鋪磚模型；不是自動還原傢俬、門窗或牆高。紋理與顏色只供搭配預覽。</div>
+</section>
+<section class="reportPane" id="reportPane" hidden></section>
+<aside class="inspector">
+ <div id="planPanel" class="panel">
+  <div class="paneltitle"><span class="sectionnum">01</span><div><h2>定義你的空間</h2><p>匯入 → 校準 → 圈選</p></div></div>
+  <button id="importBtn" class="importbox"><span class="uploadicon">↥</span><span><b>匯入房屋平面圖</b><small>JPG、PNG、WebP · 圖片不會上傳</small></span><span>＋</span></button>
+  <div class="inlinebuttons"><button id="demoBtn">載入示範圖</button><button id="blankBtn">建立矩形房間</button></div>
+  <div class="divider"></div>
+  <div class="sectionhead"><h3>圖紙比例</h3><span id="scaleBadge" class="tag good">示範已校準</span></div>
+  <p class="helper">在圖上點選已知牆長的兩端，再輸入真實長度。請使用未經透視變形的平面圖。</p>
+  <button id="calibrateBtn" class="secondary full">⌁ 以兩點校準比例</button><p id="scaleText" class="micro">目前比例：90.00 像素 / 米</p>
+  <div class="divider"></div>
+  <div class="sectionhead"><h3>鋪磚與扣除範圍</h3><button id="addAreaBtn" class="textbutton">＋ 新增</button></div>
+  <div id="areaList"></div>
+  <button id="planNext" class="primary full gap">下一步：選擇瓷磚 →</button><div class="tip"><b>形狀不規則也可以</b><p>沿牆內邊逐點圈選，L 形地面也能計算。柱位、固定櫃底等可另圈選扣除。重疊地面不重複計算。</p></div>
+ </div>
+ <div id="layoutPanel" class="panel" hidden>
+  <div class="paneltitle"><span class="sectionnum">02</span><div><h2>選尺寸，看排法</h2><p>圖面與用量同步更新</p></div></div>
+  <h3>瓷磚尺寸 <span class="subtle">mm</span></h3>
+  <div class="sizegrid" id="sizeGrid"></div>
+  <details><summary>自訂尺寸</summary><div class="inputrow"><label>長度 mm<input id="customW" type="number" min="50" max="4000" value="1200" inputmode="decimal"></label><span>×</span><label>闊度 mm<input id="customH" type="number" min="50" max="4000" value="600" inputmode="decimal"></label><button id="applySize" class="secondary">套用</button></div></details>
+  <div class="divider"></div>
+  <h3>鋪貼方向</h3>
+  <div class="segmented" id="orientation"><button data-angle="0" class="active">▱ 橫向</button><button data-angle="90">▯ 直向</button><button data-angle="45">◇ 斜向 45°</button></div>
+  <div class="inputrow two"><label>排列方式<select id="patternSelect"><option value="0">直線對縫</option><option value="0.5">二分之一錯縫</option></select></label><label>磚縫寬度 mm<input id="groutInput" type="number" min="0" max="20" step="0.5" value="2" inputmode="decimal"></label></div>
+  <details class="offsetdetails"><summary>調整起磚位置</summary><p class="helper">整體平移排磚網格，觀察邊磚及切割用量的改變。多個區域沿用同一網格。</p><label class="sliderlabel">水平偏移 <output id="oxOut">0%</output><input id="offsetX" type="range" min="0" max="100" value="0"></label><label class="sliderlabel">垂直偏移 <output id="oyOut">0%</output><input id="offsetY" type="range" min="0" max="100" value="0"></label><button id="resetOffset" class="textbutton">重設起點</button></details>
+  <div class="miniresult"><div><span>完整磚</span><b id="fullCount">24 <small>張</small></b></div><div><span>切割磚</span><b id="cutCount">11 <small>張</small></b></div></div>
+  <button class="primary full" id="to3DBtn">選擇紋理與 3D 效果 →</button>
+ </div>
+ <div id="threePanel" class="panel" hidden>
+  <div class="paneltitle"><span class="sectionnum">03</span><div><h2>讓材質說話</h2><p>同一排法，即時比較不同質感</p></div></div>
+  <div class="materialgrid" id="materialGrid"></div>
+  <button id="uploadTextureBtn" class="secondary full">＋ 匯入自己的瓷磚紋理</button>
+  <p class="micro">建議使用正面、裁正的一片瓷磚照片；整張圖片映射到每片磚。內建紋理為程序生成示意。</p>
+  <div class="inputrow two"><label>紋理方向<select id="textureRotation"><option value="0">原方向</option><option value="90">旋轉 90°</option></select></label><label>磚面深淺<select id="variation"><option value="0">保持一致</option><option value="1">自然微差</option></select></label></div>
+  <div class="divider"></div>
+  <label class="switchlabel"><input type="checkbox" id="wallToggle">顯示低矮邊框（示意）</label>
+  <p class="micro">邊框僅標示圈選輪廓，不推斷真實牆身。扣除範圍在地面保留為空位。</p>
+  <button class="primary full" id="toReportBtn">比較價格與輸出報價 →</button>
+ </div>
+ <div id="reportPanel" class="panel" hidden>
+  <div class="paneltitle"><span class="sectionnum">04</span><div><h2>報價設定</h2><p>備料、客戶資料及額外費用</p></div></div>
+  <label class="sliderlabel"><b>額外備料比例</b><output id="wasteOut">10%</output><input id="wasteInput" type="range" min="0" max="30" step="1" value="10"></label>
+  <div class="presetrow"><button data-waste="5">5%</button><button data-waste="10">10%</button><button data-waste="15">15%</button></div>
+  <p class="helper">邊位切割已計入排磚張數；此比例再加備用磚，供破損、色差及日後維修使用。</p>
+  <input id="boxInput" type="hidden" value="4"><input id="priceInput" type="hidden" value="0">
+  <label>幣別<select id="currencyInput"><option value="HKD">HKD 港幣</option><option value="CNY">CNY 人民幣</option><option value="USD">USD 美元</option><option value="CAD">CAD 加元</option><option value="EUR">EUR 歐元</option><option value="GBP">GBP 英鎊</option><option value="TWD">TWD 新台幣</option></select></label>
+  <p class="micro">同一方案使用同一幣別；更換幣別不會換算匯率。</p>
+  <div class="divider"></div>
+  <button id="quoteDetailsBtn" class="secondary full">編輯客戶、商戶及報價條款</button>
+  <button id="quoteFeesBtn" class="secondary full gap">編輯人工、運費及其他費用</button>
+  <div class="divider"></div>
+  <button id="exportQuoteBtn" class="primary full">輸出報價 HTML ↗</button>
+  <button id="exportReportBtn" class="secondary full gap">匯出用量及價格比較 HTML</button>
+  <button id="backupBtn" class="secondary full gap">儲存完整方案備份</button>
+  <p class="micro">報價為可列印 HTML；在電腦瀏覽器開啟後，可列印或另存為 PDF。未填單價不會當作免費。</p>
+ </div>
+</aside>
+</div>
+<footer class="pagefooter"><span>Designed by Dennis Chung</span><span>TILE STUDIO · v2.0 測試版 · 本機估算工具</span><button id="footerPrivacy" class="textbutton">關於及隱私</button></footer>
+</main>
+<nav class="bottomnav" aria-label="手機工作流程">
+<button data-tab="home"><span>⌂</span><b>首頁</b></button>
+<button data-tab="plan"><span>▱</span><b>平面圖</b></button>
+<button data-tab="layout"><span>▦</span><b>排磚</b></button>
+<button data-tab="three"><span>◇</span><b>3D</b></button>
+<button data-tab="report"><span>≡</span><b>報價</b></button>
+</nav>
+<input type="file" id="planFile" accept="image/png,image/jpeg,image/webp" hidden>
+<input type="file" id="textureFile" accept="image/png,image/jpeg,image/webp" hidden>
+<input type="file" id="projectFile" accept=".json,application/json" hidden>
+<div id="toast" role="status" aria-live="polite"></div>
+<div id="modal" class="modal" hidden><div class="modalshade"></div><div class="modalbox" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modalheader"><h2 id="modalTitle"></h2><button id="closeModal" class="iconbutton" aria-label="關閉">×</button></div><div id="modalBody"></div></div></div>
+<div id="busy" class="busy" hidden><div class="spinner"></div><span id="busyText">正在處理圖面…</span></div>
+<script>
+/* Tile Studio geometry engine. Copyright 2026. No external dependencies.
+ * Units: project polygons in image pixels; all layout calculations in metres.
+ * Convex decomposition with subtraction produces a non-overlapping union.
+ * Each tile-grid cell consumes one stock tile. Offcut reuse is NOT optimized.
+ */
+(function(root){
+'use strict';
+const EPS=1e-8;
+const cross=(a,b,c)=>(b[0]-a[0])*(c[1]-a[1])-(b[1]-a[1])*(c[0]-a[0]);
+const signedArea=p=>p.reduce((s,a,i)=>{let b=p[(i+1)%p.length];return s+a[0]*b[1]-b[0]*a[1]},0)/2;
+const area=p=>Math.abs(signedArea(p));
+const dist=(a,b)=>Math.hypot(a[0]-b[0],a[1]-b[1]);
+function clean(p){let q=[]; for(const a of p)if(!q.length||dist(a,q[q.length-1])>EPS)q.push(a.slice());if(q.length>1&&dist(q[0],q[q.length-1])<EPS)q.pop();let changed=true;while(changed&&q.length>3){changed=false;for(let i=0;i<q.length;i++){if(Math.abs(cross(q[(i+q.length-1)%q.length],q[i],q[(i+1)%q.length]))<EPS){q.splice(i,1);changed=true;break}}}if(signedArea(q)<0)q.reverse();return q;}
+function pointIn(p,poly){let v=false;for(let i=0,j=poly.length-1;i<poly.length;j=i++){const a=poly[i],b=poly[j];if(Math.abs(cross(a,b,p))<EPS&&p[0]>=Math.min(a[0],b[0])-EPS&&p[0]<=Math.max(a[0],b[0])+EPS&&p[1]>=Math.min(a[1],b[1])-EPS&&p[1]<=Math.max(a[1],b[1])+EPS)return true;if(((a[1]>p[1])!==(b[1]>p[1]))&&(p[0]<(b[0]-a[0])*(p[1]-a[1])/(b[1]-a[1])+a[0]))v=!v;}return v;}
+function segmentsMeet(a,b,c,d){let ab1=cross(a,b,c),ab2=cross(a,b,d),cd1=cross(c,d,a),cd2=cross(c,d,b);if(ab1*ab2 < -EPS && cd1*cd2 < -EPS)return true;const on=(p,x,y)=>Math.abs(cross(x,y,p))<EPS&&p[0]>=Math.min(x[0],y[0])-EPS&&p[0]<=Math.max(x[0],y[0])+EPS&&p[1]>=Math.min(x[1],y[1])-EPS&&p[1]<=Math.max(x[1],y[1])+EPS;return on(a,c,d)||on(b,c,d)||on(c,a,b)||on(d,a,b);}
+function simple(p){if(p.length<3||area(p)<EPS)return false;for(let i=0;i<p.length;i++){if(dist(p[i],p[(i+1)%p.length])<EPS)return false;for(let j=i+1;j<p.length;j++){if(j===i+1||(i===0&&j===p.length-1))continue;if(segmentsMeet(p[i],p[(i+1)%p.length],p[j],p[(j+1)%p.length]))return false;}}return true;}
+function triangulate(input){const p=clean(input);if(p.length<3)return [];const ix=p.map((_,i)=>i),out=[];let limit=p.length*p.length;while(ix.length>3&&limit-->0){let hit=false;for(let k=0;k<ix.length;k++){let a=p[ix[(k+ix.length-1)%ix.length]],b=p[ix[k]],c=p[ix[(k+1)%ix.length]];if(cross(a,b,c)<=EPS)continue;let inside=false;for(let n=0;n<ix.length;n++){if(n===k||n===(k+1)%ix.length||n===(k+ix.length-1)%ix.length)continue;let v=p[ix[n]];if(cross(a,b,v)>=-EPS&&cross(b,c,v)>=-EPS&&cross(c,a,v)>=-EPS){inside=true;break}}if(!inside){out.push([a,b,c]);ix.splice(k,1);hit=true;break}}if(!hit)throw Error('INVALID_POLYGON');}if(ix.length===3)out.push(ix.map(i=>p[i]));return out;}
+function half(p,a,b,inside=true){let out=[];if(!p.length)return out;for(let i=0;i<p.length;i++){let x=p[i],y=p[(i+1)%p.length],cx=cross(a,b,x),cy=cross(a,b,y);const ix=inside?cx>=-EPS:cx<=EPS,iy=inside?cy>=-EPS:cy<=EPS;if(ix)out.push(x);if(ix!==iy){let t=cx/(cx-cy);out.push([x[0]+t*(y[0]-x[0]),x[1]+t*(y[1]-x[1])]);}}return out.length>=3&&area(out)>EPS?clean(out):[];}
+function intersect(p,q){let r=p;for(let i=0;i<q.length&&r.length;i++)r=half(r,q[i],q[(i+1)%q.length],true);return r;}
+function bbox(p){let x0=Infinity,y0=Infinity,x1=-Infinity,y1=-Infinity;for(let a of p){x0=Math.min(x0,a[0]);y0=Math.min(y0,a[1]);x1=Math.max(x1,a[0]);y1=Math.max(y1,a[1]);}return [x0,y0,x1,y1];}
+function boxOverlap(a,b){return !(a[2]<=b[0]+EPS||b[2]<=a[0]+EPS||a[3]<=b[1]+EPS||b[3]<=a[1]+EPS);}
+function subtract(p,q){if(!boxOverlap(bbox(p),bbox(q)))return [p];let remaining=p,out=[];for(let i=0;i<q.length&&remaining.length;i++){let exterior=half(remaining,q[i],q[(i+1)%q.length],false);if(exterior.length)out.push(exterior);remaining=half(remaining,q[i],q[(i+1)%q.length],true);}return out;}
+function region(rooms,holes,ppm){if(!(ppm>0))return {parts:[],area:0,gross:0,excluded:0};const scale=p=>p.map(v=>[v[0]/ppm,v[1]/ppm]);let parts=[];for(let room of rooms){let fresh=triangulate(scale(room.points));for(let old of parts){fresh=fresh.flatMap(p=>subtract(p,old));if(!fresh.length)break;}parts.push(...fresh);if(parts.length>1600)throw Error('TOO_COMPLEX');}const gross=parts.reduce((s,p)=>s+area(p),0);for(let hole of holes){for(let tri of triangulate(scale(hole.points))){parts=parts.flatMap(p=>subtract(p,tri));if(parts.length>2000)throw Error('TOO_COMPLEX');}}const total=parts.reduce((s,p)=>s+area(p),0);return {parts,area:total,gross,excluded:Math.max(0,gross-total),bounds:parts.length?bbox(parts.flat()):[0,0,1,1]};}
+function layout(reg,opts){let {width=1200,height=600,angle=0,grout=2,offsetX=0,offsetY=0,stagger=0}=opts;const w=width/1000,h=height/1000,g=grout/1000;if(w<.05||h<.05||w>4||h>4||g<0||g>.03)throw Error('INVALID_TILE');if(!reg.parts.length)return {tiles:[],full:0,cut:0,count:0,covered:0,cutWaste:0,groutArea:0,areaMinimum:0};let r=angle*Math.PI/180,c=Math.cos(r),s=Math.sin(r);const rot=p=>[c*p[0]+s*p[1],-s*p[0]+c*p[1]];const world=p=>[c*p[0]-s*p[1],s*p[0]+c*p[1]];const parts=reg.parts.map(p=>p.map(rot)),pb=parts.map(bbox),bounds=bbox(parts.flat());let px=w+g,py=h+g,ox=bounds[0]+offsetX*px,oy=bounds[1]+offsetY*py;let j0=Math.floor((bounds[1]-oy)/py),j1=Math.ceil((bounds[3]-oy)/py);let estimate=(Math.ceil((bounds[2]-bounds[0])/px)+3)*(j1-j0+2);if(estimate>12000)throw Error('TOO_MANY_TILES');let tiles=[],full=0,cut=0,covered=0;for(let j=j0;j<j1;j++){const shift=(j%2!==0?stagger:0)*px;let i0=Math.floor((bounds[0]-ox-shift)/px),i1=Math.ceil((bounds[2]-ox-shift)/px);for(let i=i0;i<i1;i++){let x=ox+shift+i*px,y=oy+j*py,cell=[[x,y],[x+w,y],[x+w,y+h],[x,y+h]],bb=[x,y,x+w,y+h],fragments=[],used=0;for(let k=0;k<parts.length;k++){if(!boxOverlap(bb,pb[k]))continue;let clip=intersect(parts[k],cell);if(clip.length){let a=area(clip);if(a>EPS){fragments.push(clip.map(world));used+=a;}}}if(used>EPS){const isFull=used>=w*h-Math.max(1e-7,w*h*1e-6);isFull?full++:cut++;covered+=used;tiles.push({i,j,x,y,w,h,c,s,full:isFull,area:used,fragments,corners:cell.map(world)});}}}const count=tiles.length;return {tiles,full,cut,count,covered,cutWaste:Math.max(0,count*w*h-covered),groutArea:Math.max(0,reg.area-covered),areaMinimum:Math.ceil(reg.area/(w*h)-1e-9),nominal:w*h,bounds};}
+function quantity(lay,waste=10,perBox=4,price=0){const extra=Math.ceil(lay.count*waste/100-1e-10),recommended=lay.count+extra,boxes=Math.ceil(recommended/perBox),purchase=boxes*perBox;return {extra,recommended,boxes,purchase,cost:purchase*price,perBox};}
+const api={EPS,cross,area,signedArea,dist,clean,simple,pointIn,triangulate,half,intersect,subtract,bbox,region,layout,quantity};if(typeof module!=='undefined')module.exports=api;root.TileEngine=api;
+})(typeof globalThis!=='undefined'?globalThis:this);
+
+</script><script>
+/* Dependency-free WebGL floor renderer. Tiles are triangulated from exact layout fragments. */
+(function(root){'use strict';
+const norm=v=>{let n=Math.hypot(...v)||1;return v.map(x=>x/n)};
+const cross=(a,b)=>[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]];
+const dot=(a,b)=>a.reduce((s,x,i)=>s+x*b[i],0);
+function lookAt(eye,target){let z=norm(eye.map((x,i)=>x-target[i])),x=norm(cross([0,1,0],z)),y=cross(z,x);return new Float32Array([x[0],y[0],z[0],0,x[1],y[1],z[1],0,x[2],y[2],z[2],0,-dot(x,eye),-dot(y,eye),-dot(z,eye),1]);}
+function perspective(fovy,aspect,near,far){let f=1/Math.tan(fovy/2),nf=1/(near-far);return new Float32Array([f/aspect,0,0,0,0,f,0,0,0,0,(far+near)*nf,-1,0,0,2*far*near*nf,0]);}
+function multiply(a,b){let out=new Float32Array(16);for(let c=0;c<4;c++)for(let r=0;r<4;r++)for(let k=0;k<4;k++)out[c*4+r]+=a[k*4+r]*b[c*4+k];return out;}
+function shader(gl,type,source){let s=gl.createShader(type);gl.shaderSource(s,source);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))throw Error(gl.getShaderInfoLog(s));return s;}
+class Floor3D{
+constructor(canvas){this.canvas=canvas;this.gl=canvas.getContext('webgl',{antialias:true,alpha:false,preserveDrawingBuffer:true,powerPreference:'low-power'});if(!this.gl)throw Error('WEBGL_UNAVAILABLE');const gl=this.gl;
+let vs=shader(gl,gl.VERTEX_SHADER,'attribute vec3 aPos;attribute vec2 aUV;attribute vec3 aColor;attribute float aTextured;attribute vec3 aNormal;uniform mat4 uMatrix;varying vec2 vUV;varying vec3 vColor;varying float vTex;varying float vLight;void main(){gl_Position=uMatrix*vec4(aPos,1.0);vUV=aUV;vColor=aColor;vTex=aTextured;vLight=0.70+0.30*max(dot(normalize(aNormal),normalize(vec3(-0.4,1.0,0.5))),0.0);}');
+let fs=shader(gl,gl.FRAGMENT_SHADER,'precision mediump float;uniform sampler2D uTexture;varying vec2 vUV;varying vec3 vColor;varying float vTex;varying float vLight;void main(){vec3 tex=texture2D(uTexture,clamp(vUV,0.0,1.0)).rgb;vec3 c=mix(vColor,tex*vColor,step(0.5,vTex));gl_FragColor=vec4(c*vLight,1.0);}');
+this.program=gl.createProgram();gl.attachShader(this.program,vs);gl.attachShader(this.program,fs);gl.linkProgram(this.program);if(!gl.getProgramParameter(this.program,gl.LINK_STATUS))throw Error(gl.getProgramInfoLog(this.program));gl.deleteShader(vs);gl.deleteShader(fs);this.buffer=gl.createBuffer();this.texture=gl.createTexture();this.count=0;this.az=.42;this.el=.83;this.distance=11;this.baseDistance=11;this.dirty=true;this.setupEvents();canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();this.lost=true;});canvas.addEventListener('webglcontextrestored',()=>location.reload());}
+setData(region,layout,settings,texture,rooms,ppm){let gl=this.gl,vertices=[],bounds=region.bounds||[0,0,1,1];this.cx=(bounds[0]+bounds[2])/2;this.cz=(bounds[1]+bounds[3])/2;const P=(p,y)=>[p[0]-this.cx,y,p[1]-this.cz];const put=(p,uv,color,tex,n)=>vertices.push(...p,...uv,...color,tex,...n);const tri=(a,b,c,color,normal=[0,1,0],uvs=null)=>{for(let i=0;i<3;i++)put([a,b,c][i],uvs?uvs[i]:[0,0],color,uvs?1:0,normal);};
+const face=(poly,y,color,texFn=null)=>{for(let i=1;i<poly.length-1;i++){let pts=[poly[0],poly[i],poly[i+1]];tri(...pts.map(p=>P(p,y)),color,[0,1,0],texFn?pts.map(texFn):null);}};
+const sides=(poly,low,high,color)=>{for(let i=0;i<poly.length;i++){let a=poly[i],b=poly[(i+1)%poly.length],n=norm([b[1]-a[1],0,a[0]-b[0]]);tri(P(a,low),P(b,low),P(b,high),color,n);tri(P(a,low),P(b,high),P(a,high),color,n);}};
+const span=Math.max(bounds[2]-bounds[0],bounds[3]-bounds[1],1),margin=Math.max(.8,span*.11);let floor=[[bounds[0]-margin,bounds[1]-margin],[bounds[2]+margin,bounds[1]-margin],[bounds[2]+margin,bounds[3]+margin],[bounds[0]-margin,bounds[3]+margin]];face(floor,-.17,[.90,.915,.875]);
+for(let part of region.parts){let shadow=part.map(p=>[p[0]+.04,p[1]+.045]);face(shadow,-.164,[.79,.815,.766]);face(part,0,[.66,.69,.63]);sides(part,-.15,0,[.74,.77,.70]);}
+for(let tile of layout.tiles){let shade=settings.variation?1-((Math.abs(tile.i*31+tile.j*17)%13)/13)*.07:1;const uv=p=>{let u=(tile.c*p[0]+tile.s*p[1]-tile.x)/tile.w,v=(-tile.s*p[0]+tile.c*p[1]-tile.y)/tile.h;return settings.textureRotation===90?[v,1-u]:[u,v]};for(let frag of tile.fragments){face(frag,.012,[shade,shade,shade],uv);sides(frag,.001,.012,[.76,.77,.70]);}}
+if(settings.walls){for(let room of rooms){let p=room.points.map(q=>[q[0]/ppm,q[1]/ppm]);for(let i=0;i<p.length;i++){let a=p[i],b=p[(i+1)%p.length],len=Math.hypot(b[0]-a[0],b[1]-a[1]);if(!len)continue;let nx=(b[1]-a[1])/len*.035,ny=-(b[0]-a[0])/len*.035;let poly=[[a[0]-nx,a[1]-ny],[b[0]-nx,b[1]-ny],[b[0]+nx,b[1]+ny],[a[0]+nx,a[1]+ny]];face(poly,.26,[.95,.952,.91]);sides(poly,0,.26,[.91,.92,.87]);}}}
+this.count=vertices.length/12;gl.bindBuffer(gl.ARRAY_BUFFER,this.buffer);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(vertices),gl.STATIC_DRAW);gl.bindTexture(gl.TEXTURE_2D,this.texture);gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL,false);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,texture);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);
+let aspect=Math.max(.6,this.canvas.clientWidth/Math.max(1,this.canvas.clientHeight));this.baseDistance=Math.max(3,span*(aspect<1?2.0:1.6));if(!this.hasData){this.distance=this.baseDistance;this.hasData=true;}this.distance=Math.min(Math.max(this.distance,this.baseDistance*.25),this.baseDistance*3);this.render();}
+reset(top=false){this.az=top?0:.42;this.el=top?1.55:.83;this.distance=this.baseDistance;this.render();}
+resize(){const dpr=Math.min(window.devicePixelRatio||1,2);let w=Math.max(1,this.canvas.clientWidth),h=Math.max(1,this.canvas.clientHeight);if(this.canvas.width!==Math.round(w*dpr)||this.canvas.height!==Math.round(h*dpr)){this.canvas.width=Math.round(w*dpr);this.canvas.height=Math.round(h*dpr);}this.gl.viewport(0,0,this.canvas.width,this.canvas.height);}
+render(){if(this.lost||!this.canvas.clientWidth)return;const gl=this.gl;this.resize();gl.clearColor(.908,.918,.878,1);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);if(!this.count)return;gl.enable(gl.DEPTH_TEST);gl.disable(gl.CULL_FACE);gl.useProgram(this.program);gl.bindBuffer(gl.ARRAY_BUFFER,this.buffer);let attrs=[['aPos',3,0],['aUV',2,3],['aColor',3,5],['aTextured',1,8],['aNormal',3,9]];for(let [name,size,off]of attrs){let loc=gl.getAttribLocation(this.program,name);gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,size,gl.FLOAT,false,48,off*4);}const eye=[Math.sin(this.az)*Math.cos(this.el)*this.distance,Math.sin(this.el)*this.distance,Math.cos(this.az)*Math.cos(this.el)*this.distance];let matrix=multiply(perspective(.76,this.canvas.width/this.canvas.height,.02,1000),lookAt(eye,[0,-.03,0]));gl.uniformMatrix4fv(gl.getUniformLocation(this.program,'uMatrix'),false,matrix);gl.activeTexture(gl.TEXTURE0);gl.bindTexture(gl.TEXTURE_2D,this.texture);gl.uniform1i(gl.getUniformLocation(this.program,'uTexture'),0);gl.drawArrays(gl.TRIANGLES,0,this.count);}
+setupEvents(){let c=this.canvas,points=new Map(),last=null;const span=()=>{let p=[...points.values()];return p.length<2?0:Math.hypot(p[0][0]-p[1][0],p[0][1]-p[1][1]);};c.addEventListener('pointerdown',e=>{c.setPointerCapture(e.pointerId);points.set(e.pointerId,[e.clientX,e.clientY]);last={x:e.clientX,y:e.clientY,span:span()};});c.addEventListener('pointermove',e=>{if(!points.has(e.pointerId))return;points.set(e.pointerId,[e.clientX,e.clientY]);if(points.size>1){let now=span();if(last.span>0)this.distance=Math.max(this.baseDistance*.27,Math.min(this.baseDistance*3,this.distance*last.span/now));last={x:e.clientX,y:e.clientY,span:now};}else{this.az-=(e.clientX-last.x)*.008;this.el=Math.max(.17,Math.min(1.55,this.el+(e.clientY-last.y)*.006));last={x:e.clientX,y:e.clientY,span:0};}this.render();});const end=e=>{points.delete(e.pointerId);if(points.size){let p=[...points.values()][0];last={x:p[0],y:p[1],span:0};}else last=null;};c.addEventListener('pointerup',end);c.addEventListener('pointercancel',end);c.addEventListener('wheel',e=>{e.preventDefault();this.distance=Math.max(this.baseDistance*.27,Math.min(this.baseDistance*3,this.distance*Math.exp(e.deltaY*.001)));this.render();},{passive:false});}
+capture(){this.render();return this.canvas.toDataURL('image/png');}
+}
+
+/* Software perspective renderer for devices where WebGL is unavailable.
+   Uses the same measured tile fragments and camera, not a sample-room image. */
+class CanvasFloor3D{
+constructor(canvas){this.canvas=canvas;this.ctx=canvas.getContext('2d',{alpha:false});if(!this.ctx)throw Error('CANVAS_UNAVAILABLE');this.az=.42;this.el=.83;this.distance=11;this.baseDistance=11;this.count=0;this.software=true;Floor3D.prototype.setupEvents.call(this);}
+setData(region,layout,settings,texture,rooms,ppm){this.region=region;this.layout=layout;this.settings={...settings};this.texture=texture;this.rooms=rooms;this.ppm=ppm;let b=region.bounds||[0,0,1,1];this.cx=(b[0]+b[2])/2;this.cz=(b[1]+b[3])/2;let span=Math.max(b[2]-b[0],b[3]-b[1],1),aspect=Math.max(.6,this.canvas.clientWidth/Math.max(1,this.canvas.clientHeight));this.baseDistance=Math.max(3,span*(aspect<1?2.0:1.6));if(!this.hasData){this.distance=this.baseDistance;this.hasData=true;}this.distance=Math.min(Math.max(this.distance,this.baseDistance*.25),this.baseDistance*3);this.count=layout.tiles.length*6;this.render();}
+reset(top=false){Floor3D.prototype.reset.call(this,top);}
+render(){if(!this.region||!this.canvas.clientWidth)return;let c=this.canvas,g=this.ctx,dpr=Math.min(devicePixelRatio||1,2),w=c.clientWidth,h=c.clientHeight;if(c.width!==Math.round(w*dpr)||c.height!==Math.round(h*dpr)){c.width=Math.round(w*dpr);c.height=Math.round(h*dpr);}g.setTransform(dpr,0,0,dpr,0,0);g.fillStyle='#e8eadd';g.fillRect(0,0,w,h);
+let eye=[Math.sin(this.az)*Math.cos(this.el)*this.distance,Math.sin(this.el)*this.distance,Math.cos(this.az)*Math.cos(this.el)*this.distance],target=[0,-.03,0],z=norm(eye.map((v,i)=>v-target[i])),x=norm(cross([0,1,0],z)),y=cross(z,x),f=h/(2*Math.tan(.38));
+const project=(p,height=0)=>{let v=[p[0]-this.cx-eye[0],height-eye[1],p[1]-this.cz-eye[2]],depth=-dot(v,z);return [w/2+f*dot(v,x)/Math.max(.02,depth),h/2-f*dot(v,y)/Math.max(.02,depth),depth];};
+const path=points=>{if(!points.length)return;g.moveTo(points[0][0],points[0][1]);for(let i=1;i<points.length;i++)g.lineTo(points[i][0],points[i][1]);g.closePath();};
+const paint=(points,color)=>{g.beginPath();path(points);g.fillStyle=color;g.fill();};
+let b=this.region.bounds,margin=Math.max(.8,Math.max(b[2]-b[0],b[3]-b[1])*.11);paint([[b[0]-margin,b[1]-margin],[b[2]+margin,b[1]-margin],[b[2]+margin,b[3]+margin],[b[0]-margin,b[3]+margin]].map(p=>project(p,-.18)),'#e2e6d8');
+g.save();g.shadowColor='#3f503540';g.shadowBlur=14;g.shadowOffsetX=2;g.shadowOffsetY=7;for(let p of this.region.parts)paint(p.map(v=>project(v,-.155)),'#96a28c');g.restore();
+let sides=[];for(let p of this.region.parts)for(let i=0;i<p.length;i++){let a=p[i],b=p[(i+1)%p.length],pts=[project(a,-.15),project(b,-.15),project(b,0),project(a,0)];sides.push({points:pts,depth:pts.reduce((s,p)=>s+p[2],0)/4,color:Math.sin(this.az)*(b[1]-a[1])-Math.cos(this.az)*(b[0]-a[0])>0?'#acb49e':'#bdc4ae'});}sides.sort((a,b)=>b.depth-a.depth).forEach(p=>paint(p.points,p.color));
+for(let p of this.region.parts)paint(p.map(v=>project(v,0)),'#9ba38e');
+let tex=this.texture;if(this.settings.textureRotation===90){let tc=document.createElement('canvas');tc.width=tc.height=256;let q=tc.getContext('2d');q.translate(256,0);q.rotate(Math.PI/2);q.drawImage(tex,0,0,256,256);tex=tc;}
+const texturedTriangle=(screen,uv)=>{let [p0,p1,p2]=screen,[t0,t1,t2]=uv;let den=t0[0]*(t1[1]-t2[1])+t1[0]*(t2[1]-t0[1])+t2[0]*(t0[1]-t1[1]);if(Math.abs(den)<1e-8)return;let solve=vals=>[(vals[0]*(t1[1]-t2[1])+vals[1]*(t2[1]-t0[1])+vals[2]*(t0[1]-t1[1]))/den,(vals[0]*(t2[0]-t1[0])+vals[1]*(t0[0]-t2[0])+vals[2]*(t1[0]-t0[0]))/den,(vals[0]*(t1[0]*t2[1]-t2[0]*t1[1])+vals[1]*(t2[0]*t0[1]-t0[0]*t2[1])+vals[2]*(t0[0]*t1[1]-t1[0]*t0[1]))/den];let ax=solve(screen.map(p=>p[0])),ay=solve(screen.map(p=>p[1]));g.save();g.beginPath();path(screen);g.clip();g.transform(ax[0],ay[0],ax[1],ay[1],ax[2],ay[2]);g.drawImage(tex,0,0,256,256);g.restore();};
+for(let tile of this.layout.tiles){g.save();g.beginPath();for(let frag of tile.fragments)path(frag.map(p=>project(p,.012)));g.clip();const ps=tile.corners.map(p=>project(p,.012));texturedTriangle([ps[0],ps[1],ps[2]],[[0,0],[256,0],[256,256]]);texturedTriangle([ps[0],ps[2],ps[3]],[[0,0],[256,256],[0,256]]);if(this.settings.variation){g.globalAlpha=(Math.abs(tile.i*31+tile.j*17)%13)/13*.07;g.fillStyle='#000';g.fillRect(0,0,w,h);g.globalAlpha=1;}g.beginPath();path(ps);g.strokeStyle='#70806645';g.lineWidth=.7;g.stroke();g.restore();}
+if(this.settings.walls){let faces=[];for(let r of this.rooms){let pts=r.points.map(p=>[p[0]/this.ppm,p[1]/this.ppm]);for(let i=0;i<pts.length;i++){let a=pts[i],b=pts[(i+1)%pts.length],d=Math.hypot(b[0]-a[0],b[1]-a[1]),nx=(b[1]-a[1])/d*.035,ny=-(b[0]-a[0])/d*.035,p=[[a[0]-nx,a[1]-ny],[b[0]-nx,b[1]-ny],[b[0]+nx,b[1]+ny],[a[0]+nx,a[1]+ny]];let top=p.map(v=>project(v,.26));faces.push({points:top,color:'#f4f4e9',depth:top.reduce((s,v)=>s+v[2],0)/4});for(let k=0;k<4;k++){let A=p[k],B=p[(k+1)%4],q=[project(A,0),project(B,0),project(B,.26),project(A,.26)];faces.push({points:q,color:k%2?'#d8ddce':'#e3e7d8',depth:q.reduce((s,v)=>s+v[2],0)/4});}}}faces.sort((a,b)=>b.depth-a.depth).forEach(p=>paint(p.points,p.color));}
+}
+capture(){this.render();return this.canvas.toDataURL('image/png');}
+}
+root.CanvasFloor3D=CanvasFloor3D;
+
+root.Floor3D=Floor3D;
+})(typeof globalThis!=='undefined'?globalThis:this);
+
+</script><script>
+/* Tile Studio v1.0 — local-first floor tiling app. No third-party dependencies. */
+'use strict';
+const $=id=>document.getElementById(id), E=TileEngine;
+const SIZE_PRESETS=[[1200,600],[600,600],[800,800],[600,300],[300,300],[900,900]];
+const MATERIALS=[['marble','雲霧白大理石'],['sand','暖砂岩'],['terrazzo','細粒水磨石'],['wood','自然橡木紋'],['slate','深灰板岩'],['feature','青花特色磚']];
+const DEFAULTS={width:1200,height:600,angle:0,grout:2,offsetX:0,offsetY:0,stagger:0,waste:10,perBox:4,price:0,material:'marble',textureRotation:0,variation:0,walls:false};
+let S, bgImage=null, textureImage=null, cachedTextures={}, reg, lay, qty, renderer=null;
+let tab='plan',tool='pan',draft=[],calPoints=[],history=[],computeError='',dirty3d=true,saveTimer,computeTimer,toastTimer;
+let view={k:1,x:0,y:0}, pointers=new Map(),gesture=null,editTarget=null,editBefore=null,pinched=false;
+const canvas=$('planCanvas'),ctx=canvas.getContext('2d',{alpha:false}),KEY='tile-studio-v2-project';
+const escapeHTML=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmt=(n,d=2)=>Number(n||0).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,Number(v)));
+function toast(msg){$('toast').textContent=msg;$('toast').classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').classList.remove('show'),3600);}
+function busy(on,text='正在處理圖面…'){$('busyText').textContent=text;$('busy').hidden=!on;}
+function modal(title,body){$('modalTitle').textContent=title;$('modalBody').innerHTML=body;$('modal').hidden=false;setTimeout(()=>$('modalBody').querySelector('input,button')?.focus(),60);}
+function closeModal(){$('modal').hidden=true;if(tool==='calibrate'&&calPoints.length>=2){calPoints=[];setToolUI();renderPlan();}}
+function askConfirm(title,msg,fn){modal(title,`<p>${escapeHTML(msg)}</p><div class="modalactions"><button class="secondary" id="askCancel">取消</button><button class="primary" id="askOK">確認</button></div>`);$('askCancel').onclick=closeModal;$('askOK').onclick=()=>{closeModal();fn();};}
+function save(){clearTimeout(saveTimer);$('saveStatus').textContent='正在儲存…';saveTimer=setTimeout(()=>{try{localStorage.setItem(KEY,JSON.stringify(S));$('saveStatus').textContent='已自動儲存於此裝置';}catch(e){$('saveStatus').textContent='儲存空間不足，請匯出備份';}},550);}
+function remember(){history.push(JSON.stringify(S));if(history.length>20)history.shift();}
+function undoLast(){if(!history.length)return toast('沒有可復原的操作');loadState(JSON.parse(history.pop()));toast('已復原上一個操作');}
+function rng(seed){return()=>{seed=(seed*1664525+1013904223)>>>0;return seed/4294967296;};}
+function makeTexture(id){if(id==='custom'&&textureImage){let c=document.createElement('canvas');c.width=c.height=256;c.getContext('2d').drawImage(textureImage,0,0,256,256);return c;}if(cachedTextures[id])return cachedTextures[id];let c=document.createElement('canvas');c.width=c.height=256;let g=c.getContext('2d'),r=rng(179+MATERIALS.findIndex(m=>m[0]===id)*271);const base={marble:'#e8e8df',sand:'#d9cdb7',terrazzo:'#e8e4db',wood:'#bf9a6d',slate:'#4f5955',feature:'#eee9d9'}[id]||'#e8e8df';g.fillStyle=base;g.fillRect(0,0,256,256);
+if(id==='marble'){for(let j=0;j<45;j++){g.beginPath();let x=-200+r()*560,y=-100;g.moveTo(x,y);for(let k=0;k<10;k++){y+=45;g.lineTo(x+Math.sin(k*1.1+j)*15+k*13+r()*12,y);}g.strokeStyle=j%4===0?'#858b7c3b':'#a2a69924';g.lineWidth=j%5===0?2.8:.65;g.stroke();}for(let j=0;j<7;j++){let x=r()*256,y=r()*256,gr=g.createRadialGradient(x,y,2,x,y,70);gr.addColorStop(0,'#ffffff55');gr.addColorStop(1,'#ffffff00');g.fillStyle=gr;g.fillRect(0,0,256,256);}}
+if(id==='sand'||id==='slate'){for(let j=0;j<7000;j++){g.fillStyle=j%2?'#ffffff15':'#0000000d';g.fillRect(r()*256,r()*256,r()*2+.4,r()*2+.4);}if(id==='slate'){for(let j=0;j<20;j++){g.beginPath();g.moveTo(0,r()*256);g.lineTo(256,r()*256);g.strokeStyle='#e5e9d809';g.lineWidth=r()*4;g.stroke();}}}
+if(id==='terrazzo'){let colors=['#a3aa99','#c6b09e','#d0c6b5','#b48473','#89968f','#f9f7ec'];for(let j=0;j<800;j++){let x=r()*256,y=r()*256,sz=r()*5+.8;g.fillStyle=colors[Math.floor(r()*colors.length)];g.beginPath();for(let k=0;k<5;k++){let a=k/5*Math.PI*2,rr=sz*(.5+r()*.5);g.lineTo(x+Math.cos(a)*rr,y+Math.sin(a)*rr);}g.closePath();g.fill();}}
+if(id==='wood'){for(let j=0;j<180;j++){let y=r()*256;g.beginPath();g.moveTo(-10,y);for(let k=0;k<14;k++)g.lineTo(k*22,y+Math.sin(k*.8+j)*(.8+r()*3));g.strokeStyle=j%3?'#63411e24':'#ffe6b733';g.lineWidth=r()*1.4+.25;g.stroke();}for(let j=0;j<3;j++){g.save();g.translate(r()*256,r()*256);g.scale(2.7,.5);for(let k=1;k<7;k++){g.beginPath();g.ellipse(0,0,k*3,k*3,0,0,Math.PI*2);g.strokeStyle='#67472220';g.lineWidth=.6;g.stroke();}g.restore();}}
+if(id==='feature'){g.strokeStyle='#345a6280';g.lineWidth=3;g.strokeRect(9,9,238,238);g.fillStyle='#456d72';for(let k=0;k<4;k++){g.save();g.translate(128,128);g.rotate(k*Math.PI/2);g.beginPath();g.moveTo(0,0);g.bezierCurveTo(72,-95,128,0,0,0);g.fill();g.restore();}g.fillStyle='#bb9762';for(let [x,y] of [[0,0],[256,0],[0,256],[256,256]]){g.beginPath();g.arc(x,y,53,0,Math.PI*2);g.fill();}g.fillStyle='#eee9d9';g.beginPath();g.arc(128,128,18,0,Math.PI*2);g.fill();g.fillStyle='#bb9762';g.beginPath();g.arc(128,128,7,0,Math.PI*2);g.fill();}
+cachedTextures[id]=c;return c;}
+function currentTexture(){return makeTexture(S.settings.material);}
+function demoImage(){let c=document.createElement('canvas');c.width=1040;c.height=800;let g=c.getContext('2d');g.fillStyle='#fffef9';g.fillRect(0,0,1040,800);g.strokeStyle='#617062';g.lineWidth=12;g.strokeRect(94,94,840,606);g.beginPath();g.moveTo(652,94);g.lineTo(652,370);g.moveTo(652,432);g.lineTo(652,466);g.moveTo(94,466);g.lineTo(260,466);g.moveTo(325,466);g.lineTo(728,466);g.moveTo(790,466);g.lineTo(934,466);g.moveTo(376,466);g.lineTo(376,700);g.moveTo(690,466);g.lineTo(690,700);g.stroke();g.lineWidth=2;g.strokeStyle='#bdc5b5';
+function box(x,y,w,h){g.strokeRect(x,y,w,h)}box(127,168,70,225);box(138,181,48,64);box(138,250,48,64);box(138,319,48,61);box(254,227,100,116);box(465,170,112,83);for(let x of[468,535]){box(x,148,37,18);box(x,257,37,18);}box(729,166,137,208);box(736,174,122,194);box(743,183,48,36);box(800,183,48,36);box(890,127,20,268);box(115,498,226,43);box(115,541,43,128);g.beginPath();g.arc(190,520,12,0,7);g.arc(222,520,12,0,7);g.stroke();box(707,492,50,65);box(851,491,66,165);g.beginPath();g.ellipse(775,630,24,35,0,0,7);g.stroke();
+g.fillStyle='#7f8c77';g.font='19px sans-serif';g.textAlign='center';g.fillText('睡房',791,412);g.fillText('廚房',260,617);g.fillText('入口 / 走廊',530,609);g.fillText('浴室',815,685);g.font='14px sans-serif';g.fillStyle='#a8af9f';g.fillText('示範平面圖 · 非實際物業',514,756);
+g.strokeStyle='#a3b295';g.lineWidth=1;g.beginPath();g.moveTo(100,53);g.lineTo(640,53);g.moveTo(100,44);g.lineTo(100,65);g.moveTo(640,44);g.lineTo(640,65);g.moveTo(54,100);g.lineTo(54,460);g.moveTo(44,100);g.lineTo(65,100);g.moveTo(44,460);g.lineTo(65,460);g.stroke();g.fillStyle='#7c8c71';g.font='15px sans-serif';g.fillText('6.00 m',370,42);g.save();g.translate(39,280);g.rotate(-Math.PI/2);g.fillText('4.00 m',0,0);g.restore();
+for(let [x,y,w,h] of [[245,88,215,12],[928,185,12,160],[428,694,170,12]]){g.fillStyle='#d5e1d4';g.fillRect(x,y,w,h);g.strokeStyle='#819c80';g.lineWidth=2;g.strokeRect(x,y,w,h);}return c;}
+function demoState(){const c=demoImage();return {schema:'tile-studio-1',name:'我的鋪磚方案',imageData:c.toDataURL('image/png'),imageName:'示範平面圖',width:1040,height:800,ppm:90,scaleSource:'demo',scaleNote:'示範客飯廳 6.00 × 4.00 m',rooms:[{id:'living',name:'客飯廳',points:[[100,100],[640,100],[640,460],[100,460]]}],holes:[],settings:{...DEFAULTS},customTexture:null};}
+async function loadImage(data){return new Promise((resolve,reject)=>{let i=new Image();i.onload=()=>resolve(i);i.onerror=()=>reject(Error('IMAGE_LOAD'));i.src=data;});}
+async function loadState(state){S=state;S.pricing=normalizePricing(S.pricing,S.settings);syncActivePrice();guidePoint=null;try{bgImage=S.imageData?await loadImage(S.imageData):null;textureImage=S.customTexture?await loadImage(S.customTexture):null;}catch(e){toast('部分圖片無法載入，請重新匯入');bgImage=null;textureImage=null;}draft=[];calPoints=[];tool='pan';dirty3d=true;syncControls();compute();fitView();save();}
+function compute(){clearTimeout(computeTimer);computeError='';try{reg=E.region(S.rooms,S.holes,S.ppm);lay=E.layout(reg,S.settings);qty=E.quantity(lay,S.settings.waste,S.settings.perBox,S.settings.price);}catch(e){computeError=e.message;reg={parts:[],area:0,gross:0,excluded:0,bounds:[0,0,1,1]};lay={tiles:[],count:0,full:0,cut:0,covered:0,cutWaste:0,groutArea:0,areaMinimum:0};qty=E.quantity(lay,S.settings.waste,S.settings.perBox,S.settings.price);toast(computeError==='TOO_MANY_TILES'?'區域過大或瓷磚過小：請分區計算（上限 12,000 格）':'圖形計算失敗，請檢查輪廓是否相交');}dirty3d=true;updateMetrics();renderAreaList();renderPlan();if(tab==='three')update3D();if(tab==='report')renderReport();}
+function scheduleCompute(){clearTimeout(computeTimer);computeTimer=setTimeout(()=>{compute();save();},70);}
+function updateMetricsBase(){const valid=S.ppm>0&&!computeError,n=valid?fmt(reg.area):'—';$('areaValue').textContent=n;$('sizeValue').textContent=`${S.settings.width} × ${S.settings.height}`;$('qtyValue').textContent=valid?qty.recommended:'—';$('areaSub').textContent=valid?(reg.excluded>0?`已扣除 ${fmt(reg.excluded)} m²`:'已按輪廓計算淨面積'):'請先校準圖紙比例';$('angleSub').textContent=`${S.settings.angle===0?'橫向':S.settings.angle===90?'直向':'斜向 45°'}鋪貼 · ${S.settings.grout} mm 磚縫`;$('qtySub').textContent=valid?`排磚 ${lay.count} 張 + ${S.settings.waste}% 備料`:'比例未設定，暫不計數';
+$('projectName').textContent=S.name;$('sourceBadge').textContent=S.scaleSource==='demo'?'示範平面圖':S.scaleSource==='rectangle'?'尺寸建立':S.ppm>0?'已校準圖紙':'待校準圖紙';$('scaleBadge').textContent=S.ppm>0?(S.scaleSource==='demo'?'示範已校準':'已設定比例'):'尚未校準';$('scaleBadge').className='tag '+(S.ppm>0?'good':'warn');$('scaleText').textContent=S.ppm>0?`目前比例：${fmt(S.ppm)} 像素 / 米`:'未設定比例：圖片像素不等於真實長度';$('stageBadge').textContent=S.scaleSource==='demo'?'6.00 × 4.00 m 示範客飯廳':S.imageName||'按尺寸建立的空間';
+$('fullCount').innerHTML=`${lay.full} <small>張</small>`;$('cutCount').innerHTML=`${lay.cut} <small>張</small>`;$('textureName').textContent=MATERIALS.find(x=>x[0]===S.settings.material)?.[1]||'自訂瓷磚紋理';$('threeInfo').textContent=`${S.settings.width} × ${S.settings.height} mm · ${fmt(reg.area)} m²`;$('scaleLegend').textContent=S.ppm>0?'1 m ━━━':'比例未校準';$('emptyNotice').hidden=Boolean(bgImage||S.rooms.length);}
+function syncControlsBase(){const p=S.settings;$('sizeGrid').innerHTML=SIZE_PRESETS.map(([w,h])=>`<button class="sizebutton ${w===p.width&&h===p.height?'active':''}" data-size="${w},${h}"><span class="brick ${w===h?'square':''}"></span><b>${w} × ${h}</b><small>${fmt(w*h/1e6,2)} m² / 張</small></button>`).join('');$('customW').value=p.width;$('customH').value=p.height;document.querySelectorAll('[data-angle]').forEach(b=>b.classList.toggle('active',Number(b.dataset.angle)===p.angle));
+$('groutInput').value=p.grout;$('patternSelect').value=p.stagger;$('offsetX').value=p.offsetX*100;$('offsetY').value=p.offsetY*100;$('oxOut').textContent=Math.round(p.offsetX*100)+'%';$('oyOut').textContent=Math.round(p.offsetY*100)+'%';$('wasteInput').value=p.waste;$('wasteOut').textContent=p.waste+'%';$('boxInput').value=p.perBox;$('priceInput').value=p.price;$('textureRotation').value=p.textureRotation;$('variation').value=p.variation;$('wallToggle').checked=p.walls;document.querySelectorAll('[data-waste]').forEach(b=>b.classList.toggle('active',Number(b.dataset.waste)===p.waste));renderMaterialGrid();setToolUI();}
+function renderMaterialGrid(){let materials=MATERIALS.concat(S.customTexture?[['custom','我的瓷磚紋理']]:[]);$('materialGrid').innerHTML=materials.map(([id,name])=>`<button class="materialcard ${S.settings.material===id?'active':''}" data-material="${id}"><canvas width="256" height="256"></canvas><b>${name}</b></button>`).join('');$('materialGrid').querySelectorAll('button').forEach(b=>b.querySelector('canvas').getContext('2d').drawImage(makeTexture(b.dataset.material),0,0));}
+function renderAreaList(){let all=[...S.rooms.map(r=>({...r,kind:'room'})),...S.holes.map(r=>({...r,kind:'hole'}))];$('areaList').innerHTML=all.length?all.map((r,i)=>`<div class="areaItem ${r.kind==='hole'?'hole':''}"><span class="areadot"></span><div class="name"><b>${escapeHTML(r.name)}</b><small>${r.kind==='hole'?'扣除範圍':'鋪磚範圍'} · ${S.ppm>0?fmt(E.area(r.points)/(S.ppm*S.ppm))+' m²':'待校準'}</small></div><button data-rename-area="${r.kind}:${r.id}" aria-label="重新命名區域">✎</button><button data-delete-area="${r.kind}:${r.id}" aria-label="刪除區域">×</button></div>`).join(''):'<p class="helper">還未圈選地面。點「圈選地面」，沿牆內邊加入角點。</p>';}
+function showTabLegacy(next){tab=next;document.querySelectorAll('[data-tab]').forEach(b=>b.classList.toggle('active',b.dataset.tab===next));$('drawingPane').hidden=!['plan','layout'].includes(next);$('threePane').hidden=next!=='three';$('reportPane').hidden=next!=='report';for(let t of ['plan','layout','three','report'])$(t+'Panel').hidden=t!==next;$('planTools').hidden=next!=='plan';$('layoutTools').hidden=next!=='layout';$('stageTitle').textContent=next==='layout'?'即時排磚效果':'平面圖工作區';if(next!=='plan'){draft=[];calPoints=[];tool='pan';setToolUI();}if(next==='three'){requestAnimationFrame(update3D);}else if(next==='report')renderReport();else requestAnimationFrame(()=>{resizeCanvas();renderPlan();});window.scrollTo({top:0,behavior:'smooth'});}
+function resizeCanvas(){const dpr=Math.min(devicePixelRatio||1,2);let w=canvas.clientWidth,h=canvas.clientHeight;if(!w||!h)return;let nw=Math.round(w*dpr),nh=Math.round(h*dpr);if(canvas.width!==nw||canvas.height!==nh){canvas.width=nw;canvas.height=nh;}ctx.setTransform(dpr,0,0,dpr,0,0);}
+function fitView(){let w=canvas.clientWidth||700,h=canvas.clientHeight||500,pad=20;view.k=Math.min((w-pad*2)/S.width,(h-pad*2)/S.height);view.x=(w-S.width*view.k)/2;view.y=(h-S.height*view.k)/2;resizeCanvas();renderPlan();}
+function polygonPath(g,p,ppm=1){if(!p.length)return;g.moveTo(p[0][0]*ppm,p[0][1]*ppm);for(let i=1;i<p.length;i++)g.lineTo(p[i][0]*ppm,p[i][1]*ppm);g.closePath();}
+function drawPlanTo(g,width,height,v,exporting=false){g.save();g.setTransform(1,0,0,1,0,0);g.restore();g.fillStyle='#f8faff';g.fillRect(0,0,width,height);g.save();g.translate(v.x,v.y);g.scale(v.k,v.k);if(bgImage&&($('planToggle').checked||tab==='plan'||exporting)){g.globalAlpha=1;g.drawImage(bgImage,0,0,S.width,S.height);g.globalAlpha=1;}else{g.fillStyle='#fffef9';g.fillRect(0,0,S.width,S.height);}
+if(S.ppm>0&&lay?.tiles.length){let tex=currentTexture(),ppm=S.ppm;g.save();g.globalAlpha=(tab==='plan'&&!exporting)?0.70:1;for(let tile of lay.tiles){g.save();g.beginPath();tile.fragments.forEach(p=>polygonPath(g,p,ppm));g.clip();g.translate((tile.c*tile.x-tile.s*tile.y)*ppm,(tile.s*tile.x+tile.c*tile.y)*ppm);g.rotate(S.settings.angle*Math.PI/180);let w=tile.w*ppm,h=tile.h*ppm;g.save();if(S.settings.textureRotation===90){g.translate(w,0);g.rotate(Math.PI/2);g.drawImage(tex,0,0,h,w);}else g.drawImage(tex,0,0,w,h);g.restore();if(S.settings.variation){let a=(Math.abs(tile.i*31+tile.j*17)%13)/13*.07;g.fillStyle=`rgba(0,0,0,${a})`;g.fillRect(0,0,w,h);}if(!tile.full&&$('cutToggle').checked){g.fillStyle='#c89b561f';g.fillRect(0,0,w,h);}g.lineWidth=Math.min(1.1/v.k,1.7);g.strokeStyle=!tile.full&&$('cutToggle').checked?'#ba8e57':'#9eaa8c';g.strokeRect(0,0,w,h);g.restore();}g.restore();}
+for(let r of S.rooms){g.beginPath();polygonPath(g,r.points);g.lineWidth=1.5/v.k;g.strokeStyle='#0866e9';if(!S.ppm||!lay?.tiles?.length){g.fillStyle='#82ac9028';g.fill();}g.stroke();if(tool==='edit'&&!exporting){r.points.forEach((p,i)=>{g.beginPath();g.arc(...p,6/v.k,0,Math.PI*2);g.fillStyle='#fffdf3';g.fill();g.lineWidth=2/v.k;g.stroke();});}}
+for(let r of S.holes){g.save();g.beginPath();polygonPath(g,r.points);g.clip();g.fillStyle='#c7655b25';g.fillRect(0,0,S.width,S.height);g.strokeStyle='#c2655770';g.lineWidth=1/v.k;for(let k=-S.height;k<S.width;k+=12/v.k){g.beginPath();g.moveTo(k,0);g.lineTo(k+S.height,S.height);g.stroke();}g.restore();g.beginPath();polygonPath(g,r.points);g.strokeStyle='#bf7462';g.lineWidth=1.5/v.k;g.stroke();if(tool==='edit'&&!exporting)r.points.forEach(p=>{g.beginPath();g.arc(...p,6/v.k,0,7);g.fillStyle='#fff8ef';g.fill();g.stroke();});}
+if(tab==='plan'&&!exporting){S.rooms.forEach(r=>{let t;try{t=E.triangulate(r.points).sort((a,b)=>E.area(b)-E.area(a))[0];}catch(e){return;}if(!t)return;let cx=r.points.reduce((a,p)=>a+p[0],0)/r.points.length,cy=r.points.reduce((a,p)=>a+p[1],0)/r.points.length;if(!E.pointIn([cx,cy],r.points)){cx=t.reduce((a,p)=>a+p[0],0)/3;cy=t.reduce((a,p)=>a+p[1],0)/3;}g.save();g.translate(cx,cy);g.scale(1/v.k,1/v.k);g.font='15px sans-serif';let label=r.name,ww=Math.max(72,g.measureText(label).width+22);g.fillStyle='#fffef5eb';roundRect(g,-ww/2,-25,ww,51,8);g.fill();g.fillStyle='#173e73';g.textAlign='center';g.fillText(label,0,-4);g.fillStyle='#587797';g.font='13px sans-serif';g.fillText(S.ppm?fmt(E.area(r.points)/S.ppm**2)+' m²':'待校準',0,16);g.restore();});}
+if(draft.length&&!exporting){g.beginPath();g.moveTo(...draft[0]);draft.slice(1).forEach(p=>g.lineTo(...p));g.strokeStyle=tool==='hole'?'#bd7466':'#0866e9';g.lineWidth=2/v.k;g.setLineDash([5/v.k,3/v.k]);g.stroke();g.setLineDash([]);draft.forEach((p,i)=>{g.beginPath();g.arc(...p,(i===0?6:4)/v.k,0,7);g.fillStyle=i===0?'#d3b57e':'#0866e9';g.fill();g.font=`${10/v.k}px sans-serif`;g.fillText(i+1,p[0]+8/v.k,p[1]-8/v.k);});}
+if(calPoints.length&&!exporting){g.strokeStyle='#b68143';g.fillStyle='#b68143';g.lineWidth=2/v.k;if(calPoints.length===2){g.beginPath();g.moveTo(...calPoints[0]);g.lineTo(...calPoints[1]);g.stroke();}calPoints.forEach(p=>{g.beginPath();g.arc(...p,6/v.k,0,7);g.fill();g.beginPath();g.moveTo(p[0]-13/v.k,p[1]);g.lineTo(p[0]+13/v.k,p[1]);g.moveTo(p[0],p[1]-13/v.k);g.lineTo(p[0],p[1]+13/v.k);g.stroke();});}
+g.restore();}
+function roundRect(g,x,y,w,h,r){g.beginPath();g.moveTo(x+r,y);g.arcTo(x+w,y,x+w,y+h,r);g.arcTo(x+w,y+h,x,y+h,r);g.arcTo(x,y+h,x,y,r);g.arcTo(x,y,x+w,y,r);g.closePath();}
+function renderPlanBase(){if(!S||!canvas.clientWidth)return;resizeCanvas();drawPlanTo(ctx,canvas.clientWidth,canvas.clientHeight,view);if(S.ppm>0){let desired=70/(S.ppm*view.k),base=10**Math.floor(Math.log10(desired)),u=[1,2,5,10].map(x=>x*base).filter(x=>x<=desired).pop()||base;let width=u*S.ppm*view.k;$('scaleLegend').innerHTML=`<span>${Number(u.toPrecision(3))} m</span><i style="display:inline-block;width:${width}px;height:5px;border-bottom:1px solid #88977c;border-left:1px solid #88977c;border-right:1px solid #88977c;margin-left:7px;vertical-align:2px"></i>`;}else $('scaleLegend').textContent='比例未校準';}
+function setToolBase(t){if(!['pan','polygon','hole','edit','calibrate'].includes(t))return;if(t==='hole'&&!S.rooms.length){toast('先圈選至少一個鋪磚範圍，再扣除區域');return;}if(t==='calibrate'&&!bgImage&&!S.rooms.length)return toast('請先匯入平面圖');if(tab!=='plan')showTab('plan');tool=t;draft=[];calPoints=[];setToolUI();renderPlan();}
+function setToolUI(){document.querySelectorAll('[data-tool]').forEach(b=>b.classList.toggle('active',b.dataset.tool===tool));const texts={pan:'拖曳移動 · 雙指縮放',polygon:'沿牆內邊點選角點 · 再按完成',hole:'圈出不鋪磚區域 · 再按完成',edit:'拖曳角點修正範圍',calibrate:'點選已知長度的兩個端點'};$('canvasMode').textContent=texts[tool];$('drawingAction').hidden=!['polygon','hole','calibrate'].includes(tool);$('draftHint').textContent=tool==='calibrate'?`比例校準：已選 ${calPoints.length} / 2 個端點`:`已選 ${draft.length} 個角點 · 至少需要 3 點`;$('finishDraw').hidden=tool==='calibrate';$('finishDraw').disabled=draft.length<3;$('undoPoint').disabled=tool==='calibrate'?!calPoints.length:!draft.length;}
+function canvasPoint(e){let r=canvas.getBoundingClientRect();return [(e.clientX-r.left-view.x)/view.k,(e.clientY-r.top-view.y)/view.k];}
+function finishDrawing(){if(draft.length<3)return;if(!E.simple(draft)){toast('輪廓不可自相交或重複角點，請修正後再完成');return;}remember();let id='a'+Date.now(),name=tool==='hole'?`扣除區域 ${S.holes.length+1}`:`鋪磚區域 ${S.rooms.length+1}`,entry={id,name,points:draft.map(p=>p.slice())};if(tool==='hole'){let probe=E.region(S.rooms,[...S.holes,entry],S.ppm||1),original=E.region(S.rooms,S.holes,S.ppm||1);if(Math.abs(probe.area-original.area)<1e-8){history.pop();return toast('扣除範圍沒有覆蓋現有地面，未作變更');}S.holes.push(entry);}else S.rooms.push(entry);draft=[];tool='pan';setToolUI();compute();save();toast('範圍已加入，可在右側重新命名');}
+function calibrateDialog(){const pixelLength=E.dist(...calPoints);if(pixelLength<5){calPoints=[];setToolUI();return toast('兩個端點太接近，請重新選擇');}modal('輸入這段的真實長度',`<p>請讀取圖紙標註，或輸入現場已量度的尺寸。比例會套用於整張圖。</p><div class="inputrow two"><label>已知長度<input id="knownLength" type="number" min="0.001" step="any" value="3000" inputmode="decimal"></label><label>單位<select id="knownUnit"><option value="0.001">毫米 mm</option><option value="0.01">厘米 cm</option><option value="1">米 m</option><option value="0.3048">呎 ft</option></select></label></div><button id="setScaleBtn" class="primary full">確認校準</button><p class="micro">校準後，所有面積及排磚數量會重新計算。</p>`);$('setScaleBtn').onclick=()=>{let m=Number($('knownLength').value)*Number($('knownUnit').value);if(!Number.isFinite(m)||m<.01||m>200)return toast('請輸入 0.01 至 200 米之間的有效長度');remember();S.ppm=pixelLength/m;S.scaleSource='manual';S.scaleNote=`已知線段 ${fmt(m,3)} m`;calPoints=[];tool='pan';closeModal();setToolUI();compute();save();toast(`比例已校準：${fmt(m,3)} m`);};}
+function zoomAt(factor,x=canvas.clientWidth/2,y=canvas.clientHeight/2){let wx=(x-view.x)/view.k,wy=(y-view.y)/view.k;view.k=Math.max(.02,Math.min(16,view.k*factor));view.x=x-wx*view.k;view.y=y-wy*view.k;renderPlan();}
+function initCanvasEventsLegacy(){canvas.addEventListener('pointerdown',e=>{canvas.setPointerCapture(e.pointerId);pointers.set(e.pointerId,[e.clientX,e.clientY]);if(pointers.size===1){gesture={x:e.clientX,y:e.clientY,lastX:e.clientX,lastY:e.clientY,moved:false};pinched=false;editTarget=null;if(tool==='edit'){let p=canvasPoint(e),best=18/view.k;for(let type of ['rooms','holes'])for(let r of S[type])r.points.forEach((q,i)=>{let d=E.dist(p,q);if(d<best){editTarget={type,id:r.id,i};best=d;}});if(editTarget){editBefore=JSON.stringify(S);}}}else{pinched=true;gesture.span=pointerSpan();gesture.center=pointerCenter();}});
+canvas.addEventListener('pointermove',e=>{if(!pointers.has(e.pointerId)||!gesture)return;pointers.set(e.pointerId,[e.clientX,e.clientY]);if(pointers.size>1){let n=pointerSpan(),center=pointerCenter(),rect=canvas.getBoundingClientRect();if(gesture.span){zoomAt(n/gesture.span,center[0]-rect.left,center[1]-rect.top);view.x+=center[0]-gesture.center[0];view.y+=center[1]-gesture.center[1];}gesture.span=n;gesture.center=center;gesture.moved=true;renderPlan();return;}let dx=e.clientX-gesture.lastX,dy=e.clientY-gesture.lastY;if(Math.hypot(e.clientX-gesture.x,e.clientY-gesture.y)>5)gesture.moved=true;if(editTarget){let r=S[editTarget.type].find(r=>r.id===editTarget.id),p=canvasPoint(e);r.points[editTarget.i]=[clamp(p[0],0,S.width),clamp(p[1],0,S.height)];renderPlan();}else if(tool==='pan'||tool==='edit'||pinched){view.x+=dx;view.y+=dy;renderPlan();}gesture.lastX=e.clientX;gesture.lastY=e.clientY;});
+const end=e=>{if(!pointers.has(e.pointerId))return;let g=gesture,p=canvasPoint(e);pointers.delete(e.pointerId);if(editTarget){let r=S[editTarget.type].find(r=>r.id===editTarget.id);if(!E.simple(r.points)){S=JSON.parse(editBefore);toast('角點調整造成輪廓交叉，已還原');}else if(g?.moved){history.push(editBefore);compute();save();}editTarget=null;editBefore=null;renderPlan();}if(!pointers.size){if(g&&!g.moved&&!pinched&&e.type!=='pointercancel'){if(p[0]>=0&&p[0]<=S.width&&p[1]>=0&&p[1]<=S.height){if(['polygon','hole'].includes(tool)){if(draft.length>=3&&E.dist(draft[0],p)<13/view.k)finishDrawing();else if(draft.length<100){draft.push(p);setToolUI();renderPlan();}else toast('每個範圍最多 100 個角點');}else if(tool==='calibrate'){calPoints.push(p);setToolUI();renderPlan();if(calPoints.length===2)setTimeout(()=>{if(tool==='calibrate'&&calPoints.length===2)calibrateDialog();},80);}}}gesture=null;}else{let a=[...pointers.values()][0];gesture={x:a[0],y:a[1],lastX:a[0],lastY:a[1],moved:true};pinched=true;}};canvas.addEventListener('pointerup',end);canvas.addEventListener('pointercancel',end);canvas.addEventListener('wheel',e=>{e.preventDefault();let r=canvas.getBoundingClientRect();zoomAt(Math.exp(-e.deltaY*.001),e.clientX-r.left,e.clientY-r.top);},{passive:false});}
+function pointerSpan(){let p=[...pointers.values()];return p.length>1?E.dist(p[0],p[1]):0;}function pointerCenter(){let p=[...pointers.values()];return[(p[0][0]+p[1][0])/2,(p[0][1]+p[1][1])/2];}
+function update3D(){if(tab!=='three')return;let fallback=$('threeFallback');if(!S.ppm||!reg.parts.length||computeError){fallback.hidden=false;fallback.innerHTML='<b>先定義你的鋪磚範圍</b><p>回到平面圖，校準比例並圈選地面後，即可建立對應的 3D 鋪磚效果。</p><button class="primary" id="backPlan">前往平面圖</button>';$('backPlan').onclick=()=>showTab('plan');return;}try{if(!renderer){try{renderer=new Floor3D($('threeCanvas'));}catch(e){renderer=new CanvasFloor3D($('threeCanvas'));}}fallback.hidden=true;if(dirty3d){renderer.setData(reg,lay,S.settings,currentTexture(),S.rooms,S.ppm);dirty3d=false;}renderer.render();}catch(e){console.error(e);fallback.hidden=false;fallback.innerHTML='<b>這個環境未能啟用 3D</b><p>請以較新的 Chrome 或更新 Android System WebView 後重試。平面排磚與用量計算仍可使用。</p>';}}
+function setSizeLegacy(w,h){if(!Number.isFinite(w)||!Number.isFinite(h)||w<50||h<50||w>4000||h>4000)return toast('瓷磚長闊請設為 50 至 4000 mm');S.settings.width=w;S.settings.height=h;syncControls();compute();save();}
+function renderReportLegacy(){if(!S.ppm||computeError||!reg.parts.length){$('reportPane').innerHTML='<div class="reportcard"><div class="reportcardhead"><h2>尚未有可計算的地面</h2><p>請先匯入平面圖、校準比例並圈選鋪磚範圍，再查看用量清單。</p></div></div>';return;}let rows=[];let presets=SIZE_PRESETS.slice();if(!presets.some(([w,h])=>w===S.settings.width&&h===S.settings.height))presets.unshift([S.settings.width,S.settings.height]);for(let [w,h]of presets){let active=w===S.settings.width&&h===S.settings.height;try{let l=active?lay:E.layout(reg,{...S.settings,width:w,height:h}),q=E.quantity(l,S.settings.waste,S.settings.perBox,0);rows.push(`<tr class="${active?'selected':''}" data-size="${w},${h}"><td>${w} × ${h}${active?'<span class="pill">目前選擇</span>':''}</td><td><b>${l.count}</b></td><td>${l.full} / ${l.cut}</td><td><b>${q.recommended}</b><small>+${q.extra} 張備料</small></td></tr>`);}catch(e){rows.push(`<tr><td>${w} × ${h}</td><td colspan="3">範圍過大，請分區計算</td></tr>`);}}
+let p=S.settings,direction=p.angle===0?'橫向':p.angle===90?'直向':'45° 斜向';$('reportPane').innerHTML=`<div class="reporthero"><div class="eyebrow">YOUR MATERIAL SCHEDULE</div><h2>${escapeHTML(S.name)}</h2><p>${p.width} × ${p.height} mm · ${direction} · ${p.grout} mm 磚縫 · 額外備料 ${p.waste}%</p><div class="reportnums"><div><span>淨鋪磚面積</span><b>${fmt(reg.area)}<small>m²</small></b></div><div><span>建議備料</span><b>${qty.recommended}<small>張</small></b></div><div><span>按箱購買</span><b>${qty.boxes}<small>箱</small></b></div></div></div>
+<div class="reportcard"><div class="reportcardhead"><h3>不同規格，用量一次比較</h3><p>沿用目前方向、磚縫、錯縫及偏移；點選任一規格查看排磚效果。</p></div><table class="comparetable"><thead><tr><th>尺寸 mm</th><th>排磚 / 張</th><th>完整 / 切割</th><th>備料後 / 張</th></tr></thead><tbody>${rows.join('')}</tbody></table></div>
+<div class="reportcard"><div class="reportcardhead"><h3>目前方案明細</h3><p>每個與地面相交的排磚格，保守預留一張原磚。</p></div><div class="detailgrid">
+${detail('圈選地面聯集',fmt(reg.gross)+' m²')}${detail('實際扣除面積',fmt(reg.excluded)+' m²')}${detail('淨鋪磚面積',fmt(reg.area)+' m²')}${detail('完整磚 / 需要切割的磚',`${lay.full} 張 / ${lay.cut} 張`)}${detail('排磚所需原磚',lay.count+' 張')}${detail('額外備料',qty.extra+' 張（'+p.waste+'%）')}${detail('建議準備總數',qty.recommended+' 張')}${detail('每箱張數（自行設定）',p.perBox+' 張 / 箱')}${detail('整箱採購',qty.boxes+' 箱 = '+qty.purchase+' 張')}${detail('原磚切除面積（未計重用）',fmt(lay.cutWaste,3)+' m²')}${detail('圖形內磚縫面積',fmt(lay.groutArea,3)+' m²')}${p.price>0?detail('瓷磚材料費（未含工、膠及運費）','HKD '+fmt(qty.cost)):''}</div>
+<div class="formulanote">建議備料 = 排磚張數 + 向上取整（排磚張數 × ${p.waste}%）<br>整箱採購 = 向上取整（建議備料 ÷ ${p.perBox}）× ${p.perBox}<br>僅按面積、不含磚縫及邊位的參考值：${lay.areaMinimum} 張。此數值不作採購依據。</div></div>
+<div class="reportwarning"><b>下單前請核對</b><br>本工具沒有最佳化切割餘料重用或計入鋸縫；不同排磚格不共用餘料，因此是偏保守的排料估算。邊界伸縮縫、基面不方正、磚的實際工作尺寸、包裝張數及現場做法，需由施工方確認。比例校準正確、圖面無透視變形，計算才有依據。</div>`;}
+function detail(label,value){return `<div class="detailrow"><span>${label}</span><b>${value}</b></div>`;}
+async function compressImage(file,maxDim,quality){if(file.size>30*1024*1024)throw Error('FILE_TOO_LARGE');if(!['image/jpeg','image/png','image/webp'].includes(file.type)&&!/\.(jpe?g|png|webp)$/i.test(file.name))throw Error('FILE_TYPE');const url=URL.createObjectURL(file);try{let image=await loadImage(url),k=Math.min(1,maxDim/Math.max(image.naturalWidth,image.naturalHeight));let c=document.createElement('canvas');c.width=Math.max(1,Math.round(image.naturalWidth*k));c.height=Math.max(1,Math.round(image.naturalHeight*k));let g=c.getContext('2d');g.fillStyle='#fff';g.fillRect(0,0,c.width,c.height);g.drawImage(image,0,0,c.width,c.height);return {data:c.toDataURL('image/jpeg',quality),width:c.width,height:c.height};}finally{URL.revokeObjectURL(url);}}
+async function importPlan(file){if(!file)return;busy(true,'正在載入平面圖…');try{let result=await compressImage(file,2000,.92);remember();S={...S,name:file.name.replace(/\.[^.]+$/,''),imageData:result.data,imageName:file.name,width:result.width,height:result.height,ppm:0,scaleSource:'unscaled',scaleNote:'',rooms:[],holes:[]};await loadState(S);showTab('plan');fitView();toast('圖片已載入：請先以兩點校準圖紙比例');}catch(e){toast(e.message==='FILE_TOO_LARGE'?'檔案超過 30 MB，請先縮小圖片':'無法載入：此版本支援 JPG、PNG、WebP 圖片');}finally{busy(false);$('planFile').value='';}}
+async function importTexture(file){if(!file)return;busy(true,'正在套用瓷磚紋理…');try{let r=await compressImage(file,768,.92);S.customTexture=r.data;textureImage=await loadImage(r.data);S.settings.material='custom';syncControls();dirty3d=true;renderPlan();update3D();save();toast('已套用自訂瓷磚紋理');}catch(e){toast('紋理圖片讀取失敗，請使用 30 MB 以下 JPG、PNG、WebP');}finally{busy(false);$('textureFile').value='';}}
+function rectangleDialog(){modal('建立已知尺寸的房間',`<p>沒有平面圖也能測試：輸入長闊，直接建立矩形地面。</p><div class="inputrow two"><label>長度 m<input id="rectW" type="number" value="6" min=".1" max="100" step=".01" inputmode="decimal"></label><label>闊度 m<input id="rectH" type="number" value="4" min=".1" max="100" step=".01" inputmode="decimal"></label></div><button id="rectCreate" class="primary full">建立房間</button><p class="micro">會取代目前圖面；可先在方案選單匯出備份。</p>`);$('rectCreate').onclick=async()=>{let w=Number($('rectW').value),h=Number($('rectH').value);if(!Number.isFinite(w)||!Number.isFinite(h)||w<.1||h<.1||w>100||h>100)return toast('長闊請輸入 0.1 至 100 米');remember();let ppm=Math.min(80,1600/Math.max(w,h)),pad=80,c=document.createElement('canvas');c.width=Math.ceil(w*ppm+pad*2);c.height=Math.ceil(h*ppm+pad*2);let g=c.getContext('2d');g.fillStyle='#fffefa';g.fillRect(0,0,c.width,c.height);g.strokeStyle='#7e9079';g.lineWidth=4;g.strokeRect(pad-2,pad-2,w*ppm+4,h*ppm+4);g.font='18px sans-serif';g.fillStyle='#7e9079';g.textAlign='center';g.fillText(w+' m',c.width/2,pad/2);g.save();g.translate(pad/2,c.height/2);g.rotate(-Math.PI/2);g.fillText(h+' m',0,0);g.restore();S={...S,name:`${w} × ${h} 米房間`,imageData:c.toDataURL(),imageName:'尺寸建立的矩形房間',width:c.width,height:c.height,ppm,scaleSource:'rectangle',scaleNote:`矩形 ${w} × ${h} m`,rooms:[{id:'rect',name:'房間',points:[[pad,pad],[pad+w*ppm,pad],[pad+w*ppm,pad+h*ppm],[pad,pad+h*ppm]]}],holes:[]};closeModal();await loadState(S);showTab('layout');fitView();};}
+function renameProject(){modal('方案名稱',`<label>名稱<input id="projectRename" maxlength="80" value="${escapeHTML(S.name)}"></label><button id="nameOK" class="primary full">儲存名稱</button>`);$('nameOK').onclick=()=>{let n=$('projectRename').value.trim();if(!n)return;S.name=n;updateMetrics();if(tab==='report')renderReport();save();closeModal();};}
+function renameArea(kind,id){let r=S[kind==='hole'?'holes':'rooms'].find(r=>r.id===id);if(!r)return;modal('範圍名稱',`<label>名稱<input id="areaRename" maxlength="40" value="${escapeHTML(r.name)}"></label><button id="areaNameOK" class="primary full">儲存</button>`);$('areaNameOK').onclick=()=>{let n=$('areaRename').value.trim();if(!n)return;remember();r.name=n;renderAreaList();renderPlan();save();closeModal();};}
+function download(data,mime,name){if(navigator.userAgent.includes('TileStudioAndroid')){const reader=new FileReader();reader.onload=()=>{let b64=reader.result.split(',')[1];let result=window.prompt('TILE_SAVE|'+name+'|'+mime+'|'+b64,'');if(result==='OK')toast('請選擇檔案儲存位置');else toast('未能開啟儲存，請重試');};reader.readAsDataURL(new Blob([data],{type:mime}));return;}let blob=new Blob([data],{type:mime}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),20000);toast('已產生檔案，請查看下載項目');}
+function dataURLBytes(url){let s=atob(url.split(',')[1]);return Uint8Array.from(s,c=>c.charCodeAt(0));}
+function safeName(){return S.name.replace(/[\\/:*?"<>|]/g,'_').slice(0,55)||'Tile-Studio';}
+function planExportCanvas(){let c=document.createElement('canvas'),w=1600,h=Math.max(600,Math.min(2000,Math.round(w*S.height/S.width)));c.width=w;c.height=h+125;let g=c.getContext('2d'),k=Math.min((w-50)/S.width,(h-50)/S.height);drawPlanTo(g,w,h,{k,x:(w-S.width*k)/2,y:(h-S.height*k)/2},true);g.fillStyle='#172c49';g.fillRect(0,h,w,125);g.fillStyle='#f8f8ed';g.font='27px sans-serif';g.fillText(S.name,35,h+43);g.font='19px sans-serif';g.fillStyle='#c6dbf4';g.fillText(`${S.settings.width} x ${S.settings.height} mm  |  ${S.settings.angle} deg  |  ${S.ppm?fmt(reg.area)+' m2':'NOT CALIBRATED'}  |  ${lay.count} layout tiles + ${qty.extra} spare`,35,h+80);g.fillStyle='#aac4e8';g.font='13px sans-serif';g.fillText('TILE STUDIO  |  Designed by Dennis Chung  |  VERIFY ON SITE',35,h+108);return c;}
+function exportPlan(){download(dataURLBytes(planExportCanvas().toDataURL()),'image/png',safeName()+'-平面排磚.png');}
+function export3D(){if(!renderer||!reg.parts.length)return toast('請先建立可預覽的 3D 範圍');let url=renderer.capture(),image=new Image();image.onload=()=>{let c=document.createElement('canvas');c.width=image.width;c.height=image.height+80;let g=c.getContext('2d');g.drawImage(image,0,0);g.fillStyle='#172c49';g.fillRect(0,image.height,c.width,80);g.fillStyle='#e4eddb';g.font='17px sans-serif';g.fillText('TILE STUDIO | '+S.settings.width+' x '+S.settings.height+' mm | '+fmt(reg.area)+' m2',24,image.height+34);g.font='12px sans-serif';g.fillText('Designed by Dennis Chung | 3D floor preview only',24,image.height+58);download(dataURLBytes(c.toDataURL()),'image/png',safeName()+'-3D鋪磚.png');};image.src=url;}
+function exportReportLegacy(){if(!S.ppm||!reg.parts.length)return toast('請先校準比例並圈選地面');renderReport();const css=`body{font-family:Arial,"Microsoft JhengHei",sans-serif;color:#263e32;max-width:900px;margin:35px auto;padding:0 22px;line-height:1.65}h1{font-size:25px}h2{font-size:21px}h3{font-size:17px}p,small{color:#7c8872}.reporthero{padding:24px;background:#edf2e5;border:1px solid #d6dfcc}.eyebrow{font-size:11px;letter-spacing:2px}.reportnums{display:flex;gap:45px}.reportnums span{display:block;font-size:12px}.reportnums b{display:block;font-size:27px}.reportnums small{font-size:12px;margin-left:5px}.reportcard{margin-top:25px;border:1px solid #d6dfcc}.reportcardhead,.detailgrid,.formulanote{padding:18px}.comparetable{border-collapse:collapse;width:100%;text-align:right}.comparetable th,.comparetable td{padding:12px;border-bottom:1px solid #e0e5d8}.comparetable th:first-child,.comparetable td:first-child{text-align:left}.comparetable .selected{background:#edf2e5}.comparetable small{display:block;font-size:10px}.pill{font-size:10px;margin-left:8px;color:#709264}.detailrow{display:flex;justify-content:space-between;border-bottom:1px solid #e0e5d8;padding:9px 0}.formulanote,.reportwarning{font-size:12px;background:#f6f5e9}.reportwarning{padding:20px;margin-top:20px}img{width:100%;margin-top:25px;border:1px solid #d6dfcc}.print{padding:12px 22px;background:#172c49;color:#fff;border:0;border-radius:6px;cursor:pointer}@media print{.print{display:none}body{margin:0;font-size:11px}.reportcard{break-inside:avoid}img{page-break-before:always}}`;
+const doc='<!doctype html><html lang="zh-Hant"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>'+escapeHTML(S.name)+' · 瓷磚用量單</title><style>'+css+'</style><body><h1>TILE STUDIO · 瓷磚用量單</h1><p>產生日期：'+new Date().toLocaleString('zh-HK')+' · 比例來源：'+escapeHTML(S.scaleNote||'手動校準')+'</p><button class="print" onclick="window.print()">列印 / 儲存為 PDF</button>'+$('reportPane').innerHTML+'<img alt="按比例的排磚效果圖" src="'+planExportCanvas().toDataURL('image/jpeg',.9)+'"><p>本機估算工具，不替代現場覆核或施工排版圖。</p></body></html>';download(doc,'text/html',safeName()+'-瓷磚用量單.html');}
+function backup(){download(JSON.stringify(S,null,2),'application/json',safeName()+'-方案備份.json');}
+function validateStateBase(x){if(x.schema!=='tile-studio-1')throw Error('SCHEMA');if(!Number.isFinite(x.width)||!Number.isFinite(x.height)||x.width<=0||x.height<=0||x.width>12000||x.height>12000)throw Error('DIM');if(!Number.isFinite(x.ppm)||x.ppm<0)throw Error('SCALE');for(let k of ['rooms','holes']){if(!Array.isArray(x[k])||x[k].length>40)throw Error('AREAS');x[k]=x[k].map((r,i)=>{if(!Array.isArray(r.points)||r.points.length>100||r.points.length<3||!r.points.every(p=>Array.isArray(p)&&p.length===2&&p.every(Number.isFinite)&&p[0]>=0&&p[1]>=0&&p[0]<=x.width&&p[1]<=x.height)||!E.simple(r.points))throw Error('POLY');return {id:k+i,name:String(r.name||'區域').slice(0,40),points:r.points};});}
+for(let k of ['imageData','customTexture'])if(x[k]&&(!/^data:image\/(png|jpeg|webp);base64,/.test(x[k])||x[k].length>12e6))throw Error('IMG');let p={...DEFAULTS,...x.settings};for(let [k,a,b]of [['width',50,4000],['height',50,4000],['grout',0,20],['offsetX',0,1],['offsetY',0,1],['waste',0,30],['perBox',1,100],['price',0,1e6]]){if(!Number.isFinite(p[k]))throw Error('PARAM');p[k]=clamp(p[k],a,b);}p.perBox=Math.round(p.perBox);p.angle=[0,45,90].includes(p.angle)?p.angle:0;p.stagger=p.stagger===.5?.5:0;p.textureRotation=p.textureRotation===90?90:0;p.variation=p.variation?1:0;p.walls=Boolean(p.walls);p.material=MATERIALS.some(m=>m[0]===p.material)||(p.material==='custom'&&x.customTexture)?p.material:'marble';return{schema:'tile-studio-1',name:String(x.name||'我的鋪磚方案').slice(0,80),imageData:x.imageData||null,imageName:String(x.imageName||'').slice(0,180),width:x.width,height:x.height,ppm:x.ppm,scaleSource:['demo','rectangle','manual','unscaled'].includes(x.scaleSource)?x.scaleSource:'manual',scaleNote:String(x.scaleNote||'').slice(0,160),rooms:x.rooms,holes:x.holes,settings:p,customTexture:x.customTexture||null};}
+async function importProject(file){if(!file)return;busy(true,'正在載入方案…');try{if(file.size>15e6)throw Error('SIZE');let s=validateState(JSON.parse(await file.text()));remember();await loadState(s);showTab('plan');fitView();toast('已還原完整鋪磚方案');}catch(e){toast('無法讀取方案：請使用本 App 匯出的 JSON 備份');}finally{busy(false);$('projectFile').value='';}}
+function menu(){modal('方案選單',`<div class="menulist"><button id="menuBackup">儲存完整方案備份<small>下載可再次載入的 JSON</small></button><button id="menuLoad">載入已有方案<small>從 JSON 備份繼續設計</small></button><button id="menuUndo">復原上一個圖面操作<small>本次開啟期間保留最多 20 次記錄</small></button><button id="menuDemo">重設為示範方案<small>以 6 × 4 米客飯廳試鋪</small></button></div>`);$('menuBackup').onclick=()=>{closeModal();backup();};$('menuLoad').onclick=()=>{closeModal();$('projectFile').click();};$('menuUndo').onclick=()=>{closeModal();undoLast();};$('menuDemo').onclick=()=>{closeModal();resetDemo();};}
+function resetDemo(){askConfirm('載入示範圖','目前方案將被取代。重要方案請先匯出備份。',async()=>{remember();await loadState(demoState());showTab('plan');fitView();});}
+function help(){modal('從平面圖到鋪磚清單',`<p><b>01 匯入及校準</b><br>選擇 JPG、PNG 或 WebP 圖片，點選已知牆長的兩端，輸入真實尺寸。PDF 請先匯出成圖片。</p><p><b>02 圈選範圍</b><br>點「圈選地面」，沿牆內邊逐點圈出區域，再點「完成範圍」。柱位和櫃底可另用「扣除區域」排除。兩指可放大圖面。</p><p><b>03 選磚及紋理</b><br>切換尺寸、橫／直／45°、錯縫、磚縫及起點。3D 頁可使用內建材質或匯入一片瓷磚照片。</p><p><b>04 核對用量</b><br>查看完整磚、切割磚及額外備料。每箱張數需按供應商設定；餘料重用未做最佳化。</p><p><b>你的圖紙留在裝置內</b><br>沒有帳號、上傳或外部服務。方案會嘗試自動儲存；匯出 JSON 備份可避免瀏覽器清理資料後遺失。</p><button class="primary full" id="helpOK">開始設計</button>`);$('helpOK').onclick=closeModal;}
+function initEventsBase(){document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>showTab(b.dataset.tab));document.querySelectorAll('[data-tool]').forEach(b=>b.onclick=()=>setTool(b.dataset.tool));$('closeModal').onclick=closeModal;document.querySelector('.modalshade').onclick=closeModal;document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();if(e.key==='Enter'&&draft.length>=3&&$('modal').hidden)finishDrawing();});$('menuBtn').onclick=menu;$('helpBtn').onclick=help;$('renameBtn').onclick=renameProject;$('importBtn').onclick=()=>$('planFile').click();document.querySelector('[data-action="import"]').onclick=()=>$('planFile').click();$('planFile').onchange=e=>{let f=e.target.files[0];e.target.value='';if(!f)return;if(S.rooms.length&&S.scaleSource!=='demo')askConfirm('匯入新平面圖','新圖會取代現有輪廓及比例，請先確認重要方案已備份。',()=>importPlan(f));else importPlan(f);};$('demoBtn').onclick=resetDemo;$('blankBtn').onclick=rectangleDialog;$('calibrateBtn').onclick=()=>{setTool('calibrate');$('drawingPane').scrollIntoView({behavior:'smooth',block:'start'});};$('addAreaBtn').onclick=()=>{setTool('polygon');$('drawingPane').scrollIntoView({behavior:'smooth',block:'start'});};$('undoPoint').onclick=()=>{if(tool==='calibrate')calPoints.pop();else draft.pop();setToolUI();renderPlan();};$('cancelDraw').onclick=()=>setTool('pan');$('finishDraw').onclick=finishDrawing;$('zoomIn').onclick=()=>zoomAt(1.25);$('zoomOut').onclick=()=>zoomAt(.8);$('fitBtn').onclick=fitView;$('layoutFitBtn').onclick=fitView;$('cutToggle').onchange=renderPlan;$('planToggle').onchange=renderPlan;
+$('areaList').onclick=e=>{let n=e.target.closest('[data-rename-area]');if(n){let[k,id]=n.dataset.renameArea.split(':');renameArea(k,id);}let d=e.target.closest('[data-delete-area]');if(d){let[k,id]=d.dataset.deleteArea.split(':'),list=k==='hole'?'holes':'rooms';askConfirm('刪除這個範圍？','刪除後面積及排磚用量會重新計算。',()=>{remember();S[list]=S[list].filter(r=>r.id!==id);compute();save();});}};
+$('sizeGrid').onclick=e=>{let b=e.target.closest('[data-size]');if(b)setSize(...b.dataset.size.split(',').map(Number));};$('applySize').onclick=()=>setSize(Number($('customW').value),Number($('customH').value));$('orientation').onclick=e=>{let b=e.target.closest('[data-angle]');if(b){S.settings.angle=Number(b.dataset.angle);syncControls();compute();save();}};$('groutInput').onchange=e=>{let n=Number(e.target.value);if(!Number.isFinite(n)||n<0||n>20){e.target.value=S.settings.grout;return toast('磚縫請輸入 0 至 20 mm');}S.settings.grout=n;compute();save();};$('patternSelect').onchange=e=>{S.settings.stagger=Number(e.target.value);compute();save();};
+for(let [id,key,out]of [['offsetX','offsetX','oxOut'],['offsetY','offsetY','oyOut']])$(id).oninput=e=>{S.settings[key]=Number(e.target.value)/100;$(out).textContent=e.target.value+'%';scheduleCompute();};$('resetOffset').onclick=()=>{S.settings.offsetX=S.settings.offsetY=0;syncControls();compute();save();};$('to3DBtn').onclick=()=>showTab('three');$('toReportBtn').onclick=()=>showTab('report');
+$('materialGrid').onclick=e=>{let b=e.target.closest('[data-material]');if(b){S.settings.material=b.dataset.material;renderMaterialGrid();updateMetrics();dirty3d=true;update3D();renderPlan();save();}};$('uploadTextureBtn').onclick=()=>$('textureFile').click();$('textureFile').onchange=e=>importTexture(e.target.files[0]);$('textureRotation').onchange=e=>{S.settings.textureRotation=Number(e.target.value);dirty3d=true;update3D();renderPlan();save();};$('variation').onchange=e=>{S.settings.variation=Number(e.target.value);dirty3d=true;update3D();renderPlan();save();};$('wallToggle').onchange=e=>{S.settings.walls=e.target.checked;dirty3d=true;update3D();save();};$('isoBtn').onclick=()=>{renderer?.reset(false);$('isoBtn').classList.add('active');$('topBtn').classList.remove('active');};$('topBtn').onclick=()=>{renderer?.reset(true);$('topBtn').classList.add('active');$('isoBtn').classList.remove('active');};$('reset3DBtn').onclick=()=>renderer?.reset(false);
+$('wasteInput').oninput=e=>{S.settings.waste=Number(e.target.value);$('wasteOut').textContent=e.target.value+'%';qty=E.quantity(lay,S.settings.waste,S.settings.perBox,S.settings.price);updateMetrics();renderReport();document.querySelectorAll('[data-waste]').forEach(b=>b.classList.toggle('active',Number(b.dataset.waste)===S.settings.waste));save();};document.querySelectorAll('[data-waste]').forEach(b=>b.onclick=()=>{$('wasteInput').value=b.dataset.waste;$('wasteInput').dispatchEvent(new Event('input'));});$('boxInput').onchange=e=>{let n=Number(e.target.value);if(!Number.isInteger(n)||n<1||n>100){e.target.value=S.settings.perBox;return toast('每箱張數請輸入 1 至 100 的整數');}S.settings.perBox=n;qty=E.quantity(lay,S.settings.waste,n,S.settings.price);renderReport();save();};$('priceInput').onchange=e=>{let n=Number(e.target.value);if(!Number.isFinite(n)||n<0||n>1e6){e.target.value=S.settings.price;return toast('請輸入有效單價');}S.settings.price=n;qty=E.quantity(lay,S.settings.waste,S.settings.perBox,n);renderReport();save();};$('reportPane').onclick=e=>{let b=e.target.closest('[data-size]');if(b){setSize(...b.dataset.size.split(',').map(Number));showTab('layout');}};$('exportPlanBtn').onclick=exportPlan;$('export3DBtn').onclick=export3D;$('exportReportBtn').onclick=exportReport;$('backupBtn').onclick=backup;$('projectFile').onchange=e=>importProject(e.target.files[0]);window.addEventListener('resize',()=>{if(tab==='plan'||tab==='layout')fitView();if(tab==='three'){dirty3d=true;update3D();}});initCanvasEvents();}
+
+/* --- Tile Studio 2.0: pricing, quotations, home and alignment guides --- */
+let guidePoint=null, snapX=false, snapY=false, quoteCache=new Map();
+const currencyLabels={HKD:'HK$',USD:'US$',CAD:'CA$',CNY:'CN¥',EUR:'€',GBP:'£',TWD:'NT$'};
+const unitLabels={piece:'張',box:'箱',m2:'m²'};
+const localDate=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');};
+const roundMoney=n=>Math.round((Number(n)+Number.EPSILON)*100)/100;
+function normalizePricing(input,settings=DEFAULTS){
+ const source=input&&typeof input==='object'?input:{},catalog=Object.create(null);
+ for(const [key,v] of Object.entries(source.catalog||{}).slice(0,60)){
+  if(!/^\d{2,4}(?:\.\d{1,6})?x\d{2,4}(?:\.\d{1,6})?$/.test(key)||!v||typeof v!=='object')continue;
+  const [w,h]=key.split('x').map(Number);if(w<50||w>4000||h<50||h>4000)continue;
+  catalog[key]={price:v.price===null||v.price===''||v.price===undefined?null:(Number.isFinite(Number(v.price))?clamp(v.price,0,1e8):null),
+   unit:['piece','box','m2'].includes(v.unit)?v.unit:'piece',
+   perBox:Math.round(Number.isFinite(Number(v.perBox))?clamp(v.perBox,1,100):4),
+   purchase:v.purchase==='piece'&&v.unit!=='box'?'piece':'box',
+   supplier:String(v.supplier||'').slice(0,100),product:String(v.product||'').slice(0,100)};
+ }
+ const key=settings.width+'x'+settings.height;
+ if(!catalog[key]&&settings.price>0)catalog[key]={price:settings.price,unit:'piece',perBox:settings.perBox||4,purchase:'box',supplier:'',product:''};
+ const q=source.quote&&typeof source.quote==='object'?source.quote:{},f=source.fees||{};
+ const defaults={customer:'',seller:'Dennis Chung',contact:'',address:'',reference:'TS-'+localDate().replace(/-/g,''),date:localDate(),validDays:30,notes:'以上價格由用戶輸入，請核對供應商最新報價、實際包裝及現場尺寸。'};
+ const quote={};for(const k of Object.keys(defaults)){quote[k]=k==='validDays'?(Number.isFinite(Number(q[k]))?Math.round(clamp(q[k],1,365)):30):String(q[k]??defaults[k]).slice(0,k==='notes'?2000:240);}
+ if(!/^\d{4}-\d{2}-\d{2}$/.test(quote.date)||Number.isNaN(Date.parse(quote.date)))quote.date=localDate();
+ const fees={};for(const k of ['labor','delivery','other','discount','tax'])fees[k]=Number.isFinite(Number(f[k]))?clamp(f[k],0,k==='tax'?100:1e8):0;
+ return {currency:Object.prototype.hasOwnProperty.call(currencyLabels,source.currency)?source.currency:'HKD',catalog,quote,fees};
+}
+function priceData(){if(!S.pricing)S.pricing=normalizePricing(null,S.settings);return S.pricing;}
+function priceRecord(w=S.settings.width,h=S.settings.height){
+ const p=priceData(),key=w+'x'+h;
+ return p.catalog[key]||(p.catalog[key]={price:null,unit:'piece',perBox:4,purchase:'box',supplier:'',product:''});
+}
+function money(n){return n===null||n===undefined||!Number.isFinite(n)?'—':(currencyLabels[priceData().currency]||priceData().currency)+' '+fmt(n);}
+function syncActivePrice(){
+ const r=priceRecord(),area=S.settings.width*S.settings.height/1e6;
+ S.settings.perBox=r.perBox;S.settings.price=r.price===null?0:r.unit==='box'?r.price/r.perBox:r.unit==='m2'?r.price*area:r.price;
+}
+function syncControls(){syncControlsBase();if(S){$('currencyInput').value=priceData().currency;}}
+function updateMetrics(){
+ updateMetricsBase();if(!S)return;
+ $('homeProjectName').textContent=S.name;
+ $('homeSavedName').textContent=S.name;
+ $('homeArea').innerHTML=(S.ppm&&!computeError?fmt(reg.area):'—')+' <small>m²</small>';
+ $('homePriced').innerHTML=Object.values(priceData().catalog).filter(r=>r.price!==null).length+' <small>款</small>';
+}
+function validateState(x){const result=validateStateBase(x);result.pricing=normalizePricing(x.pricing,result.settings);return result;}
+function setSize(w,h){
+ if(!Number.isFinite(w)||!Number.isFinite(h)||w<50||h<50||w>4000||h>4000)return toast('瓷磚長闊請設為 50 至 4000 mm');
+ S.settings.width=w;S.settings.height=h;syncActivePrice();syncControls();compute();save();
+}
+function showTab(next){
+ if(!['home','plan','layout','three','report'].includes(next))return;
+ tab=next;document.body.dataset.page=next;
+ $('homePane').hidden=next!=='home';
+ document.querySelectorAll('[data-tab]').forEach(b=>b.classList.toggle('active',b.dataset.tab===next));
+ $('drawingPane').hidden=!['plan','layout'].includes(next);$('threePane').hidden=next!=='three';$('reportPane').hidden=next!=='report';
+ for(const t of ['plan','layout','three','report'])$(t+'Panel').hidden=t!==next;
+ $('planTools').hidden=next!=='plan';$('layoutTools').hidden=next!=='layout';
+ $('stageTitle').textContent=next==='layout'?'即時排磚效果':'平面圖工作區';
+ if(next!=='plan'){draft=[];calPoints=[];tool='pan';guidePoint=null;setToolUI();}
+ if(next==='three')requestAnimationFrame(update3D);
+ else if(next==='report')renderReport();
+ else if(next==='home')updateMetrics();
+ else requestAnimationFrame(()=>{fitView();renderPlan();});
+ window.scrollTo({top:0,behavior:'instant'});
+}
+function setTool(t){guidePoint=null;snapX=snapY=false;setToolBase(t);}
+function calculateOption(w,h){
+ const r=priceRecord(w,h),active=w===S.settings.width&&h===S.settings.height;
+ const cacheKey=JSON.stringify([S.ppm,S.rooms,S.holes,w,h,S.settings.angle,S.settings.grout,S.settings.offsetX,S.settings.offsetY,S.settings.stagger]);
+ let l;
+ if(active)l=lay;
+ else if(quoteCache.has(cacheKey))l=quoteCache.get(cacheKey);
+ else {const raw=E.layout(reg,{...S.settings,width:w,height:h});l={count:raw.count,full:raw.full,cut:raw.cut,cutWaste:raw.cutWaste,groutArea:raw.groutArea};if(quoteCache.size>20)quoteCache.clear();quoteCache.set(cacheKey,l);}
+ const q=E.quantity(l,S.settings.waste,r.perBox,0);
+ const purchase=r.purchase==='box'?q.purchase:q.recommended,areaPerTile=w*h/1e6;
+ const amount=r.price===null?null:roundMoney(r.price*(r.unit==='box'?q.boxes:r.unit==='m2'?purchase*areaPerTile:purchase));
+ return {w,h,key:w+'x'+h,record:r,layout:l,q,purchase,areaPerTile,purchaseArea:purchase*areaPerTile,amount,active};
+}
+function quoteTotals(option){
+ const o=option||calculateOption(S.settings.width,S.settings.height),f=priceData().fees;
+ const labor=roundMoney(reg.area*f.labor),delivery=roundMoney(f.delivery),other=roundMoney(f.other),discount=roundMoney(f.discount);
+ const subtotal=o.amount===null?null:roundMoney(o.amount+labor+delivery+other);
+ const appliedDiscount=subtotal===null?0:Math.min(discount,subtotal);
+ const taxable=subtotal===null?null:roundMoney(subtotal-appliedDiscount);
+ const tax=taxable===null?null:roundMoney(taxable*f.tax/100);
+ return {option:o,labor,delivery,other,discount,appliedDiscount,subtotal,tax,taxable,total:taxable===null?null:roundMoney(taxable+tax)};
+}
+function comparisonOptions(){
+ const pairs=SIZE_PRESETS.slice(),p=S.settings;
+ if(!pairs.some(([w,h])=>w===p.width&&h===p.height))pairs.unshift([p.width,p.height]);
+ // Retain individually entered custom tile sizes in the comparison list.
+ for(const k of Object.keys(priceData().catalog)){const [w,h]=k.split('x').map(Number);if(!pairs.some(a=>a[0]===w&&a[1]===h)&&pairs.length<20)pairs.push([w,h]);}
+ return pairs.map(([w,h])=>{try{return calculateOption(w,h);}catch(e){return {w,h,key:w+'x'+h,error:true};}});
+}
+function reportDetail(label,value){return `<div class="detailrow"><span>${escapeHTML(label)}</span><b>${escapeHTML(value)}</b></div>`;}
+function renderReport(){
+ if(!S||!reg)return;
+ if(!S.ppm||computeError||!reg.parts.length){
+  $('reportPane').innerHTML='<div class="quoteSummary"><h2>先定義鋪磚範圍</h2><p class="priceHelp">匯入圖紙、校準比例及圈選地面後，才有可靠的張數和報價。</p><button class="primary full" data-go="plan">返回平面圖</button></div>';return;
+ }
+ syncActivePrice();const p=S.settings,options=comparisonOptions(),current=options.find(o=>o.active);
+ if(!current||current.error)return;
+ const t=quoteTotals(current),priced=options.filter(o=>!o.error&&o.amount!==null),lowest=priced.length>=2?Math.min(...priced.map(o=>o.amount)):null;
+ const direction=p.angle===0?'橫鋪':p.angle===90?'直鋪':'斜鋪 45°',r=current.record,meta=priceData().quote;
+ const selectedLabel=r.product||`${p.width} × ${p.height} mm 瓷磚`;
+ let quoteHTML=`<div class="quoteSummary"><div class="eyebrow">QUOTE & COST COMPARISON</div><h2>${escapeHTML(S.name)}</h2><p class="meta">${escapeHTML(selectedLabel)} · ${direction} · ${p.grout} mm 磚縫</p>
+ ${reportDetail('淨鋪磚面積',fmt(reg.area)+' m²')}
+ ${reportDetail('完整磚 + 切割磚',current.layout.full+' + '+current.layout.cut+' 張')}
+ ${reportDetail('備料後所需',current.q.recommended+' 張（額外 '+p.waste+'%）')}
+ ${reportDetail('實際購買量',r.purchase==='box'?current.q.boxes+' 箱 × '+r.perBox+' = '+current.purchase+' 張':current.purchase+' 張（逐片購買）')}
+ ${reportDetail('瓷磚材料費',money(current.amount))}
+ ${t.labor>0?reportDetail('人工（'+money(priceData().fees.labor)+' / m²）',money(t.labor)):''}
+ ${t.delivery>0?reportDetail('運費',money(t.delivery)):''}${t.other>0?reportDetail('其他費用',money(t.other)):''}
+ ${t.appliedDiscount>0?reportDetail('折扣','− '+money(t.appliedDiscount)):''}${priceData().fees.tax>0?reportDetail('稅項（'+priceData().fees.tax+'%）',money(t.tax)):''}
+ <div class="quoteTotal"><span>預估報價總額 · ${priceData().currency}</span><b id="quoteTotalValue">${money(t.total)}</b></div>
+ <p class="micro">${current.amount===null?'這款瓷磚尚未填單價；請先編輯價格，再輸出報價。':'包含上列已填費用；未輸入的其他工程費不包含在內。價格不會自動向供應商更新。'}</p>
+ <div class="quoteCTA"><button class="primary" data-export-quote ${t.total===null?'disabled':''}>輸出這款的報價 ↗</button><button class="secondary" data-edit-price="${current.key}">編輯這款價格</button></div></div>`;
+ let cards=options.map(o=>{
+  if(o.error)return `<article class="priceCard"><h3>${o.w} × ${o.h}</h3><p>此尺寸計算量過大，請縮小區域後重試。</p></article>`;
+  const r=o.record;
+  return `<article class="priceCard ${o.active?'selected':''}" data-option="${o.key}"><div class="priceTitle"><h3>${o.w} × ${o.h} <small>mm</small></h3>${o.active?'<span class="pill">目前選擇</span>':''}</div>
+  <div class="supplier">${escapeHTML([r.supplier,r.product].filter(Boolean).join(' · ')||'自行輸入供應商及瓷磚型號')}</div>
+  <div class="priceAmount ${o.amount===null?'unset':''}">${o.amount===null?'尚未輸入價格':money(o.amount)}</div>
+  <div class="unitPrice">${o.amount===null?'填入找到的價格，開始比較。':'材料總額 · 單價 '+money(r.price)+' / '+unitLabels[r.unit]}</div>
+  ${lowest!==null&&o.amount===lowest?'<div class="lowest">✓ 已填價格中，材料總額最低</div>':''}
+  <div class="countFlow">排磚 <b>${o.layout.count}</b> 張 → 備料後 <b>${o.q.recommended}</b> 張<br>${r.purchase==='box'?`整箱購買：${o.q.boxes} 箱 × ${r.perBox} 張 = <b>${o.purchase} 張</b>`:`逐片購買：<b>${o.purchase} 張</b>`}${r.unit==='m2'?'<br>計價面積：'+fmt(o.purchaseArea,3)+' m²（購買原磚面積）':''}</div>
+  <div class="cardActions"><button class="secondary" data-edit-price="${o.key}">${r.price===null?'＋ 輸入價格':'編輯價格'}</button><button class="${o.active?'secondary':'primary'}" data-use-option="${o.key}">${o.active?'查看排法':'選用及報價'}</button></div></article>`;
+ }).join('');
+ $('reportPane').innerHTML=quoteHTML+`<div class="priceHead"><h2>各款瓷磚價格比較</h2><span class="tag">${priceData().currency}</span></div><p class="priceHelp">每款獨立設定單價及包裝。按同一地面、方向和備料比例，計算實際採購成本。</p><div class="priceCards">${cards}</div>
+ <div class="reportcard gap"><div class="reportcardhead"><h3>計算依據</h3><p>報價明細會保留用量、價格單位、包裝及費用。</p></div><div class="detailgrid">
+ ${reportDetail('圈選地面聯集',fmt(reg.gross)+' m²')}${reportDetail('扣除區域',fmt(reg.excluded)+' m²')}
+ ${reportDetail('磚縫面積',fmt(lay.groutArea,3)+' m²')}${reportDetail('原磚切除面積',fmt(lay.cutWaste,3)+' m²')}
+ ${reportDetail('報價編號',meta.reference||'未設定')}${reportDetail('客戶',meta.customer||'未設定')}</div>
+ <div class="formulanote">備料後張數 = 排磚張數 + 向上取整（排磚張數 × 備料比例）。整箱購買再按每箱張數向上取整。<br>按 m² 報價時，以「購買張數 × 每張名義面積」計材料費，不是淨地面面積。</div></div>
+ <div class="reportwarning gap"><b>採購前請覆核</b><br>本工具未最佳化切割餘料重用，亦未模擬鋸縫或現場伸縮縫。價格由用戶提供；報價需按供應商、實際包裝及施工情況確認。</div>`;
+}
+function editPrice(key){
+ const [w,h]=key.split('x').map(Number),r=priceRecord(w,h);
+ modal(`${w} × ${h} mm · 瓷磚價格`,`
+ <p>輸入你找到的實際報價；留空代表尚未取得價格。</p><div class="quoteMeta">
+ <label class="wide">供應商<input id="epSupplier" maxlength="100" placeholder="例如：瓷磚店名稱" value="${escapeHTML(r.supplier)}"></label>
+ <label class="wide">瓷磚名稱／型號<input id="epProduct" maxlength="100" placeholder="例如：石紋系列 A01" value="${escapeHTML(r.product)}"></label>
+ <label>單價（${priceData().currency}）<input id="epPrice" type="number" inputmode="decimal" min="0" max="100000000" step="0.01" placeholder="尚未輸入" value="${r.price===null?'':r.price}"></label>
+ <label>價格單位<select id="epUnit"><option value="piece">每張</option><option value="box">每箱</option><option value="m2">每平方米 m²</option></select></label>
+ <label>每箱張數<input id="epBox" type="number" inputmode="numeric" min="1" max="100" value="${r.perBox}"></label>
+ <label>購買方式<select id="epPurchase"><option value="box">整箱購買</option><option value="piece">逐片購買</option></select></label></div>
+ <p class="micro">按箱單價須整箱購買；按 m² 單價會按實際購買原磚的名義面積計費。</p>
+ <div class="modalactions"><button id="epCancel" class="secondary">取消</button><button id="epSave" class="primary">儲存並比較</button></div>`);
+ $('epUnit').value=r.unit;$('epPurchase').value=r.purchase;
+ const checkBox=()=>{if($('epUnit').value==='box')$('epPurchase').value='box';$('epPurchase').disabled=$('epUnit').value==='box';};checkBox();$('epUnit').onchange=checkBox;
+ $('epCancel').onclick=closeModal;$('epSave').onclick=()=>{
+  const value=$('epPrice').value.trim(),price=value===''?null:Number(value),perBox=Number($('epBox').value);
+  if(price!==null&&(!Number.isFinite(price)||price<0||price>1e8))return toast('請輸入 0 至 100,000,000 的有效價格');
+  if(!Number.isInteger(perBox)||perBox<1||perBox>100)return toast('每箱張數請輸入 1 至 100 的整數');
+  priceData().catalog[key]={price,perBox,unit:$('epUnit').value,purchase:$('epUnit').value==='box'?'box':$('epPurchase').value,supplier:$('epSupplier').value.trim(),product:$('epProduct').value.trim()};
+  syncActivePrice();qty=E.quantity(lay,S.settings.waste,S.settings.perBox,S.settings.price);updateMetrics();renderReport();save();closeModal();toast('價格已儲存，採購成本已更新');
+ };
+}
+function editQuoteDetails(){
+ const q=priceData().quote;
+ modal('客戶及報價資料',`<div class="quoteMeta">
+ <label class="wide">客戶名稱<input id="qdCustomer" maxlength="240" value="${escapeHTML(q.customer)}"></label>
+ <label class="wide">商戶／報價人<input id="qdSeller" maxlength="240" value="${escapeHTML(q.seller)}"></label>
+ <label class="wide">商戶聯絡資料<input id="qdContact" maxlength="240" placeholder="電話或電郵" value="${escapeHTML(q.contact)}"></label>
+ <label class="wide">工程地址<input id="qdAddress" maxlength="240" value="${escapeHTML(q.address)}"></label>
+ <label>報價編號<input id="qdRef" maxlength="120" value="${escapeHTML(q.reference)}"></label>
+ <label>有效日數<input id="qdDays" type="number" inputmode="numeric" min="1" max="365" value="${q.validDays}"></label>
+ <label class="wide">報價日期<input id="qdDate" type="date" value="${escapeHTML(q.date)}"></label>
+ <label class="wide">備註／條款<textarea id="qdNotes" maxlength="2000">${escapeHTML(q.notes)}</textarea></label></div>
+ <div class="modalactions"><button class="secondary" id="qdCancel">取消</button><button class="primary" id="qdSave">儲存資料</button></div>`);
+ $('qdCancel').onclick=closeModal;$('qdSave').onclick=()=>{
+  const days=Number($('qdDays').value),date=$('qdDate').value;
+  if(!Number.isInteger(days)||days<1||days>365)return toast('有效日數請輸入 1 至 365');
+  if(!date||Number.isNaN(Date.parse(date)))return toast('請設定有效的報價日期');
+  Object.assign(q,{customer:$('qdCustomer').value.trim(),seller:$('qdSeller').value.trim(),contact:$('qdContact').value.trim(),address:$('qdAddress').value.trim(),reference:$('qdRef').value.trim(),validDays:days,date,notes:$('qdNotes').value.trim()});
+  save();renderReport();closeModal();toast('報價資料已儲存');
+ };
+}
+function editQuoteFees(){
+ const f=priceData().fees;
+ modal('額外費用及折扣',`<p>全部使用 ${priceData().currency}。未填費用保留 0；不代表工程實際不會產生該費用。</p><div class="quoteMeta">
+ <label class="wide">人工單價（每 m² 淨地面）<input id="qfLabor" type="number" inputmode="decimal" min="0" max="100000000" step=".01" value="${f.labor}"></label>
+ <label>運費（整項）<input id="qfDelivery" type="number" inputmode="decimal" min="0" max="100000000" step=".01" value="${f.delivery}"></label>
+ <label>其他費用（整項）<input id="qfOther" type="number" inputmode="decimal" min="0" max="100000000" step=".01" value="${f.other}"></label>
+ <label>折扣金額<input id="qfDiscount" type="number" inputmode="decimal" min="0" max="100000000" step=".01" value="${f.discount}"></label>
+ <label>適用稅率 %<input id="qfTax" type="number" inputmode="decimal" min="0" max="100" step=".01" value="${f.tax}"></label></div>
+ <p class="micro">稅額按「材料 + 人工 + 運费 + 其他 − 折扣」計算；折扣最多抵扣小計。請自行確認是否適用。</p>
+ <div class="modalactions"><button class="secondary" id="qfCancel">取消</button><button class="primary" id="qfSave">儲存並重算</button></div>`);
+ $('qfCancel').onclick=closeModal;$('qfSave').onclick=()=>{
+  const values={labor:Number($('qfLabor').value),delivery:Number($('qfDelivery').value),other:Number($('qfOther').value),discount:Number($('qfDiscount').value),tax:Number($('qfTax').value)};
+  if(Object.entries(values).some(([k,v])=>!Number.isFinite(v)||v<0||v>(k==='tax'?100:1e8)))return toast('請輸入有效的非負金額；稅率最多 100%');
+  priceData().fees=values;save();renderReport();closeModal();toast('報價總額已更新');
+ };
+}
+function quotationHTML(comparison=false){
+ const p=S.settings,t=quoteTotals(),o=t.option,r=o.record,q=priceData().quote,cur=priceData().currency;
+ const validUntil=new Date(q.date+'T12:00:00');validUntil.setDate(validUntil.getDate()+q.validDays);
+ const until=validUntil.getFullYear()+'-'+String(validUntil.getMonth()+1).padStart(2,'0')+'-'+String(validUntil.getDate()).padStart(2,'0');
+ const line=(desc,qtyText,unit,amount)=>`<tr><td>${escapeHTML(desc)}</td><td>${escapeHTML(qtyText)}</td><td>${escapeHTML(unit)}</td><td>${escapeHTML(money(amount))}</td></tr>`;
+ const quotedUnits=r.unit==='box'?o.q.boxes+' 箱':r.unit==='m2'?fmt(o.purchaseArea,3)+' m²':o.purchase+' 張';
+ let lines=line((r.product||'瓷磚')+' · '+p.width+' × '+p.height+' mm'+(r.supplier?' / '+r.supplier:''),quotedUnits,money(r.price)+' / '+unitLabels[r.unit],o.amount);
+ if(t.labor>0)lines+=line('鋪貼人工',fmt(reg.area)+' m²',money(priceData().fees.labor)+' / m²',t.labor);
+ if(t.delivery>0)lines+=line('運費','1 項',money(t.delivery),t.delivery);
+ if(t.other>0)lines+=line('其他費用','1 項',money(t.other),t.other);
+ const comparisons=comparison?`<h2>各款價格比較</h2><table><thead><tr><th>尺寸 mm</th><th>排磚 / 備料後</th><th>購買量</th><th>單價及單位</th><th>材料總額</th></tr></thead><tbody>${comparisonOptions().map(x=>x.error?`<tr><td>${x.w} × ${x.h}</td><td colspan="4">需分區計算</td></tr>`:`<tr><td>${x.w} × ${x.h}${x.active?'（選用）':''}</td><td>${x.layout.count} / ${x.q.recommended} 張</td><td>${x.record.purchase==='box'?x.q.boxes+' 箱 / ':''}${x.purchase} 張</td><td>${x.record.price===null?'未輸入':escapeHTML(money(x.record.price))+' / '+unitLabels[x.record.unit]}</td><td>${escapeHTML(money(x.amount))}</td></tr>`).join('')}</tbody></table><p class="muted">同一幣別、輪廓、方向及備料比例；表中只比較材料，不包括人工、運費和其他費用。</p>`:'';
+ const plan=planExportCanvas().toDataURL('image/jpeg',.88);
+ const logo=document.querySelector('.newmark').innerHTML;
+ return `<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${escapeHTML(S.name)} · ${comparison?'用量及價格比較':'瓷磚報價'}</title><style>
+ @page{size:A4;margin:16mm}*{box-sizing:border-box}body{max-width:960px;margin:32px auto;padding:0 20px;color:#172c49;font:15px/1.65 Arial,"Microsoft JhengHei",sans-serif}.head{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #0866e9;padding:0 0 22px}.brandQ{display:flex;align-items:center;gap:12px}.brandQ svg{width:48px;height:48px}.brandQ b{font-size:28px}.brandQ small{display:block;font-size:12px;color:#627796}.kind{font-size:26px;font-weight:bold}.muted{color:#596e8b;font-size:13px}h1{font-size:25px;margin:25px 0 15px}h2{font-size:19px;margin:24px 0 10px}.meta{display:grid;grid-template-columns:1fr 1fr;gap:8px 25px;background:#f3f7fd;padding:18px;border-radius:8px}.meta b{display:block;color:#587191;font-size:12px}table{border-collapse:collapse;width:100%;margin:18px 0;font-size:14px}th{text-align:left;background:#edf4ff}th,td{padding:12px 10px;border-bottom:1px solid #dfe7f1;vertical-align:top}td:last-child,th:last-child{text-align:right}.totals{margin:14px 0 18px auto;max-width:400px}.totalrow{display:flex;justify-content:space-between;padding:6px 0;gap:15px}.grand{background:#eaf3ff;color:#005acb;padding:13px;margin-top:9px;border-radius:8px;font-size:23px;font-weight:bold}.note{background:#f6f8fc;padding:17px;border-radius:8px;font-size:13px}.plan{max-width:100%;border:1px solid #dce5f0;border-radius:8px}.footer{border-top:1px solid #dce5f0;margin-top:25px;padding-top:15px;font-size:13px;display:flex;justify-content:space-between;gap:15px}.print{background:#0866e9;color:white;padding:13px 22px;border:none;border-radius:9px;font-size:16px;margin:18px 0;cursor:pointer}.prewrap{white-space:pre-wrap;overflow-wrap:anywhere}@media(max-width:600px){body{padding:0 12px;margin:18px auto}.head{align-items:flex-start;gap:12px}.kind{font-size:22px}.brandQ b{font-size:23px}.meta{grid-template-columns:1fr}.tablewrap{overflow-x:auto}.totalrow{gap:12px}}@media print{body{padding:0;margin:0;max-width:none;font-size:12px}.print{display:none}.meta{grid-template-columns:1fr 1fr}table{font-size:12px}tr,.totals,.note{break-inside:avoid}.planSection{break-before:page}.footer{font-size:11px}}
+ </style></head><body><div class="head"><div class="brandQ">${logo}<div><b>Tile Studio</b><small>Designed by Dennis Chung</small></div></div><div class="kind">${comparison?'用量及價格比較':'瓷磚報價單'}</div></div>
+ <button class="print" onclick="window.print()">列印／儲存為 PDF</button><h1>${escapeHTML(S.name)}</h1>
+ <div class="meta"><div><b>客戶</b>${escapeHTML(q.customer||'未填寫')}</div><div><b>報價編號</b>${escapeHTML(q.reference||'未填寫')}</div><div><b>商戶／報價人</b>${escapeHTML(q.seller||'未填寫')}</div><div><b>報價日期／有效至</b>${q.date} ／ ${until}</div><div><b>商戶聯絡</b>${escapeHTML(q.contact||'未填寫')}</div><div><b>工程地址</b>${escapeHTML(q.address||'未填寫')}</div></div>
+ <p>淨鋪磚面積 <strong>${fmt(reg.area)} m²</strong> · ${p.width} × ${p.height} mm · ${p.angle===0?'橫鋪':p.angle===90?'直鋪':'斜鋪 45°'} · ${p.grout} mm 磚縫 · ${p.stagger===.5?'二分之一錯縫':'直線對縫'}</p>
+ <div class="tablewrap"><table><thead><tr><th>項目</th><th>計價數量</th><th>單價（${cur}）</th><th>金額（${cur}）</th></tr></thead><tbody>${lines}</tbody></table></div>
+ <div class="totals"><div class="totalrow"><span>小計</span><b>${money(t.subtotal)}</b></div><div class="totalrow"><span>折扣</span><b>− ${money(t.appliedDiscount)}</b></div><div class="totalrow"><span>稅項（${priceData().fees.tax}%）</span><b>${money(t.tax)}</b></div><div class="totalrow grand"><span>總額 · ${cur}</span><span>${money(t.total)}</span></div></div>
+ <div class="note"><b>用量及採購基礎</b><br>完整磚 ${lay.full} 張 + 切割磚 ${lay.cut} 張 = 排磚 ${lay.count} 張。另加 ${p.waste}% 備料 ${o.q.extra} 張，共 ${o.q.recommended} 張。<br>${r.purchase==='box'?`整箱購買 ${o.q.boxes} 箱 × ${r.perBox} 張，實際購買 ${o.purchase} 張。`:`逐片購買 ${o.purchase} 張。`}${r.unit==='m2'?`按平方米單價，以購買原磚面積 ${fmt(o.purchaseArea,3)} m² 計費。`:''}<br>圖紙比例：${escapeHTML(S.scaleNote||'手動校準')}。扣除範圍 ${fmt(reg.excluded)} m²。未最佳化切割餘料重用，採購前須現場覆核。</div>
+ ${comparisons}<h2>備註及條款</h2><p class="prewrap">${escapeHTML(q.notes)}</p><p class="muted">本報價由用戶輸入的價格與費用生成。未列出的工程或服務不包含在總額內；非供應商即時報價或付款收據。${o.amount===null?'注意：本比較文件有未填價格，不是完整報價。':''}</p>
+ <div class="planSection"><h2>鋪磚排版示意</h2><img class="plan" alt="依圈選範圍計算的鋪磚排版" src="${plan}"></div>
+ <div class="footer"><span>Designed by Dennis Chung</span><span>Tile Studio 2.0 · 裝置內產生</span></div></body></html>`;
+}
+function exportQuote(){
+ if(!S.ppm||computeError||!reg.parts.length)return toast('請先校準圖紙並圈選有效地面');
+ if(priceRecord().price===null)return toast('請先輸入目前所選瓷磚的價格');
+ download(quotationHTML(false),'text/html',safeName()+'-報價單.html');
+}
+function exportReport(){
+ if(!S.ppm||computeError||!reg.parts.length)return toast('請先校準圖紙並圈選有效地面');
+ download(quotationHTML(true),'text/html',safeName()+'-用量及價格比較.html');
+}
+function privacyInfo(){
+ modal('關於 Tile Studio 2.0',`<p><b>Designed by Dennis Chung</b><br>這是可互動的測試版本，不是 Google Play 已發佈版本。</p>
+ <p><b>本機處理</b><br>圖紙、紋理、客戶資料及價格只在你的裝置內處理。本版無帳戶、廣告、分析追蹤或外部伺服器；APK 沒有網際網路權限。</p>
+ <p><b>檔案及備份</b><br>只讀取你透過系統選擇器指定的圖片或 JSON。匯出檔案存到你選擇的位置；之後如何分享，由你自行決定。</p>
+ <p><b>清除及保留</b><br>清除 App 資料或解除安裝，會移除 App 內的自動儲存。自行匯出的檔案不會一併刪除；可在檔案管理員刪除。重要方案請先儲存 JSON 備份。</p>
+ <p><b>使用範圍</b><br>支援 JPG、PNG、WebP，不直接讀取 PDF 或 CAD。3D 是實際圈選地面的鋪磚預覽，不自動重建門窗或傢俬。價格並非即時供應商資料。</p>
+ <button class="primary full" id="privacyOK">了解</button>`);
+ $('privacyOK').onclick=closeModal;
+}
+function snapPoint(raw){
+ let p=[clamp(raw[0],0,S.width),clamp(raw[1],0,S.height)];snapX=snapY=false;
+ if(!$('snapToggle').checked||tool==='calibrate')return p;
+ const anchors=[];for(const type of ['rooms','holes'])for(const r of S[type])r.points.forEach((a,i)=>{if(!(editTarget&&editTarget.type===type&&editTarget.id===r.id&&editTarget.i===i))anchors.push(a);});
+ anchors.push(...draft);const tol=10/view.k;
+ let bx=tol,by=tol,nx=p[0],ny=p[1];
+ for(const a of anchors){let dx=Math.abs(p[0]-a[0]),dy=Math.abs(p[1]-a[1]);if(dx<bx){bx=dx;nx=a[0];snapX=true;}if(dy<by){by=dy;ny=a[1];snapY=true;}}
+ return [nx,ny];
+}
+function drawGuides(){
+ if(!S||!$('guideToggle').checked||!guidePoint||tab!=='plan'||!['polygon','hole','edit','calibrate'].includes(tool))return;
+ const w=canvas.clientWidth,h=canvas.clientHeight,x=guidePoint[0]*view.k+view.x,y=guidePoint[1]*view.k+view.y;
+ ctx.save();ctx.strokeStyle='#0866e9';ctx.lineWidth=1.4;ctx.setLineDash([6,5]);ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,h);ctx.moveTo(0,y);ctx.lineTo(w,y);ctx.stroke();ctx.setLineDash([]);
+ if(draft.length&&['polygon','hole'].includes(tool)){let last=draft[draft.length-1];ctx.strokeStyle='#5598ec';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(last[0]*view.k+view.x,last[1]*view.k+view.y);ctx.lineTo(x,y);ctx.stroke();}
+ ctx.beginPath();ctx.arc(x,y,9,0,Math.PI*2);ctx.fillStyle='#fff';ctx.fill();ctx.lineWidth=2.5;ctx.strokeStyle='#0866e9';ctx.stroke();ctx.beginPath();ctx.arc(x,y,3,0,Math.PI*2);ctx.fillStyle='#0866e9';ctx.fill();
+ const label=snapX&&snapY?'水平 + 垂直對齊':snapX?'垂直對齊':snapY?'水平對齊':'精確選點';
+ ctx.font='bold 13px sans-serif';const ww=ctx.measureText(label).width+22,lx=Math.max(7,Math.min(w-ww-7,x+16)),ly=y>60?y-42:y+20;
+ ctx.fillStyle='#0866e9';roundRect(ctx,lx,ly,ww,29,7);ctx.fill();ctx.fillStyle='white';ctx.textAlign='left';ctx.fillText(label,lx+11,ly+20);ctx.restore();
+ $('guideReadout').textContent=(S.ppm?`圖面座標 X ${fmt(guidePoint[0]/S.ppm)} m · Y ${fmt(guidePoint[1]/S.ppm)} m`:'比例未設定，請先校準')+' · '+label;
+}
+function renderPlan(){renderPlanBase();drawGuides();}
+function initCanvasEvents(){
+ const drawing=()=>['polygon','hole','calibrate'].includes(tool);
+ const inside=p=>p[0]>=0&&p[0]<=S.width&&p[1]>=0&&p[1]<=S.height;
+ canvas.addEventListener('pointerdown',e=>{
+  e.preventDefault();canvas.setPointerCapture(e.pointerId);pointers.set(e.pointerId,[e.clientX,e.clientY]);
+  if(pointers.size===1){
+   gesture={x:e.clientX,y:e.clientY,lastX:e.clientX,lastY:e.clientY,moved:false};pinched=false;editTarget=null;
+   if(tool==='edit'){const p=canvasPoint(e);let best=23/view.k;for(const type of ['rooms','holes'])for(const r of S[type])r.points.forEach((q,i)=>{const d=E.dist(p,q);if(d<best){editTarget={type,id:r.id,i};best=d;}});if(editTarget)editBefore=JSON.stringify(S);}
+   if(drawing()||editTarget){guidePoint=snapPoint(canvasPoint(e));renderPlan();}
+  }else{
+   if(editTarget&&editBefore){S=JSON.parse(editBefore);editTarget=null;editBefore=null;}
+   pinched=true;guidePoint=null;if(!gesture)gesture={};gesture.span=pointerSpan();gesture.center=pointerCenter();
+  }
+ });
+ canvas.addEventListener('pointermove',e=>{
+  if(!pointers.has(e.pointerId)||!gesture){if(e.pointerType==='mouse'&&drawing()&&inside(canvasPoint(e))){guidePoint=snapPoint(canvasPoint(e));renderPlan();}return;}
+  pointers.set(e.pointerId,[e.clientX,e.clientY]);
+  if(pointers.size>1){let n=pointerSpan(),center=pointerCenter(),rect=canvas.getBoundingClientRect();if(gesture.span){zoomAt(n/gesture.span,center[0]-rect.left,center[1]-rect.top);view.x+=center[0]-gesture.center[0];view.y+=center[1]-gesture.center[1];}gesture.span=n;gesture.center=center;gesture.moved=true;renderPlan();return;}
+  const dx=e.clientX-gesture.lastX,dy=e.clientY-gesture.lastY;
+  if(Math.hypot(e.clientX-gesture.x,e.clientY-gesture.y)>4)gesture.moved=true;
+  if(editTarget){const r=S[editTarget.type].find(r=>r.id===editTarget.id);guidePoint=snapPoint(canvasPoint(e));r.points[editTarget.i]=guidePoint.slice();renderPlan();}
+  else if(drawing()&&!pinched){guidePoint=snapPoint(canvasPoint(e));renderPlan();}
+  else if(tool==='pan'||tool==='edit'||pinched){guidePoint=null;view.x+=dx;view.y+=dy;renderPlan();}
+  gesture.lastX=e.clientX;gesture.lastY=e.clientY;
+ });
+ const end=e=>{
+  if(!pointers.has(e.pointerId))return;
+  const g=gesture,raw=canvasPoint(e),p=snapPoint(raw);pointers.delete(e.pointerId);
+  if(editTarget){
+   const r=S[editTarget.type].find(r=>r.id===editTarget.id);
+   if(e.type==='pointercancel'||!E.simple(r.points)){S=JSON.parse(editBefore);toast('已還原未完成或交叉的輪廓調整');}
+   else if(g?.moved){history.push(editBefore);if(history.length>20)history.shift();compute();save();}
+   editTarget=null;editBefore=null;guidePoint=p;renderPlan();
+  }
+  if(!pointers.size){
+   if(g&&!pinched&&e.type!=='pointercancel'&&inside(raw)&&drawing()){
+    guidePoint=p;
+    if(['polygon','hole'].includes(tool)){
+     if(draft.length>=3&&E.dist(draft[0],p)<13/view.k)finishDrawing();
+     else if(draft.length&&E.dist(draft[draft.length-1],p)<2/view.k)toast('此點與上一點太接近，請選擇下一個角點');
+     else if(draft.length<100){draft.push(p);setToolUI();renderPlan();}else toast('每個範圍最多 100 個角點');
+    }else if(tool==='calibrate'){
+     calPoints.push(p);setToolUI();renderPlan();
+     if(calPoints.length===2)setTimeout(()=>{if(tool==='calibrate'&&calPoints.length===2)calibrateDialog();},80);
+    }
+   }
+   gesture=null;
+  }else{const a=[...pointers.values()][0];gesture={x:a[0],y:a[1],lastX:a[0],lastY:a[1],moved:true};pinched=true;}
+ };
+ canvas.addEventListener('pointerup',end);canvas.addEventListener('pointercancel',end);
+ canvas.addEventListener('wheel',e=>{e.preventDefault();const r=canvas.getBoundingClientRect();zoomAt(Math.exp(-e.deltaY*.001),e.clientX-r.left,e.clientY-r.top);},{passive:false});
+}
+function initEvents(){
+ initEventsBase();
+ $('brandHome').onclick=()=>showTab('home');
+ $('homeImport').onclick=()=>$('planFile').click();
+ $('homeContinue').onclick=()=>showTab('plan');
+ $('homeBlank').onclick=rectangleDialog;
+ $('homeLoad').onclick=()=>$('projectFile').click();
+ $('homeDemo').onclick=resetDemo;
+ $('homePrivacy').onclick=privacyInfo;$('footerPrivacy').onclick=privacyInfo;
+ $('planNext').onclick=()=>{if(!S.ppm||!S.rooms.length)return toast('請先校準比例並圈選地面');showTab('layout');};
+ $('quoteDetailsBtn').onclick=editQuoteDetails;$('quoteFeesBtn').onclick=editQuoteFees;$('exportQuoteBtn').onclick=exportQuote;
+ $('guideToggle').onchange=renderPlan;$('snapToggle').onchange=()=>{snapX=snapY=false;renderPlan();};
+ $('currencyInput').onchange=e=>{
+  const prev=priceData().currency,next=e.target.value;
+  askConfirm('更換幣別，不會換算匯率',`現有價格數字將保留，單位由 ${prev} 改為 ${next}。請先核對所有價格。`,()=>{priceData().currency=next;$('currencyInput').value=next;save();renderReport();updateMetrics();});
+  $('askCancel').onclick=()=>{$('currencyInput').value=prev;closeModal();};
+  // Keep the select truthful even when the dialog is dismissed with the close button.
+  e.target.value=prev;
+ };
+ $('reportPane').onclick=e=>{
+  const edit=e.target.closest('[data-edit-price]');if(edit)return editPrice(edit.dataset.editPrice);
+  const use=e.target.closest('[data-use-option]');if(use){const [w,h]=use.dataset.useOption.split('x').map(Number);if(w===S.settings.width&&h===S.settings.height)showTab('layout');else{setSize(w,h);showTab('report');}return;}
+  if(e.target.closest('[data-export-quote]'))return exportQuote();
+  const go=e.target.closest('[data-go]');if(go)showTab(go.dataset.go);
+ };
+ // Save before the OS hides or stops the activity, rather than relying only on a timer.
+ document.addEventListener('visibilitychange',()=>{if(document.hidden&&S){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}});
+ window.addEventListener('pagehide',()=>{if(S){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}});
+}
+
+window.TileApp={get state(){return S;},get region(){return reg;},get layout(){return lay;},get quantity(){return qty;},get view(){return view;},get renderer(){return renderer;},setSize,showTab,compute,loadState,demoState,validateState,finishDrawing,exportPlan,exportReport,backup,makeTexture,toast,fitView,exportQuote,quotationHTML,quoteTotals,calculateOption,editPrice,normalizePricing,priceRecord,snapPoint,setTool,get guidePoint(){return guidePoint;},get tab(){return tab;}};
+(async function init(){initEvents();let initial;try{const raw=localStorage.getItem(KEY);initial=raw?validateState(JSON.parse(raw)):demoState();}catch(e){initial=demoState();}await loadState(initial);showTab('home');window.__tileReady=true;})().catch(e=>{console.error(e);busy(false);modal('啟動時遇到問題','<p>請重新開啟 App。也可清除目前的本機方案，再載入示範。</p><button class="primary full" id="recoverBtn">重設本機方案</button>');$('recoverBtn').onclick=()=>{localStorage.removeItem(KEY);location.reload();};});
+
+</script>
+</body></html>
