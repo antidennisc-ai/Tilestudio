@@ -177,6 +177,72 @@ main{padding-left:10px;padding-right:10px}.homeprimary small{font-size:12px}.hom
 }
 @media print{.topbar,.bottomnav,.inspector,.steps,.homePane,.pagefooter,.projectline,.overview{display:none!important}.reportPane{display:block!important}.workspace{display:block!important}.priceCard{break-inside:avoid}.reporthero{background:white;color:var(--ink)}}
 
+/* 3.0 walls: large mobile controls and elevation-first design. */
+body[data-page=walls] .overview,body[data-page=walls] .projectline{display:none}
+body[data-page=walls] .workspace{align-items:start}
+.wallPane{min-width:0}.wallhero{padding:25px 24px 22px;background:linear-gradient(125deg,#073e96,#126cf1);color:white}
+.wallhero .eyebrow{color:#b9d6ff;font-size:12px;letter-spacing:.18em}
+.wallhero h2{font-size:28px;color:white;margin:7px 0}.wallhero p{color:#d6e7ff;font-size:15px}
+.wallmetrics{display:grid;grid-template-columns:1fr 1.2fr 1fr;gap:10px;margin-top:23px}.wallmetrics span{display:block;font-size:13px;color:#c3ddff}.wallmetrics b{font-size:23px;display:block;margin-top:5px;white-space:nowrap}
+.wallStatus{padding:13px 18px;background:#fff5e4;color:#875b1d;font-size:14px;line-height:1.7;border-bottom:1px solid #efe2c8}
+.wallStatus.ok{background:#edf7f4;color:#287764}
+.wallviewtabs{display:flex;gap:5px;padding:12px 14px;background:white;border-bottom:1px solid var(--line)}
+.wallviewtabs button{flex:1;font-size:16px;font-weight:650;border-radius:10px;background:#f1f5fc;color:#5f7695;min-height:48px;white-space:nowrap}
+.wallviewtabs button.active{background:#e7f1ff;color:#0866e9;box-shadow:inset 0 0 0 1px #83b7fb}
+.wallmapwrap,.wallelevationwrap,.wallscenewrap{position:relative;height:440px;background:#f5f8fd}
+.wallmapwrap canvas,.wallelevationwrap canvas,.wallscenewrap canvas{width:100%;height:100%;display:block;touch-action:none}
+.wallmaplegend{position:absolute;bottom:10px;left:10px;border:1px solid #dfe8f5;background:#fffffff2;padding:5px 8px;border-radius:7px;font-size:12px;pointer-events:none}
+.wallscenewrap{height:510px}.wallscenebadge{position:absolute;top:12px;left:13px;background:#ffffffe0;border:1px solid #d5e2f5;padding:6px 10px;border-radius:8px;font-size:13px;pointer-events:none}
+.walltools{display:flex;gap:7px;flex-wrap:wrap;padding:12px;border-top:1px solid var(--line);align-items:center}
+.walltools button{padding:9px 12px;border:1px solid var(--line);border-radius:9px;background:#f5f8fd;font-size:14px;min-height:44px}.walltools button.active{background:#0866e9;color:white}
+.walltools label{font-size:14px;flex:1;min-width:180px}.wallviewfoot{padding:13px 16px;border-top:1px solid var(--line);font-size:13px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;color:var(--muted)}
+.wallviewfoot span{flex:1;min-width:160px}.wallviewfoot button{font-size:14px}
+.walltakeoffhead{padding:20px 20px 13px;border-top:1px solid var(--line)}.walltakeoffhead h3{margin:0;font-size:19px}.walltakeoffhead span{color:var(--muted);font-size:14px}
+.wallcostrow{padding:16px 20px;border-top:1px solid #e8edf5}.wallcostrow>div:first-child{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.wallcostrow b{font-size:16px}.wallcostrow small{font-size:13px;color:var(--muted)}
+.wallcostnums{display:flex;gap:9px;flex-wrap:wrap;padding-top:10px;font-size:14px}.wallcostnums span{background:#f1f6fe;border-radius:7px;padding:6px 9px}
+.wallcostbottom{display:flex;align-items:center;justify-content:space-between;gap:15px;padding-top:10px}.wallcostbottom>b{font-size:18px;color:#0866e9;white-space:nowrap}
+.walltakeofftotal{padding:16px 20px;background:#edf4ff;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.walltakeofftotal b{font-size:21px}.wallfootnote{padding:14px 20px;font-size:13px;color:var(--muted);line-height:1.7}
+.wallEmpty{padding:30px 20px;font-size:15px;color:#7588a1}
+.wallcheck{font-size:15px;display:flex;align-items:center;gap:5px;min-height:42px;margin:10px 0}
+.wallcheck input{flex-shrink:0;width:20px;height:20px}
+#wallPanel>label{font-size:15px}#wallPanel select{font-size:16px}
+.wallopeninglist>div{display:flex;justify-content:space-between;align-items:center;border:1px solid var(--line);padding:10px 12px;border-radius:10px;margin-bottom:7px;gap:9px}
+.wallopeninglist b{font-size:15px}.wallopeninglist small{display:block;font-size:12px;color:var(--muted)}.wallopeninglist button{font-size:15px;color:#0866e9;min-width:45px}
+.wallstylecards{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:14px}
+.wallstylecards button{padding:10px 4px;border:1px solid var(--line);border-radius:10px;background:#fbfcff}
+.wallstylecards button.active{border-color:#0866e9;background:#edf5ff}.wallstylecards b{font-size:13px;display:block;line-height:1.5;margin-top:7px}
+.wallstyleicon{display:block;width:39px;height:43px;border:1px solid #8da3c0;margin:0 auto;border-radius:3px;background:repeating-linear-gradient(0deg,transparent,transparent 12px,#b4becb 13px,#b4becb 14px),repeating-linear-gradient(90deg,#ecece6,#ecece6 17px,#c2c9d2 18px,#c2c9d2 19px)}
+.wallstyleicon.split{background:linear-gradient(0deg,#4f5960 48%,#ffffff 48%,#ffffff 51%,#eaeae1 51%)}
+.wallstyleicon.band{background:linear-gradient(0deg,#4f5960 43%,#5f999f 43%,#5f999f 56%,#eaeae1 56%)}
+.wallmateriallist{display:grid;gap:9px}.wallmaterial{width:100%;display:flex;gap:12px;text-align:left;border:1px solid var(--line);border-radius:12px;overflow:hidden;align-items:center;padding:0 12px 0 0;background:#fbfcfe}
+.wallmaterial canvas{width:68px;min-width:68px;height:99px;display:block;object-fit:cover}.wallmaterial>span:nth-child(2){flex:1;min-width:0}.wallmaterial b{font-size:16px;display:block}.wallmaterial small{font-size:12px;display:block;color:var(--muted)}
+.wallhome{margin:15px 0}#wallDemoBtn{margin:0 0 10px}
+.wallCombined{border:1px solid #a9cdfd;border-radius:16px;background:linear-gradient(145deg,#fff,#eff6ff);padding:22px;margin-bottom:20px}
+.wallCombined h2{font-size:25px}.wallcombinedrows{display:grid;grid-template-columns:1fr auto;gap:10px;font-size:15px;margin:20px 0}
+.wallcombinedrows b{font-size:15px;text-align:right}.wallGrand{display:flex;justify-content:space-between;padding:15px;background:#0866e9;color:white;border-radius:10px;gap:10px;font-size:17px}.wallGrand b{font-size:25px}
+.wallCombined p{font-size:14px;color:#617593;margin:13px 0}.wallCombined .walltools{padding:13px 0 0}
+.steps{gap:20px;flex-wrap:wrap}.bottomnav b{white-space:nowrap}
+@media(max-width:760px){
+ .wallhero{padding:23px 18px}.wallhero h2{font-size:25px}.wallhero p{font-size:14px}.wallmetrics{gap:8px}.wallmetrics b{font-size:20px}
+ .wallmetrics span{font-size:12px}.wallStatus{font-size:14px;padding:13px 16px}
+ .wallviewtabs{padding:10px}.wallviewtabs button{font-size:15px}
+ .wallmapwrap{height:420px}.wallelevationwrap{height:335px}.wallscenewrap{height:460px}
+ .walltools{gap:6px;padding:10px}.walltools button{padding:9px;font-size:13px}.wallcostrow{padding:16px}
+ .walltakeofftotal{padding:16px}.walltakeofftotal b{font-size:19px}.wallfootnote{padding:14px 16px}
+ .wallcostrow>div:first-child{display:block}.wallcostrow>div:first-child small{display:block;margin-top:3px}
+ .wallcostnums{gap:5px}.wallcostnums span{font-size:12px;padding:6px}.wallcostbottom small{font-size:12px}
+ .wallstylecards b{font-size:13px}.steps{gap:0;flex-wrap:nowrap;overflow:auto}.steps button{font-size:12px;gap:3px;white-space:nowrap;min-width:max-content;padding-left:5px;padding-right:5px}.steps .stepno{display:none}
+ .bottomnav{padding-left:6px;padding-right:6px}.bottomnav button b{font-size:11px}.bottomnav button>span{font-size:23px}.bottomnav button{min-width:0;padding-left:1px;padding-right:1px}
+ .wallCombined{padding:18px}.wallCombined h2{font-size:23px}.wallcombinedrows{font-size:14px}.wallcombinedrows b{font-size:14px}
+}
+
+.wallPickBar{display:flex;gap:9px;padding:10px 14px;border-bottom:1px solid var(--line);align-items:center;background:#fcfdff}
+.wallPickBar select{margin:0;flex:1;font-size:15px}.wallPickBar button{font-size:14px;white-space:nowrap;padding:10px;min-height:45px}
+.wallBackPreview{display:block;margin-bottom:15px;font-size:14px}
+@media(max-width:400px){.wallPickBar{padding:10px;gap:6px}.wallPickBar select{font-size:14px}.wallPickBar button{font-size:12px}}
+
 </style>
 </head>
 <body>
@@ -193,7 +259,7 @@ main{padding-left:10px;padding-right:10px}.homeprimary small{font-size:12px}.hom
  <div class="homeactions"><button id="homeBlank"><span>＋</span><b>新建房間</b><small>輸入已知長闊</small></button><button id="homeLoad"><span>▤</span><b>我的備份</b><small>載入 JSON 方案</small></button></div>
  <div class="currentproject"><div><span class="tag good">目前方案</span><button id="homeDemo" class="textbutton">試用 24 m² 示範 →</button></div><h2 id="homeSavedName">我的鋪磚方案</h2><div class="homefigures"><div><span>淨鋪磚面積</span><b id="homeArea">24.00 <small>m²</small></b></div><div><span>已輸入價格</span><b id="homePriced">0 <small>款</small></b></div></div><p>先校準比例，再圈選範圍。張數包含邊位切割，可另加備料及整箱購買量。</p></div>
  <button id="homePrivacy" class="privacyline">◇ 圖紙與價格留在裝置內 · 隱私說明</button>
- <div class="creator">Designed by Dennis Chung <span>Tile Studio 2.0 · 測試版</span></div>
+ <div class="creator">Designed by Dennis Chung <span>Tile Studio 3.0 · 測試版</span></div>
 </section>
 <section class="projectline">
  <div><div class="eyebrow">YOUR SPACE, BEAUTIFULLY PLANNED</div><h1><span id="projectName">我的鋪磚方案</span><button id="renameBtn" class="editname" aria-label="修改方案名稱">✎</button></h1></div>
@@ -299,7 +365,7 @@ main{padding-left:10px;padding-right:10px}.homeprimary small{font-size:12px}.hom
  </div>
 </aside>
 </div>
-<footer class="pagefooter"><span>Designed by Dennis Chung</span><span>TILE STUDIO · v2.0 測試版 · 本機估算工具</span><button id="footerPrivacy" class="textbutton">關於及隱私</button></footer>
+<footer class="pagefooter"><span>Designed by Dennis Chung</span><span>TILE STUDIO · v3.0 測試版 · 本機估算工具</span><button id="footerPrivacy" class="textbutton">關於及隱私</button></footer>
 </main>
 <nav class="bottomnav" aria-label="手機工作流程">
 <button data-tab="home"><span>⌂</span><b>首頁</b></button>
@@ -338,7 +404,7 @@ function bbox(p){let x0=Infinity,y0=Infinity,x1=-Infinity,y1=-Infinity;for(let a
 function boxOverlap(a,b){return !(a[2]<=b[0]+EPS||b[2]<=a[0]+EPS||a[3]<=b[1]+EPS||b[3]<=a[1]+EPS);}
 function subtract(p,q){if(!boxOverlap(bbox(p),bbox(q)))return [p];let remaining=p,out=[];for(let i=0;i<q.length&&remaining.length;i++){let exterior=half(remaining,q[i],q[(i+1)%q.length],false);if(exterior.length)out.push(exterior);remaining=half(remaining,q[i],q[(i+1)%q.length],true);}return out;}
 function region(rooms,holes,ppm){if(!(ppm>0))return {parts:[],area:0,gross:0,excluded:0};const scale=p=>p.map(v=>[v[0]/ppm,v[1]/ppm]);let parts=[];for(let room of rooms){let fresh=triangulate(scale(room.points));for(let old of parts){fresh=fresh.flatMap(p=>subtract(p,old));if(!fresh.length)break;}parts.push(...fresh);if(parts.length>1600)throw Error('TOO_COMPLEX');}const gross=parts.reduce((s,p)=>s+area(p),0);for(let hole of holes){for(let tri of triangulate(scale(hole.points))){parts=parts.flatMap(p=>subtract(p,tri));if(parts.length>2000)throw Error('TOO_COMPLEX');}}const total=parts.reduce((s,p)=>s+area(p),0);return {parts,area:total,gross,excluded:Math.max(0,gross-total),bounds:parts.length?bbox(parts.flat()):[0,0,1,1]};}
-function layout(reg,opts){let {width=1200,height=600,angle=0,grout=2,offsetX=0,offsetY=0,stagger=0}=opts;const w=width/1000,h=height/1000,g=grout/1000;if(w<.05||h<.05||w>4||h>4||g<0||g>.03)throw Error('INVALID_TILE');if(!reg.parts.length)return {tiles:[],full:0,cut:0,count:0,covered:0,cutWaste:0,groutArea:0,areaMinimum:0};let r=angle*Math.PI/180,c=Math.cos(r),s=Math.sin(r);const rot=p=>[c*p[0]+s*p[1],-s*p[0]+c*p[1]];const world=p=>[c*p[0]-s*p[1],s*p[0]+c*p[1]];const parts=reg.parts.map(p=>p.map(rot)),pb=parts.map(bbox),bounds=bbox(parts.flat());let px=w+g,py=h+g,ox=bounds[0]+offsetX*px,oy=bounds[1]+offsetY*py;let j0=Math.floor((bounds[1]-oy)/py),j1=Math.ceil((bounds[3]-oy)/py);let estimate=(Math.ceil((bounds[2]-bounds[0])/px)+3)*(j1-j0+2);if(estimate>12000)throw Error('TOO_MANY_TILES');let tiles=[],full=0,cut=0,covered=0;for(let j=j0;j<j1;j++){const shift=(j%2!==0?stagger:0)*px;let i0=Math.floor((bounds[0]-ox-shift)/px),i1=Math.ceil((bounds[2]-ox-shift)/px);for(let i=i0;i<i1;i++){let x=ox+shift+i*px,y=oy+j*py,cell=[[x,y],[x+w,y],[x+w,y+h],[x,y+h]],bb=[x,y,x+w,y+h],fragments=[],used=0;for(let k=0;k<parts.length;k++){if(!boxOverlap(bb,pb[k]))continue;let clip=intersect(parts[k],cell);if(clip.length){let a=area(clip);if(a>EPS){fragments.push(clip.map(world));used+=a;}}}if(used>EPS){const isFull=used>=w*h-Math.max(1e-7,w*h*1e-6);isFull?full++:cut++;covered+=used;tiles.push({i,j,x,y,w,h,c,s,full:isFull,area:used,fragments,corners:cell.map(world)});}}}const count=tiles.length;return {tiles,full,cut,count,covered,cutWaste:Math.max(0,count*w*h-covered),groutArea:Math.max(0,reg.area-covered),areaMinimum:Math.ceil(reg.area/(w*h)-1e-9),nominal:w*h,bounds};}
+function layout(reg,opts){let {width=1200,height=600,angle=0,grout=2,offsetX=0,offsetY=0,stagger=0}=opts;const w=width/1000,h=height/1000,g=grout/1000;if(w<.05||h<.05||w>4||h>4||g<0||g>.03)throw Error('INVALID_TILE');if(!reg.parts.length)return {tiles:[],full:0,cut:0,count:0,covered:0,cutWaste:0,groutArea:0,areaMinimum:0};let r=angle*Math.PI/180,c=Math.cos(r),s=Math.sin(r);const rot=p=>[c*p[0]+s*p[1],-s*p[0]+c*p[1]];const world=p=>[c*p[0]-s*p[1],s*p[0]+c*p[1]];const parts=reg.parts.map(p=>p.map(rot)),pb=parts.map(bbox),bounds=bbox(parts.flat());let px=w+g,py=h+g,ox=Number.isFinite(opts.originX)?opts.originX+offsetX*px:bounds[0]+offsetX*px,oy=Number.isFinite(opts.originY)?opts.originY+offsetY*py:bounds[1]+offsetY*py;let j0=Math.floor((bounds[1]-oy)/py),j1=Math.ceil((bounds[3]-oy)/py);let estimate=(Math.ceil((bounds[2]-bounds[0])/px)+3)*(j1-j0+2);if(estimate>12000)throw Error('TOO_MANY_TILES');let tiles=[],full=0,cut=0,covered=0;for(let j=j0;j<j1;j++){const shift=(j%2!==0?stagger:0)*px;let i0=Math.floor((bounds[0]-ox-shift)/px),i1=Math.ceil((bounds[2]-ox-shift)/px);for(let i=i0;i<i1;i++){let x=ox+shift+i*px,y=oy+j*py,cell=[[x,y],[x+w,y],[x+w,y+h],[x,y+h]],bb=[x,y,x+w,y+h],fragments=[],used=0;for(let k=0;k<parts.length;k++){if(!boxOverlap(bb,pb[k]))continue;let clip=intersect(parts[k],cell);if(clip.length){let a=area(clip);if(a>EPS){fragments.push(clip.map(world));used+=a;}}}if(used>EPS){const isFull=used>=w*h-Math.max(1e-7,w*h*1e-6);isFull?full++:cut++;covered+=used;tiles.push({i,j,x,y,w,h,c,s,full:isFull,area:used,fragments,corners:cell.map(world)});}}}const count=tiles.length;return {tiles,full,cut,count,covered,cutWaste:Math.max(0,count*w*h-covered),groutArea:Math.max(0,reg.area-covered),areaMinimum:Math.ceil(reg.area/(w*h)-1e-9),nominal:w*h,bounds};}
 function quantity(lay,waste=10,perBox=4,price=0){const extra=Math.ceil(lay.count*waste/100-1e-10),recommended=lay.count+extra,boxes=Math.ceil(recommended/perBox),purchase=boxes*perBox;return {extra,recommended,boxes,purchase,cost:purchase*price,perBox};}
 const api={EPS,cross,area,signedArea,dist,clean,simple,pointIn,triangulate,half,intersect,subtract,bbox,region,layout,quantity};if(typeof module!=='undefined')module.exports=api;root.TileEngine=api;
 })(typeof globalThis!=='undefined'?globalThis:this);
@@ -402,6 +468,333 @@ root.Floor3D=Floor3D;
 })(typeof globalThis!=='undefined'?globalThis:this);
 
 </script><script>
+/* Tile Studio 3.0 — measured wall-face tiling, no external services.
+ * Wall endpoints: image pixels. Elevations/openings: metres, origin at bottom-left.
+ * Counts consume one stock tile per occupied grid cell, no offcut re-use.
+ */
+(function(root) {
+'use strict';
+const E=root.TileEngine || (typeof require!=='undefined' ? require('./engine.js') : null);
+const EPS=1e-7;
+const clone=o=>JSON.parse(JSON.stringify(o));
+const rect=(x,y,w,h)=>[[x,y],[x+w,y],[x+w,y+h],[x,y+h]];
+const num=(v,a,b)=>typeof v==='number'&&Number.isFinite(v)&&v>=a&&v<=b;
+const text=(v,n=100)=>String(v||'').slice(0,n);
+const uid=()=> 'w'+Date.now().toString(36)+Math.random().toString(36).slice(2,7);
+function defaultStyle(){return {mode:'band',split:1.05,bandHeight:.12,lower:'m-dark',upper:'m-white',band:'m-band'};}
+function defaults(){return {
+ version:1,defaultHeight:2.7,wallLabor:0,includeFloor:true,cutaway:true,walls:[],
+ template:defaultStyle(),
+ materials:[
+  {id:'m-white',name:'雲霧白牆磚',supplier:'',width:600,height:300,texture:'marble',textureData:null,angle:0,stagger:0,grout:2,waste:10,price:null,unit:'piece',perBox:8,purchase:'box'},
+  {id:'m-dark',name:'深灰石紋牆磚',supplier:'',width:600,height:300,texture:'slate',textureData:null,angle:0,stagger:0,grout:2,waste:10,price:null,unit:'piece',perBox:8,purchase:'box'},
+  {id:'m-band',name:'青花裝飾腰線',supplier:'',width:300,height:120,texture:'feature',textureData:null,angle:0,stagger:0,grout:2,waste:10,price:null,unit:'piece',perBox:10,purchase:'box'}
+ ]};}
+function validate(v,state){
+ if(v==null)return defaults();
+ if(!v||v.version!==1||!Array.isArray(v.walls)||v.walls.length>80||!Array.isArray(v.materials)||v.materials.length<1||v.materials.length>24)throw Error('WALL_DATA');
+ let d=defaults();
+ d.defaultHeight=num(v.defaultHeight,.2,20)?v.defaultHeight:2.7;
+ d.wallLabor=num(v.wallLabor,0,1e8)?v.wallLabor:0;
+ d.includeFloor=v.includeFloor!==false;d.cutaway=v.cutaway!==false;
+ const ids=new Set();
+ d.materials=v.materials.map(m=>{
+  if(!m||typeof m.id!=='string'||ids.has(m.id)||m.id.length>80)throw Error('WALL_MATERIAL_ID');
+  ids.add(m.id);
+  for(let k of ['width','height'])if(!num(m[k],50,4000))throw Error('WALL_TILE_SIZE');
+  if(!num(m.grout,0,20)||!num(m.waste,0,50)||!num(m.perBox,1,100)||!Number.isInteger(m.perBox))throw Error('WALL_TILE_PARAM');
+  if(m.price!==null&&!num(m.price,0,1e8))throw Error('WALL_PRICE');
+  if(m.textureData&&(!/^data:image\/(png|jpeg|webp);base64,/.test(m.textureData)||m.textureData.length>3e6))throw Error('WALL_TEXTURE');
+  return {id:m.id,name:text(m.name),supplier:text(m.supplier),width:m.width,height:m.height,
+   texture:['marble','sand','terrazzo','wood','slate','feature','custom'].includes(m.texture)?m.texture:'marble',
+   textureData:m.textureData||null,angle:[0,45,90].includes(m.angle)?m.angle:0,stagger:m.stagger===.5?.5:0,
+   grout:m.grout,waste:m.waste,price:m.price,unit:['piece','box','m2'].includes(m.unit)?m.unit:'piece',
+   perBox:m.perBox,purchase:m.unit==='box'?'box':m.purchase==='piece'?'piece':'box'};
+ });
+ const style=s=>{
+  if(!s||!['plain','split','band'].includes(s.mode)||!num(s.split,.05,20)||!num(s.bandHeight,.05,3))throw Error('WALL_STYLE');
+  for(const k of ['lower','upper','band'])if(!ids.has(s[k]))throw Error('WALL_MATERIAL_MISSING');
+  return {mode:s.mode,split:s.split,bandHeight:s.bandHeight,lower:s.lower,upper:s.upper,band:s.band};
+ };
+ d.template=style(v.template);
+ const wallIds=new Set();
+ d.walls=v.walls.map(w=>{
+  if(!w||typeof w.id!=='string'||wallIds.has(w.id))throw Error('WALL_ID');wallIds.add(w.id);
+  for(const p of [w.a,w.b])if(!Array.isArray(p)||p.length!==2||!p.every(x=>num(x,0,12000)))throw Error('WALL_POINT');
+  if(E.dist(w.a,w.b)<1e-4||!num(w.height,.2,20)||!Array.isArray(w.openings)||w.openings.length>30)throw Error('WALL_DIM');
+  let out={id:text(w.id,80),name:text(w.name,60),a:w.a.slice(),b:w.b.slice(),height:w.height,
+   enabled:w.enabled!==false,confirmed:w.confirmed===true,source:text(w.source,30),style:style(w.style||d.template),openings:[],
+   confidence:num(w.confidence,0,1)?w.confidence:null};
+  out.openings=w.openings.map(o=>{
+   if(!o||!num(o.x,0,500)||!num(o.y,0,20)||!num(o.width,.01,500)||!num(o.height,.01,20))throw Error('WALL_OPENING');
+   return {id:text(o.id||uid(),80),name:text(o.name,60),x:o.x,y:o.y,width:o.width,height:o.height};
+  });
+  // Imported inconsistent lengths/heights are retained as errors, never silently clipped.
+  return out;
+ });
+ return d;
+}
+function wallLength(w,ppm){return ppm>0?E.dist(w.a,w.b)/ppm:0;}
+function zones(w){
+ const s=w.style,H=w.height;
+ if(s.mode==='plain')return [{key:'lower',name:'整幅牆面',bottom:0,top:H,material:s.lower}];
+ if(s.split<=0||s.split>=H-EPS)throw Error('分界高度必須低於牆高');
+ if(s.mode==='split')return [
+  {key:'lower',name:'下半牆',bottom:0,top:s.split,material:s.lower},
+  {key:'upper',name:'上半牆',bottom:s.split,top:H,material:s.upper}
+ ];
+ if(s.split+s.bandHeight>=H-EPS)throw Error('下半牆＋腰線高度必須低於牆高');
+ return [
+  {key:'lower',name:'下半牆',bottom:0,top:s.split,material:s.lower},
+  {key:'band',name:'裝飾腰線',bottom:s.split,top:s.split+s.bandHeight,material:s.band},
+  {key:'upper',name:'上半牆',bottom:s.split+s.bandHeight,top:H,material:s.upper}
+ ];
+}
+function analyzeWall(w,ppm,materials){
+ const L=wallLength(w,ppm);
+ if(!num(L,.05,500))throw Error('請先校準比例，牆面淨長需介乎 0.05 至 500 米');
+ for(const o of w.openings)if(o.x+o.width>L+EPS||o.y+o.height>w.height+EPS)throw Error('門窗超出牆面：請修改開口或牆高／長度');
+ const holes=w.openings.map(o=>({points:rect(o.x,o.y,o.width,o.height)}));
+ const fullRegion=E.region([{points:rect(0,0,L,w.height)}],holes,1);
+ const result={wall:w,length:L,gross:L*w.height,net:fullRegion.area,excluded:fullRegion.excluded,region:fullRegion,zones:[]};
+ let candidates=0;
+ for(const z of zones(w)){
+  const m=materials.find(m=>m.id===z.material);if(!m)throw Error('找不到牆磚規格');
+  const H=z.top-z.bottom;
+  const zr=E.region([{points:rect(0,0,L,H)}],w.openings.map(o=>({points:rect(o.x,o.y-z.bottom,o.width,o.height)})),1);
+  // Fixed grid origin from the uncut zone. Doors must not shift the tile lattice.
+  const r=m.angle*Math.PI/180,c=Math.cos(r),s=Math.sin(r);
+  const base=E.bbox(rect(0,0,L,H).map(p=>[c*p[0]+s*p[1],-s*p[0]+c*p[1]]));
+  const layout=E.layout(zr,{...m,offsetX:0,offsetY:0,originX:base[0],originY:base[1]});
+  candidates+=layout.count;if(candidates>16000)throw Error('單幅牆面瓷磚過多，請分段計算');
+  result.zones.push({...z,region:zr,layout,material:m});
+ }
+ return result;
+}
+function calculate(d,ppm){
+ const result={faces:[],errors:[],pending:d.walls.filter(w=>w.enabled&&!w.confirmed).length,
+  disabled:d.walls.filter(w=>!w.enabled).length,gross:0,net:0,excluded:0,materials:[],amount:0,missing:0,counts:0};
+ const groups=new Map();
+ for(const w of d.walls){
+  if(!w.enabled||!w.confirmed)continue;
+  try{
+   const f=analyzeWall(w,ppm,d.materials);
+   const count=f.zones.reduce((n,z)=>n+z.layout.count,0);
+   if(result.faces.reduce((n,face)=>n+face.zones.reduce((k,z)=>k+z.layout.count,0),0)+count>40000)throw Error('整個方案超過 40,000 片排磚上限，請分項保存');
+   result.faces.push(f);
+   result.gross+=f.gross;result.net+=f.net;result.excluded+=f.excluded;
+   for(const z of f.zones){
+    if(!z.layout.count)continue;
+    const m=z.material;
+    if(!groups.has(m.id))groups.set(m.id,{material:m,area:0,count:0,full:0,cut:0,uses:[]});
+    const g=groups.get(m.id);g.area+=z.region.area;g.count+=z.layout.count;g.full+=z.layout.full;g.cut+=z.layout.cut;
+    g.uses.push({wall:w.name,zone:z.name,count:z.layout.count,area:z.region.area});
+   }
+  }catch(e){result.errors.push({wall:w.name,message:e.message});}
+ }
+ for(const g of groups.values()){
+  const m=g.material,q=E.quantity(g,m.waste,m.perBox,0),purchase=m.purchase==='piece'?q.recommended:q.purchase;
+  const purchaseArea=purchase*m.width*m.height/1e6;
+  const units=m.unit==='m2'?purchaseArea:m.unit==='box'?q.boxes:purchase;
+  const amount=m.price===null?null:Math.round((units*m.price+Number.EPSILON)*100)/100;
+  result.materials.push({...g,q,purchase,purchaseArea,amount,units});
+  if(amount===null)result.missing++;else result.amount+=amount;
+  result.counts+=g.count;
+ }
+ result.amount=Math.round((result.amount+Number.EPSILON)*100)/100;
+ return result;
+}
+function fromRooms(rooms,d){
+ const out=[],seen=new Set();
+ for(const room of rooms)for(let i=0;i<room.points.length;i++){
+  const a=room.points[i],b=room.points[(i+1)%room.points.length];
+  if(E.dist(a,b)<2)continue;
+  // Coincident shared boundaries become one candidate face, not two billable faces.
+  const ps=[a,b].map(p=>p.map(n=>Math.round(n*10)/10).join(',')).sort(),key=ps.join('|');
+  if(seen.has(key))continue;seen.add(key);
+  if(out.length>=80)break;
+  out.push({id:uid(),name:room.name+' · 牆 '+(i+1),a:a.slice(),b:b.slice(),height:d.defaultHeight,
+   source:'outline',confirmed:false,enabled:true,style:clone(d.template),openings:[],confidence:null});
+ }
+ return out;
+}
+/* Raster proposal detector. Axis-aligned runs, stroke-width filtering, merging
+ * and thin paired-line support. It is NOT semantic AI / OCR. All results pending.
+ * Returns points in original image pixel coordinates; no fabricated dimensions.
+ */
+function detect(imageData,originalWidth,originalHeight,ppm=0,opt={}){
+ const {width:W,height:H,data}=imageData,kx=originalWidth/W,ky=originalHeight/H;
+ const threshold=opt.threshold||165;
+ const mask=new Uint8Array(W*H);
+ for(let i=0;i<mask.length;i++){let a=data[i*4+3]/255,r=data[i*4]*a+255*(1-a),g=data[i*4+1]*a+255*(1-a),b=data[i*4+2]*a+255*(1-a);mask[i]=(.299*r+.587*g+.114*b)<threshold?1:0;}
+ const minLength=Math.max(22,ppm>0?.7*ppm/Math.max(kx,ky):Math.max(W,H)*.065);
+ const axes=[];
+ for(const vert of [false,true]){
+  const N=vert?H:W,M=vert?W:H,all=[];
+  for(let fixed=0;fixed<M;fixed++){
+   let start=-1,last=-1,gap=0;
+   const finish=()=>{if(start>=0&&last-start+1>=minLength)all.push({fixed,start,end:last});start=last=-1;gap=0;};
+   for(let t=0;t<N;t++){
+    const dark=mask[vert?t*W+fixed:fixed*W+t];
+    if(dark){if(start<0)start=t;last=t;gap=0;}else if(start>=0&&++gap>1)finish();
+   }finish();
+  }
+  const groups=[];
+  for(const run of all){
+   let best=null;
+   for(let j=groups.length-1;j>=0;j--){
+    const g=groups[j];if(run.fixed-g.last>1)continue;
+    const overlap=Math.min(run.end,g.end)-Math.max(run.start,g.start),len=Math.max(run.end-run.start,g.end-g.start);
+    if(overlap>len*.84&&Math.abs(run.start-g.start)<14&&Math.abs(run.end-g.end)<14){best=g;break;}
+   }
+   if(best){best.last=run.fixed;best.samples.push(run);best.start=Math.max(best.start,run.start);best.end=Math.min(best.end,run.end);}
+   else groups.push({first:run.fixed,last:run.fixed,start:run.start,end:run.end,samples:[run]});
+  }
+  const candidates=[];
+  for(const g of groups){
+   let thick=g.last-g.first+1;
+   if(thick>=3&&thick<=Math.max(28,Math.min(W,H)*.065)&&g.end-g.start>=minLength)
+    candidates.push({fixed:(g.first+g.last)/2,start:g.start,end:g.end,thick,score:Math.min(.93,.55+thick*.02+(g.end-g.start)/Math.max(W,H)*.2)});
+  }
+  const thin=groups.filter(g=>g.last-g.first<2);
+  for(let i=0;i<thin.length;i++)for(let j=i+1;j<thin.length;j++){
+   const a=thin[i],b=thin[j],sep=b.first-a.last;
+   if(sep<4||sep>24)continue;
+   const overlap=Math.min(a.end,b.end)-Math.max(a.start,b.start);
+   if(overlap<minLength||overlap<Math.max(a.end-a.start,b.end-b.start)*.85)continue;
+   const fixed=(a.last+b.first)/2;
+   if(candidates.some(c=>Math.abs(c.fixed-fixed)<sep&&Math.min(c.end,b.end)-Math.max(c.start,b.start)>overlap*.7))continue;
+   candidates.push({fixed,start:Math.max(a.start,b.start),end:Math.min(a.end,b.end),thick:sep,score:.5});
+  }
+  // Avoid near-duplicate proposals, not meaningful door gaps.
+  const keep=[];
+  for(const c of candidates.sort((a,b)=>b.score-a.score)){
+   if(keep.some(x=>Math.abs(x.fixed-c.fixed)<Math.max(3,Math.min(x.thick,c.thick))&&Math.min(x.end,c.end)-Math.max(x.start,c.start)>Math.min(x.end-x.start,c.end-c.start)*.8))continue;
+   keep.push(c);
+  }
+  for(const c of keep)axes.push({
+   a:vert?[c.fixed*kx,c.start*ky]:[c.start*kx,c.fixed*ky],
+   b:vert?[c.fixed*kx,c.end*ky]:[c.end*kx,c.fixed*ky],confidence:c.score,thickness:c.thick*(vert?kx:ky)
+  });
+ }
+ const sorted=axes.sort((a,b)=>b.confidence-a.confidence);
+ return {segments:sorted.slice(0,80),truncated:sorted.length>80,method:'axis-aligned-stroke-proposals'};
+}
+const api={defaults,defaultStyle,validate,wallLength,zones,analyzeWall,calculate,fromRooms,detect,rect,uid,clone};
+if(typeof module!=='undefined')module.exports=api;
+root.WallEngine=api;
+})(typeof globalThis!=='undefined'?globalThis:this);
+
+</script><script>
+/* Measured floor + wall scene, dependency-free software perspective renderer.
+ * All texture triangles derive from real tile fragments. Lighting is illustrative.
+ */
+(function(root){'use strict';
+const norm=v=>{const n=Math.hypot(...v)||1;return v.map(x=>x/n);};
+const cross=(a,b)=>[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]];
+const dot=(a,b)=>a.reduce((s,x,i)=>s+x*b[i],0);
+class WallScene3D {
+ constructor(canvas){
+  this.canvas=canvas;this.ctx=canvas.getContext('2d',{alpha:false});
+  if(!this.ctx)throw Error('CANVAS_CONTEXT');
+  this.az=.5;this.el=.58;this.distance=14;this.baseDistance=14;this.software=true;this.wallScene=true;this.setupEvents();
+ }
+ setScene(region,layout,settings,floorTexture,analysis,ppm,textureFor,cutaway=true){
+  this.region=region;this.layout=layout;this.settings=settings;this.floorTexture=floorTexture;this.analysis=analysis;
+  this.ppm=ppm;this.textureFor=textureFor;this.cutaway=cutaway;
+  let points=region.parts.flat().slice();for(const f of analysis.faces)points.push(f.wall.a.map(x=>x/ppm),f.wall.b.map(x=>x/ppm));
+  const b=points.length?root.TileEngine.bbox(points):[0,0,6,4];this.bounds=b;this.cx=(b[0]+b[2])/2;this.cz=(b[1]+b[3])/2;
+  this.maxHeight=Math.max(0,...analysis.faces.map(f=>f.wall.height));this.cy=this.maxHeight*.32;
+  const span=Math.max(b[2]-b[0],b[3]-b[1],1),aspect=Math.max(.55,canvasAspect(this.canvas));
+  this.baseDistance=span*(aspect<1?2.2:1.65)+this.maxHeight*.5;
+  if(!this.hasData){this.distance=this.baseDistance;this.hasData=true;}
+  this.distance=Math.min(Math.max(this.distance,this.baseDistance*.35),this.baseDistance*2.5);
+  this.count=layout.tiles.length+analysis.counts;this.render();
+ }
+ reset(top=false){this.az=top?0:.5;this.el=top?1.54:.58;this.distance=this.baseDistance;this.render();}
+ setupEvents(){
+  let points=new Map(),last=null;const c=this.canvas;
+  const span=()=>{const p=[...points.values()];return p.length<2?0:Math.hypot(p[0][0]-p[1][0],p[0][1]-p[1][1]);};
+  c.addEventListener('pointerdown',e=>{e.preventDefault();c.setPointerCapture(e.pointerId);points.set(e.pointerId,[e.clientX,e.clientY]);last={x:e.clientX,y:e.clientY,span:span()};});
+  c.addEventListener('pointermove',e=>{
+   if(!points.has(e.pointerId)||!last)return;e.preventDefault();points.set(e.pointerId,[e.clientX,e.clientY]);
+   if(points.size>1){const s=span();if(last.span>0&&s>0)this.distance=Math.max(this.baseDistance*.35,Math.min(this.baseDistance*2.5,this.distance*last.span/s));last={x:e.clientX,y:e.clientY,span:s};}
+   else{this.az-=(e.clientX-last.x)*.008;this.el=Math.max(.18,Math.min(1.54,this.el+(e.clientY-last.y)*.006));last={x:e.clientX,y:e.clientY,span:0};}
+   this.render();
+  });
+  for(const type of ['pointerup','pointercancel'])c.addEventListener(type,e=>{points.delete(e.pointerId);last=points.size?{x:[...points.values()][0][0],y:[...points.values()][0][1],span:span()}:null;});
+  c.addEventListener('wheel',e=>{e.preventDefault();this.distance=Math.max(this.baseDistance*.35,Math.min(this.baseDistance*2.5,this.distance*Math.exp(e.deltaY*.001)));this.render();},{passive:false});
+ }
+ render(){
+  if(!this.region||!this.canvas.clientWidth)return;
+  const c=this.canvas,g=this.ctx,w=c.clientWidth,h=c.clientHeight,dpr=Math.min(window.devicePixelRatio||1,2);
+  if(c.width!==Math.round(w*dpr)||c.height!==Math.round(h*dpr)){c.width=Math.round(w*dpr);c.height=Math.round(h*dpr);}
+  g.setTransform(dpr,0,0,dpr,0,0);const bg=g.createLinearGradient(0,0,0,h);bg.addColorStop(0,'#eef3fa');bg.addColorStop(1,'#dce5f0');g.fillStyle=bg;g.fillRect(0,0,w,h);
+  const eye=[Math.sin(this.az)*Math.cos(this.el)*this.distance,Math.sin(this.el)*this.distance+this.cy,Math.cos(this.az)*Math.cos(this.el)*this.distance],
+   target=[0,this.cy,0],z=norm(eye.map((v,i)=>v-target[i])),x=norm(cross([0,1,0],z)),y=cross(z,x),f=h/(2*Math.tan(.38));
+  const project=p=>{const v=[p[0]-this.cx-eye[0],p[1]-eye[1],p[2]-this.cz-eye[2]],depth=-dot(v,z);return [w/2+f*dot(v,x)/Math.max(.02,depth),h/2-f*dot(v,y)/Math.max(.02,depth),depth];};
+  const path=ps=>{g.moveTo(ps[0][0],ps[0][1]);for(let i=1;i<ps.length;i++)g.lineTo(ps[i][0],ps[i][1]);g.closePath();};
+  const paint=(ps,color)=>{g.beginPath();path(ps);g.fillStyle=color;g.fill();};
+  const faces=[];let activeGroup=0;
+  const add=(pts,texture=null,uv=null,color='#c8cdd4',order=0,shade=0)=>{
+   const ps=pts.map(project);if(ps.some(p=>p[2]<.1))return;
+   faces.push({ps,texture,uv,color,group:activeGroup,depth:ps.reduce((a,p)=>a+p[2],0)/ps.length,order,shade});
+  };
+  const fan=(poly,world,texture=null,uv=null,color='#c8cdd4',order=0,shade=0)=>{
+   for(let i=1;i<poly.length-1;i++){const t=[poly[0],poly[i],poly[i+1]];add(t.map(world),texture,uv?t.map(uv):null,color,order,shade);}
+  };
+  const b=this.bounds,margin=.4;
+  paint([[b[0]-margin,-.15,b[1]-margin],[b[2]+margin,-.15,b[1]-margin],[b[2]+margin,-.15,b[3]+margin],[b[0]-margin,-.15,b[3]+margin]].map(project),'#d0dae6');
+  for(const p of this.region.parts)fan(p,p=>[p[0],0,p[1]],null,null,'#bfc6cf',0);
+  const uvTile=(t,p,rot=false)=>{
+   let u=(t.c*p[0]+t.s*p[1]-t.x)/t.w,v=(-t.s*p[0]+t.c*p[1]-t.y)/t.h;
+   return rot?[v,1-u]:[u,v];
+  };
+  for(const t of this.layout.tiles)for(const p of t.fragments)fan(p,p=>[p[0],.014,p[1]],this.floorTexture,p=>uvTile(t,p,this.settings.textureRotation===90),'#e6e8eb',1,0);
+  this.hiddenFaces=0;
+  for(const fwall of this.analysis.faces){
+   const wwall=fwall.wall,a=wwall.a.map(v=>v/this.ppm),b=wwall.b.map(v=>v/this.ppm);
+   const midpoint=[(a[0]+b[0])/2-this.cx,(a[1]+b[1])/2-this.cz];
+   const near=midpoint[0]*Math.sin(this.az)+midpoint[1]*Math.cos(this.az);
+   if(this.cutaway&&near>.10&&this.el<1.42){this.hiddenFaces++;continue;}
+   activeGroup=10000-project([(a[0]+b[0])/2,wwall.height/2,(a[1]+b[1])/2])[2];
+   const world=p=>[a[0]+(b[0]-a[0])*p[0]/fwall.length,p[1],a[1]+(b[1]-a[1])*p[0]/fwall.length];
+   for(const p of fwall.region.parts)fan(p,world,null,null,'#b5bfcd',0);
+   const wallShade=Math.abs((b[1]-a[1])/fwall.length)*.05+.025;
+   for(const zone of fwall.zones){
+    const tex=this.textureFor(zone.material),worldZone=p=>world([p[0],p[1]+zone.bottom]);
+    for(const tile of zone.layout.tiles)for(const poly of tile.fragments)
+     fan(poly,worldZone,tex,p=>{const uv=uvTile(tile,p);return [uv[0],1-uv[1]];},'#e6e8eb',2,wallShade);
+   }
+  }
+  // Paint each planar face as a group, base first, then its clipped tiles.
+  // Sorting large base triangles against tiny tile triangles by average depth
+  // would incorrectly erase tiles on the same plane.
+  faces.sort((a,b)=>a.group-b.group || a.order-b.order || b.depth-a.depth);
+  function texturedTriangle(screen,uv,tex){
+   const W=tex.width||256,H=tex.height||256,t=uv.map(p=>[p[0]*W,p[1]*H]),[t0,t1,t2]=t;
+   const den=t0[0]*(t1[1]-t2[1])+t1[0]*(t2[1]-t0[1])+t2[0]*(t0[1]-t1[1]);if(Math.abs(den)<1e-6)return;
+   const solve=v=>[
+    (v[0]*(t1[1]-t2[1])+v[1]*(t2[1]-t0[1])+v[2]*(t0[1]-t1[1]))/den,
+    (v[0]*(t2[0]-t1[0])+v[1]*(t0[0]-t2[0])+v[2]*(t1[0]-t0[0]))/den,
+    (v[0]*(t1[0]*t2[1]-t2[0]*t1[1])+v[1]*(t2[0]*t0[1]-t0[0]*t2[1])+v[2]*(t0[0]*t1[1]-t1[0]*t0[1]))/den];
+   const ax=solve(screen.map(p=>p[0])),ay=solve(screen.map(p=>p[1]));
+   g.save();g.beginPath();path(screen);g.clip();g.transform(ax[0],ay[0],ax[1],ay[1],ax[2],ay[2]);g.drawImage(tex,0,0,W,H);g.restore();
+  }
+  for(const face of faces){
+   if(face.texture&&face.uv){texturedTriangle(face.ps,face.uv,face.texture);if(face.shade){g.save();g.globalAlpha=face.shade;paint(face.ps,'#122238');g.restore();}}
+   else paint(face.ps,face.color);
+  }
+  g.fillStyle='#526984';g.font='12px sans-serif';g.textAlign='left';
+  g.fillText(this.cutaway?'剖視：隱藏近側牆面；用量仍包含全部已確認牆面':'完整牆面：旋轉查看另一側',14,h-16);
+ }
+ capture(){this.render();return this.canvas.toDataURL('image/png');}
+}
+function canvasAspect(c){return c.clientWidth/Math.max(1,c.clientHeight);}
+root.WallScene3D=WallScene3D;
+})(typeof globalThis!=='undefined'?globalThis:this);
+
+</script><script>
 /* Tile Studio v1.0 — local-first floor tiling app. No third-party dependencies. */
 'use strict';
 const $=id=>document.getElementById(id), E=TileEngine;
@@ -411,13 +804,13 @@ const DEFAULTS={width:1200,height:600,angle:0,grout:2,offsetX:0,offsetY:0,stagge
 let S, bgImage=null, textureImage=null, cachedTextures={}, reg, lay, qty, renderer=null;
 let tab='plan',tool='pan',draft=[],calPoints=[],history=[],computeError='',dirty3d=true,saveTimer,computeTimer,toastTimer;
 let view={k:1,x:0,y:0}, pointers=new Map(),gesture=null,editTarget=null,editBefore=null,pinched=false;
-const canvas=$('planCanvas'),ctx=canvas.getContext('2d',{alpha:false}),KEY='tile-studio-v2-project';
+const canvas=$('planCanvas'),ctx=canvas.getContext('2d',{alpha:false}),KEY='tile-studio-v3-project';
 const escapeHTML=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmt=(n,d=2)=>Number(n||0).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,Number(v)));
 function toast(msg){$('toast').textContent=msg;$('toast').classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').classList.remove('show'),3600);}
 function busy(on,text='正在處理圖面…'){$('busyText').textContent=text;$('busy').hidden=!on;}
-function modal(title,body){$('modalTitle').textContent=title;$('modalBody').innerHTML=body;$('modal').hidden=false;setTimeout(()=>$('modalBody').querySelector('input,button')?.focus(),60);}
+function modal(title,body){$('modalTitle').textContent=title;$('modalBody').innerHTML=body;$('modal').hidden=false;document.querySelector('.modalbox').scrollTop=0;$('modalBody').querySelector('input,button')?.focus({preventScroll:true});}
 function closeModal(){$('modal').hidden=true;if(tool==='calibrate'&&calPoints.length>=2){calPoints=[];setToolUI();renderPlan();}}
 function askConfirm(title,msg,fn){modal(title,`<p>${escapeHTML(msg)}</p><div class="modalactions"><button class="secondary" id="askCancel">取消</button><button class="primary" id="askOK">確認</button></div>`);$('askCancel').onclick=closeModal;$('askOK').onclick=()=>{closeModal();fn();};}
 function save(){clearTimeout(saveTimer);$('saveStatus').textContent='正在儲存…';saveTimer=setTimeout(()=>{try{localStorage.setItem(KEY,JSON.stringify(S));$('saveStatus').textContent='已自動儲存於此裝置';}catch(e){$('saveStatus').textContent='儲存空間不足，請匯出備份';}},550);}
@@ -484,9 +877,9 @@ ${detail('圈選地面聯集',fmt(reg.gross)+' m²')}${detail('實際扣除面�
 <div class="reportwarning"><b>下單前請核對</b><br>本工具沒有最佳化切割餘料重用或計入鋸縫；不同排磚格不共用餘料，因此是偏保守的排料估算。邊界伸縮縫、基面不方正、磚的實際工作尺寸、包裝張數及現場做法，需由施工方確認。比例校準正確、圖面無透視變形，計算才有依據。</div>`;}
 function detail(label,value){return `<div class="detailrow"><span>${label}</span><b>${value}</b></div>`;}
 async function compressImage(file,maxDim,quality){if(file.size>30*1024*1024)throw Error('FILE_TOO_LARGE');if(!['image/jpeg','image/png','image/webp'].includes(file.type)&&!/\.(jpe?g|png|webp)$/i.test(file.name))throw Error('FILE_TYPE');const url=URL.createObjectURL(file);try{let image=await loadImage(url),k=Math.min(1,maxDim/Math.max(image.naturalWidth,image.naturalHeight));let c=document.createElement('canvas');c.width=Math.max(1,Math.round(image.naturalWidth*k));c.height=Math.max(1,Math.round(image.naturalHeight*k));let g=c.getContext('2d');g.fillStyle='#fff';g.fillRect(0,0,c.width,c.height);g.drawImage(image,0,0,c.width,c.height);return {data:c.toDataURL('image/jpeg',quality),width:c.width,height:c.height};}finally{URL.revokeObjectURL(url);}}
-async function importPlan(file){if(!file)return;busy(true,'正在載入平面圖…');try{let result=await compressImage(file,2000,.92);remember();S={...S,name:file.name.replace(/\.[^.]+$/,''),imageData:result.data,imageName:file.name,width:result.width,height:result.height,ppm:0,scaleSource:'unscaled',scaleNote:'',rooms:[],holes:[]};await loadState(S);showTab('plan');fitView();toast('圖片已載入：請先以兩點校準圖紙比例');}catch(e){toast(e.message==='FILE_TOO_LARGE'?'檔案超過 30 MB，請先縮小圖片':'無法載入：此版本支援 JPG、PNG、WebP 圖片');}finally{busy(false);$('planFile').value='';}}
+async function importPlan(file){if(!file)return;busy(true,'正在載入平面圖…');try{let result=await compressImage(file,2000,.92);remember();S={...S,name:file.name.replace(/\.[^.]+$/,''),imageData:result.data,imageName:file.name,width:result.width,height:result.height,ppm:0,scaleSource:'unscaled',scaleNote:'',rooms:[],holes:[],wallDesign:null};await loadState(S);showTab('plan');fitView();toast('圖片已載入：請先以兩點校準圖紙比例');}catch(e){toast(e.message==='FILE_TOO_LARGE'?'檔案超過 30 MB，請先縮小圖片':'無法載入：此版本支援 JPG、PNG、WebP 圖片');}finally{busy(false);$('planFile').value='';}}
 async function importTexture(file){if(!file)return;busy(true,'正在套用瓷磚紋理…');try{let r=await compressImage(file,768,.92);S.customTexture=r.data;textureImage=await loadImage(r.data);S.settings.material='custom';syncControls();dirty3d=true;renderPlan();update3D();save();toast('已套用自訂瓷磚紋理');}catch(e){toast('紋理圖片讀取失敗，請使用 30 MB 以下 JPG、PNG、WebP');}finally{busy(false);$('textureFile').value='';}}
-function rectangleDialog(){modal('建立已知尺寸的房間',`<p>沒有平面圖也能測試：輸入長闊，直接建立矩形地面。</p><div class="inputrow two"><label>長度 m<input id="rectW" type="number" value="6" min=".1" max="100" step=".01" inputmode="decimal"></label><label>闊度 m<input id="rectH" type="number" value="4" min=".1" max="100" step=".01" inputmode="decimal"></label></div><button id="rectCreate" class="primary full">建立房間</button><p class="micro">會取代目前圖面；可先在方案選單匯出備份。</p>`);$('rectCreate').onclick=async()=>{let w=Number($('rectW').value),h=Number($('rectH').value);if(!Number.isFinite(w)||!Number.isFinite(h)||w<.1||h<.1||w>100||h>100)return toast('長闊請輸入 0.1 至 100 米');remember();let ppm=Math.min(80,1600/Math.max(w,h)),pad=80,c=document.createElement('canvas');c.width=Math.ceil(w*ppm+pad*2);c.height=Math.ceil(h*ppm+pad*2);let g=c.getContext('2d');g.fillStyle='#fffefa';g.fillRect(0,0,c.width,c.height);g.strokeStyle='#7e9079';g.lineWidth=4;g.strokeRect(pad-2,pad-2,w*ppm+4,h*ppm+4);g.font='18px sans-serif';g.fillStyle='#7e9079';g.textAlign='center';g.fillText(w+' m',c.width/2,pad/2);g.save();g.translate(pad/2,c.height/2);g.rotate(-Math.PI/2);g.fillText(h+' m',0,0);g.restore();S={...S,name:`${w} × ${h} 米房間`,imageData:c.toDataURL(),imageName:'尺寸建立的矩形房間',width:c.width,height:c.height,ppm,scaleSource:'rectangle',scaleNote:`矩形 ${w} × ${h} m`,rooms:[{id:'rect',name:'房間',points:[[pad,pad],[pad+w*ppm,pad],[pad+w*ppm,pad+h*ppm],[pad,pad+h*ppm]]}],holes:[]};closeModal();await loadState(S);showTab('layout');fitView();};}
+function rectangleDialog(){modal('建立已知尺寸的房間',`<p>沒有平面圖也能測試：輸入長闊，直接建立矩形地面。</p><div class="inputrow two"><label>長度 m<input id="rectW" type="number" value="6" min=".1" max="100" step=".01" inputmode="decimal"></label><label>闊度 m<input id="rectH" type="number" value="4" min=".1" max="100" step=".01" inputmode="decimal"></label></div><button id="rectCreate" class="primary full">建立房間</button><p class="micro">會取代目前圖面；可先在方案選單匯出備份。</p>`);$('rectCreate').onclick=async()=>{let w=Number($('rectW').value),h=Number($('rectH').value);if(!Number.isFinite(w)||!Number.isFinite(h)||w<.1||h<.1||w>100||h>100)return toast('長闊請輸入 0.1 至 100 米');remember();let ppm=Math.min(80,1600/Math.max(w,h)),pad=80,c=document.createElement('canvas');c.width=Math.ceil(w*ppm+pad*2);c.height=Math.ceil(h*ppm+pad*2);let g=c.getContext('2d');g.fillStyle='#fffefa';g.fillRect(0,0,c.width,c.height);g.strokeStyle='#7e9079';g.lineWidth=4;g.strokeRect(pad-2,pad-2,w*ppm+4,h*ppm+4);g.font='18px sans-serif';g.fillStyle='#7e9079';g.textAlign='center';g.fillText(w+' m',c.width/2,pad/2);g.save();g.translate(pad/2,c.height/2);g.rotate(-Math.PI/2);g.fillText(h+' m',0,0);g.restore();S={...S,name:`${w} × ${h} 米房間`,imageData:c.toDataURL(),imageName:'尺寸建立的矩形房間',width:c.width,height:c.height,ppm,scaleSource:'rectangle',scaleNote:`矩形 ${w} × ${h} m`,rooms:[{id:'rect',name:'房間',points:[[pad,pad],[pad+w*ppm,pad],[pad+w*ppm,pad+h*ppm],[pad,pad+h*ppm]]}],holes:[],wallDesign:null};closeModal();await loadState(S);showTab('layout');fitView();};}
 function renameProject(){modal('方案名稱',`<label>名稱<input id="projectRename" maxlength="80" value="${escapeHTML(S.name)}"></label><button id="nameOK" class="primary full">儲存名稱</button>`);$('nameOK').onclick=()=>{let n=$('projectRename').value.trim();if(!n)return;S.name=n;updateMetrics();if(tab==='report')renderReport();save();closeModal();};}
 function renameArea(kind,id){let r=S[kind==='hole'?'holes':'rooms'].find(r=>r.id===id);if(!r)return;modal('範圍名稱',`<label>名稱<input id="areaRename" maxlength="40" value="${escapeHTML(r.name)}"></label><button id="areaNameOK" class="primary full">儲存</button>`);$('areaNameOK').onclick=()=>{let n=$('areaRename').value.trim();if(!n)return;remember();r.name=n;renderAreaList();renderPlan();save();closeModal();};}
 function download(data,mime,name){if(navigator.userAgent.includes('TileStudioAndroid')){const reader=new FileReader();reader.onload=()=>{let b64=reader.result.split(',')[1];let result=window.prompt('TILE_SAVE|'+name+'|'+mime+'|'+b64,'');if(result==='OK')toast('請選擇檔案儲存位置');else toast('未能開啟儲存，請重試');};reader.readAsDataURL(new Blob([data],{type:mime}));return;}let blob=new Blob([data],{type:mime}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),20000);toast('已產生檔案，請查看下載項目');}
@@ -494,7 +887,7 @@ function dataURLBytes(url){let s=atob(url.split(',')[1]);return Uint8Array.from(
 function safeName(){return S.name.replace(/[\\/:*?"<>|]/g,'_').slice(0,55)||'Tile-Studio';}
 function planExportCanvas(){let c=document.createElement('canvas'),w=1600,h=Math.max(600,Math.min(2000,Math.round(w*S.height/S.width)));c.width=w;c.height=h+125;let g=c.getContext('2d'),k=Math.min((w-50)/S.width,(h-50)/S.height);drawPlanTo(g,w,h,{k,x:(w-S.width*k)/2,y:(h-S.height*k)/2},true);g.fillStyle='#172c49';g.fillRect(0,h,w,125);g.fillStyle='#f8f8ed';g.font='27px sans-serif';g.fillText(S.name,35,h+43);g.font='19px sans-serif';g.fillStyle='#c6dbf4';g.fillText(`${S.settings.width} x ${S.settings.height} mm  |  ${S.settings.angle} deg  |  ${S.ppm?fmt(reg.area)+' m2':'NOT CALIBRATED'}  |  ${lay.count} layout tiles + ${qty.extra} spare`,35,h+80);g.fillStyle='#aac4e8';g.font='13px sans-serif';g.fillText('TILE STUDIO  |  Designed by Dennis Chung  |  VERIFY ON SITE',35,h+108);return c;}
 function exportPlan(){download(dataURLBytes(planExportCanvas().toDataURL()),'image/png',safeName()+'-平面排磚.png');}
-function export3D(){if(!renderer||!reg.parts.length)return toast('請先建立可預覽的 3D 範圍');let url=renderer.capture(),image=new Image();image.onload=()=>{let c=document.createElement('canvas');c.width=image.width;c.height=image.height+80;let g=c.getContext('2d');g.drawImage(image,0,0);g.fillStyle='#172c49';g.fillRect(0,image.height,c.width,80);g.fillStyle='#e4eddb';g.font='17px sans-serif';g.fillText('TILE STUDIO | '+S.settings.width+' x '+S.settings.height+' mm | '+fmt(reg.area)+' m2',24,image.height+34);g.font='12px sans-serif';g.fillText('Designed by Dennis Chung | 3D floor preview only',24,image.height+58);download(dataURLBytes(c.toDataURL()),'image/png',safeName()+'-3D鋪磚.png');};image.src=url;}
+function export3D(){if(!renderer||(!reg.parts.length&&!(renderer.wallScene&&wallCalc().faces.length)))return toast('請先建立可預覽的 3D 範圍');let url=renderer.capture(),image=new Image();image.onload=()=>{let c=document.createElement('canvas');c.width=image.width;c.height=image.height+80;let g=c.getContext('2d');g.drawImage(image,0,0);g.fillStyle='#172c49';g.fillRect(0,image.height,c.width,80);g.fillStyle='#e4eddb';g.font='17px sans-serif';g.fillText('TILE STUDIO | '+S.settings.width+' x '+S.settings.height+' mm | '+fmt(reg.area)+' m2',24,image.height+34);g.font='12px sans-serif';g.fillText('Designed by Dennis Chung | Measured floor and wall preview',24,image.height+58);download(dataURLBytes(c.toDataURL()),'image/png',safeName()+'-3D鋪磚.png');};image.src=url;}
 function exportReportLegacy(){if(!S.ppm||!reg.parts.length)return toast('請先校準比例並圈選地面');renderReport();const css=`body{font-family:Arial,"Microsoft JhengHei",sans-serif;color:#263e32;max-width:900px;margin:35px auto;padding:0 22px;line-height:1.65}h1{font-size:25px}h2{font-size:21px}h3{font-size:17px}p,small{color:#7c8872}.reporthero{padding:24px;background:#edf2e5;border:1px solid #d6dfcc}.eyebrow{font-size:11px;letter-spacing:2px}.reportnums{display:flex;gap:45px}.reportnums span{display:block;font-size:12px}.reportnums b{display:block;font-size:27px}.reportnums small{font-size:12px;margin-left:5px}.reportcard{margin-top:25px;border:1px solid #d6dfcc}.reportcardhead,.detailgrid,.formulanote{padding:18px}.comparetable{border-collapse:collapse;width:100%;text-align:right}.comparetable th,.comparetable td{padding:12px;border-bottom:1px solid #e0e5d8}.comparetable th:first-child,.comparetable td:first-child{text-align:left}.comparetable .selected{background:#edf2e5}.comparetable small{display:block;font-size:10px}.pill{font-size:10px;margin-left:8px;color:#709264}.detailrow{display:flex;justify-content:space-between;border-bottom:1px solid #e0e5d8;padding:9px 0}.formulanote,.reportwarning{font-size:12px;background:#f6f5e9}.reportwarning{padding:20px;margin-top:20px}img{width:100%;margin-top:25px;border:1px solid #d6dfcc}.print{padding:12px 22px;background:#172c49;color:#fff;border:0;border-radius:6px;cursor:pointer}@media print{.print{display:none}body{margin:0;font-size:11px}.reportcard{break-inside:avoid}img{page-break-before:always}}`;
 const doc='<!doctype html><html lang="zh-Hant"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>'+escapeHTML(S.name)+' · 瓷磚用量單</title><style>'+css+'</style><body><h1>TILE STUDIO · 瓷磚用量單</h1><p>產生日期：'+new Date().toLocaleString('zh-HK')+' · 比例來源：'+escapeHTML(S.scaleNote||'手動校準')+'</p><button class="print" onclick="window.print()">列印 / 儲存為 PDF</button>'+$('reportPane').innerHTML+'<img alt="按比例的排磚效果圖" src="'+planExportCanvas().toDataURL('image/jpeg',.9)+'"><p>本機估算工具，不替代現場覆核或施工排版圖。</p></body></html>';download(doc,'text/html',safeName()+'-瓷磚用量單.html');}
 function backup(){download(JSON.stringify(S,null,2),'application/json',safeName()+'-方案備份.json');}
@@ -511,7 +904,7 @@ for(let [id,key,out]of [['offsetX','offsetX','oxOut'],['offsetY','offsetY','oyOu
 $('materialGrid').onclick=e=>{let b=e.target.closest('[data-material]');if(b){S.settings.material=b.dataset.material;renderMaterialGrid();updateMetrics();dirty3d=true;update3D();renderPlan();save();}};$('uploadTextureBtn').onclick=()=>$('textureFile').click();$('textureFile').onchange=e=>importTexture(e.target.files[0]);$('textureRotation').onchange=e=>{S.settings.textureRotation=Number(e.target.value);dirty3d=true;update3D();renderPlan();save();};$('variation').onchange=e=>{S.settings.variation=Number(e.target.value);dirty3d=true;update3D();renderPlan();save();};$('wallToggle').onchange=e=>{S.settings.walls=e.target.checked;dirty3d=true;update3D();save();};$('isoBtn').onclick=()=>{renderer?.reset(false);$('isoBtn').classList.add('active');$('topBtn').classList.remove('active');};$('topBtn').onclick=()=>{renderer?.reset(true);$('topBtn').classList.add('active');$('isoBtn').classList.remove('active');};$('reset3DBtn').onclick=()=>renderer?.reset(false);
 $('wasteInput').oninput=e=>{S.settings.waste=Number(e.target.value);$('wasteOut').textContent=e.target.value+'%';qty=E.quantity(lay,S.settings.waste,S.settings.perBox,S.settings.price);updateMetrics();renderReport();document.querySelectorAll('[data-waste]').forEach(b=>b.classList.toggle('active',Number(b.dataset.waste)===S.settings.waste));save();};document.querySelectorAll('[data-waste]').forEach(b=>b.onclick=()=>{$('wasteInput').value=b.dataset.waste;$('wasteInput').dispatchEvent(new Event('input'));});$('boxInput').onchange=e=>{let n=Number(e.target.value);if(!Number.isInteger(n)||n<1||n>100){e.target.value=S.settings.perBox;return toast('每箱張數請輸入 1 至 100 的整數');}S.settings.perBox=n;qty=E.quantity(lay,S.settings.waste,n,S.settings.price);renderReport();save();};$('priceInput').onchange=e=>{let n=Number(e.target.value);if(!Number.isFinite(n)||n<0||n>1e6){e.target.value=S.settings.price;return toast('請輸入有效單價');}S.settings.price=n;qty=E.quantity(lay,S.settings.waste,S.settings.perBox,n);renderReport();save();};$('reportPane').onclick=e=>{let b=e.target.closest('[data-size]');if(b){setSize(...b.dataset.size.split(',').map(Number));showTab('layout');}};$('exportPlanBtn').onclick=exportPlan;$('export3DBtn').onclick=export3D;$('exportReportBtn').onclick=exportReport;$('backupBtn').onclick=backup;$('projectFile').onchange=e=>importProject(e.target.files[0]);window.addEventListener('resize',()=>{if(tab==='plan'||tab==='layout')fitView();if(tab==='three'){dirty3d=true;update3D();}});initCanvasEvents();}
 
-/* --- Tile Studio 2.0: pricing, quotations, home and alignment guides --- */
+/* --- Tile Studio 3.0: pricing, quotations, home and alignment guides --- */
 let guidePoint=null, snapX=false, snapY=false, quoteCache=new Map();
 const currencyLabels={HKD:'HK$',USD:'US$',CAD:'CA$',CNY:'CN¥',EUR:'€',GBP:'£',TWD:'NT$'};
 const unitLabels={piece:'張',box:'箱',m2:'m²'};
@@ -729,7 +1122,7 @@ function quotationHTML(comparison=false){
  <div class="note"><b>用量及採購基礎</b><br>完整磚 ${lay.full} 張 + 切割磚 ${lay.cut} 張 = 排磚 ${lay.count} 張。另加 ${p.waste}% 備料 ${o.q.extra} 張，共 ${o.q.recommended} 張。<br>${r.purchase==='box'?`整箱購買 ${o.q.boxes} 箱 × ${r.perBox} 張，實際購買 ${o.purchase} 張。`:`逐片購買 ${o.purchase} 張。`}${r.unit==='m2'?`按平方米單價，以購買原磚面積 ${fmt(o.purchaseArea,3)} m² 計費。`:''}<br>圖紙比例：${escapeHTML(S.scaleNote||'手動校準')}。扣除範圍 ${fmt(reg.excluded)} m²。未最佳化切割餘料重用，採購前須現場覆核。</div>
  ${comparisons}<h2>備註及條款</h2><p class="prewrap">${escapeHTML(q.notes)}</p><p class="muted">本報價由用戶輸入的價格與費用生成。未列出的工程或服務不包含在總額內；非供應商即時報價或付款收據。${o.amount===null?'注意：本比較文件有未填價格，不是完整報價。':''}</p>
  <div class="planSection"><h2>鋪磚排版示意</h2><img class="plan" alt="依圈選範圍計算的鋪磚排版" src="${plan}"></div>
- <div class="footer"><span>Designed by Dennis Chung</span><span>Tile Studio 2.0 · 裝置內產生</span></div></body></html>`;
+ <div class="footer"><span>Designed by Dennis Chung</span><span>Tile Studio 3.0 · 裝置內產生</span></div></body></html>`;
 }
 function exportQuote(){
  if(!S.ppm||computeError||!reg.parts.length)return toast('請先校準圖紙並圈選有效地面');
@@ -741,7 +1134,7 @@ function exportReport(){
  download(quotationHTML(true),'text/html',safeName()+'-用量及價格比較.html');
 }
 function privacyInfo(){
- modal('關於 Tile Studio 2.0',`<p><b>Designed by Dennis Chung</b><br>這是可互動的測試版本，不是 Google Play 已發佈版本。</p>
+ modal('關於 Tile Studio 3.0',`<p><b>Designed by Dennis Chung</b><br>這是可互動的測試版本，不是 Google Play 已發佈版本。</p>
  <p><b>本機處理</b><br>圖紙、紋理、客戶資料及價格只在你的裝置內處理。本版無帳戶、廣告、分析追蹤或外部伺服器；APK 沒有網際網路權限。</p>
  <p><b>檔案及備份</b><br>只讀取你透過系統選擇器指定的圖片或 JSON。匯出檔案存到你選擇的位置；之後如何分享，由你自行決定。</p>
  <p><b>清除及保留</b><br>清除 App 資料或解除安裝，會移除 App 內的自動儲存。自行匯出的檔案不會一併刪除；可在檔案管理員刪除。重要方案請先儲存 JSON 備份。</p>
@@ -853,6 +1246,571 @@ function initEvents(){
 }
 
 window.TileApp={get state(){return S;},get region(){return reg;},get layout(){return lay;},get quantity(){return qty;},get view(){return view;},get renderer(){return renderer;},setSize,showTab,compute,loadState,demoState,validateState,finishDrawing,exportPlan,exportReport,backup,makeTexture,toast,fitView,exportQuote,quotationHTML,quoteTotals,calculateOption,editPrice,normalizePricing,priceRecord,snapPoint,setTool,get guidePoint(){return guidePoint;},get tab(){return tab;}};
+
+</script><script>
+/* Tile Studio 3.0 wall workspace, editing, material takeoff and combined quotations. */
+'use strict';
+const WE=WallEngine;
+let wallScaleAtLoad=null;
+let wallCache=null,wallSelected=null,wallView='elevation',wallTool='select',wallDraft=[],wallGuide=null,wallScene=null;
+let wallMapView={k:1,x:0,y:0},wallTextures=new Map();
+const wallSourceNames={raster:'圖紙線條候選',outline:'地面輪廓候選',manual:'手動畫線',demo:'示範牆面',opposite:'另一飾面'};
+const styleNames={plain:'整幅同款',split:'上下分色',band:'上下分色＋腰線'};
+function wd(){if(!S.wallDesign)S.wallDesign=WE.defaults();return S.wallDesign;}
+function selectedWall(){return wd().walls.find(w=>w.id===wallSelected)||wd().walls[0]||null;}
+function wallCalc(){if(!wallCache)wallCache=WE.calculate(wd(),S.ppm);return wallCache;}
+function invalidateWalls(){wallCache=null;dirty3d=true;}
+function wallTexture(m){
+ if(m.texture==='custom'&&m.textureData&&wallTextures.has(m.textureData))return wallTextures.get(m.textureData);
+ return makeTexture(m.texture==='custom'?'marble':m.texture);
+}
+async function loadWallTextures(){
+ const refs=new Set(wd().materials.map(m=>m.textureData).filter(Boolean));
+ for(const key of wallTextures.keys())if(!refs.has(key))wallTextures.delete(key);
+ for(const data of refs)if(!wallTextures.has(data))try{wallTextures.set(data,await loadImage(data));}catch(e){toast('部分牆磚照片無法載入，請重新匯入');}
+}
+const v2Validate=validateState;
+validateState=function(x){const walls=x.wallDesign;const r=v2Validate(x);r.wallDesign=WE.validate(walls,r);return r;};
+const v2Load=loadState;
+loadState=async function(state){
+ state.wallDesign=WE.validate(state.wallDesign,state);wallScaleAtLoad=state.ppm;invalidateWalls();wallSelected=null;wallDraft=[];
+ await v2Load(state);wallSelected=wd().walls[0]?.id||null;await loadWallTextures();renderWalls();fitWallMap();
+};
+const v2Compute=compute;
+compute=function(){
+ if(wallScaleAtLoad!==null&&wallScaleAtLoad!==S.ppm&&S.wallDesign?.walls.length){
+  S.wallDesign.walls.forEach(w=>w.confirmed=false);toast('圖紙比例已改變，請重新確認牆面淨長。');
+ }
+ wallScaleAtLoad=S.ppm;invalidateWalls();v2Compute();if($('wallPane')){renderWalls();if(tab==='report')renderReport();}};
+const v2ShowTab=showTab;
+showTab=function(next){
+ if(next==='walls'){
+  v2ShowTab('plan');tab='walls';document.body.dataset.page='walls';
+  $('drawingPane').hidden=$('threePane').hidden=$('reportPane').hidden=true;
+  for(const t of ['plan','layout','three','report'])$(t+'Panel').hidden=true;
+  $('wallPane').hidden=$('wallPanel').hidden=false;
+  document.querySelectorAll('[data-tab]').forEach(b=>b.classList.toggle('active',b.dataset.tab==='walls'));
+  renderWalls();requestAnimationFrame(()=>{fitWallMap();drawElevation();drawWallScene();});
+ }else{
+  if($('wallPane')){$('wallPane').hidden=true;$('wallPanel').hidden=true;}
+  v2ShowTab(next);
+ }
+};
+const v2Update3D=update3D;
+update3D=function(){
+ if(tab!=='three')return;
+ const wc=wallCalc();
+ if(wc.faces.length){
+  const fc=$('threeFallback');fc.hidden=true;
+  try{
+   if(!renderer?.wallScene){
+    const old=$('threeCanvas'),c=document.createElement('canvas');c.id='threeCanvas';old.replaceWith(c);renderer=new WallScene3D(c);
+   }
+   renderer.setScene(reg,lay,S.settings,currentTexture(),wc,S.ppm,wallTexture,wd().cutaway);dirty3d=false;
+   $('textureName').textContent='地面＋'+wc.faces.length+' 幅已確認牆面';
+   $('threeInfo').textContent=fmt(reg.area)+' m² 地面 · '+fmt(wc.net)+' m² 牆面';
+  }catch(e){console.error(e);fc.hidden=false;fc.textContent='3D 預覽未能建立，請縮小範圍或檢查牆面設定。';}
+ }else{
+  if(renderer?.wallScene){const old=$('threeCanvas'),c=document.createElement('canvas');c.id='threeCanvas';old.replaceWith(c);renderer=null;dirty3d=true;}
+  v2Update3D();
+ }
+};
+const v2ImportPlan=importPlan;
+importPlan=async function(file){
+ const oldImage=S.imageData;await v2ImportPlan(file);
+ if(S.imageData!==oldImage){detectWalls(true);}
+};
+const v2Report=renderReport;
+renderReport=function(){
+ v2Report();
+ const pane=$('reportPane');if(!pane)return;
+ pane.querySelector('#combinedSummary')?.remove();
+ if(wd().walls.length)pane.insertAdjacentHTML('afterbegin',combinedSummaryHTML());
+};
+const v2Init=initEvents;
+initEvents=function(){
+ initWallDOM();v2Init();initWallEvents();
+ $('exportQuoteBtn').textContent='匯出地面＋牆面報價 HTML';
+ $('exportQuoteBtn').onclick=()=>exportCombined(false);
+ $('exportReportBtn').textContent='匯出地面比較（不含牆面）';
+ const p=$('reportPane'),old=p.onclick;
+ p.onclick=e=>{if(e.target.closest('[data-combined-export]')||e.target.closest('[data-export-quote]'))return exportCombined(false);if(e.target.closest('[data-wall-report]'))return exportCombined(true);if(e.target.closest('[data-edit-walls]'))return showTab('walls');old(e);};
+ $('homeWalls').onclick=()=>showTab('walls');
+ $('wallDemoBtn').onclick=wallDemo;
+ window.addEventListener('resize',()=>{if(tab==='walls'){fitWallMap();drawElevation();drawWallScene();}});
+};
+function initWallDOM(){
+ document.querySelector('.steps').insertAdjacentHTML('beforeend','<button data-tab="walls"><span class="stepno">＋</span><span>牆面設計</span></button>');
+ document.querySelector('.bottomnav button[data-tab="three"]').insertAdjacentHTML('beforebegin','<button data-tab="walls"><span>▥</span><b>牆面</b></button>');
+ $('homePane').querySelector('.homeactions').insertAdjacentHTML('afterend','<button id="homeWalls" class="homecontinue wallhome"><span>▥</span><span><b>地面之外，設計每一幅牆</b><small>辨識牆線 · 上下分色 · 裝飾腰線</small></span><span>→</span></button><button id="wallDemoBtn" class="secondary full">試用牆面＋門窗示範</button>');
+ document.querySelector('.workspace').insertAdjacentHTML('afterbegin',`
+ <section class="workmain wallPane" id="wallPane" hidden>
+  <div class="wallhero"><div class="eyebrow">WALL STUDIO / 3.0</div><h2>讓牆面也成為設計。</h2><p>先確認牆線與牆高，再選上下花紋與腰線。</p>
+   <div class="wallmetrics"><div><span>已確認牆面</span><b id="wFaceCount">0</b></div><div><span>淨鋪貼面積</span><b id="wNet">—</b></div><div><span>選用瓷磚</span><b id="wMatCount">0</b></div></div>
+  </div>
+  <div class="wallStatus" id="wallStatus"></div>
+  <div class="wallviewtabs"><button data-wall-view="map">01 牆線</button><button data-wall-view="elevation" class="active">02 立面</button><button data-wall-view="scene">03 空間 3D</button></div>
+  <div class="wallPickBar"><select id="wallQuickSelect" aria-label="快速選擇牆面"></select><button id="wallQuickSettings" class="secondary">設定此牆面 ↓</button></div>
+  <div id="wallMapWrap" class="wallmapwrap" hidden><canvas id="wallMapCanvas" aria-label="牆面候選線與可拖動端點"></canvas><div class="wallmaplegend">藍＝選中 · 綠＝已確認 · 橙＝待確認</div></div>
+  <div id="wallMapTools" class="walltools" hidden><button data-wall-tool="select" class="active">選牆／拖點</button><button data-wall-tool="add">＋ 補畫牆面</button><button id="wallZoomIn">＋</button><button id="wallZoomOut">−</button><button id="wallFit">全圖</button></div>
+  <div id="wallElevationWrap" class="wallelevationwrap"><canvas id="wallElevationCanvas" aria-label="按真實高度分區的牆面排磚立面"></canvas></div>
+  <div id="wallSceneWrap" class="wallscenewrap" hidden><canvas id="wallSceneCanvas"></canvas><div class="wallscenebadge">真實排磚輪廓 · 示意材質</div></div>
+  <div id="wallSceneTools" class="walltools" hidden><label><input type="checkbox" id="wallCutaway" checked>剖視：隱藏近側牆</label><button id="wallSceneReset">重設視角</button></div>
+  <div class="wallviewfoot"><span id="wallViewCaption">每幅牆面獨立設定高度及門窗。</span><button id="wallExportImage" class="textbutton">匯出此視圖 ↗</button></div>
+  <div id="wallTakeoff"></div>
+ </section>`);
+ document.querySelector('.inspector').insertAdjacentHTML('beforeend','<div id="wallPanel" class="panel" hidden></div>');
+ document.querySelector('.under3d').textContent='依實際地面輪廓、已確認牆線和輸入牆高建立預覽。門窗按手動開口留空；不自動還原傢俬或真實光照。';
+ const wallToggle=$('wallToggle');if(wallToggle)wallToggle.closest('label').hidden=true;
+}
+function wallNumberLabel(label,id,value,min,max,step='.01'){
+ return `<label>${label}<input id="${id}" type="number" inputmode="decimal" value="${value}" min="${min}" max="${max}" step="${step}"></label>`;
+}
+function renderWalls(){
+ if(!$('wallPane')||!S)return;
+ const d=wd(),w=selectedWall(),wc=wallCalc();if(w)wallSelected=w.id;
+ $('wFaceCount').textContent=wc.faces.length+' 幅';$('wNet').textContent=S.ppm?fmt(wc.net)+' m²':'待校準';$('wMatCount').textContent=wc.materials.length+' 款';
+ $('wallStatus').innerHTML=!S.ppm?'先校準圖紙比例，才會計算牆長及面積。':wc.errors.length?'<b>需要修正：</b>'+wc.errors.map(e=>escapeHTML(e.wall+'：'+e.message)).join('；'):wc.pending?`有 <b>${wc.pending} 幅候選牆面</b>待核對。待確認項目不計入數量；完整報價暫不可輸出。`:'所有啟用牆面已確認。每筆記錄代表一個鋪貼面，不自動加倍。';
+ $('wallStatus').classList.toggle('ok',S.ppm>0&&!wc.pending&&!wc.errors.length);
+ let html=`<button id="wallBackPreview" class="textbutton wallBackPreview">↑ 回到牆面預覽</button><div class="paneltitle"><span class="sectionnum">▥</span><div><h2>牆面設定</h2><p>候選牆線需人工確認</p></div></div>
+ <div class="wallimport"><button id="wDetect" class="primary full">從圖紙自動辨識牆線</button><div class="inlinebuttons"><button id="wOutline">從已圈地面建立</button><button id="wGoCalibrate">校準比例</button></div>
+ <p class="micro">辨識水平／垂直線條，不是語意 AI。尺寸線、櫃體可能誤入；斜牆請補畫。以完成面淨長為準。</p></div>
+ ${wallNumberLabel('新增牆面的預設高度 m','wDefaultHeight',d.defaultHeight,.2,20)}<button id="wApplyHeight" class="secondary full">把此高度套用所有啟用牆面</button>
+ <div class="divider"></div><h3>選擇牆面</h3>
+ <select id="wSelect" aria-label="選擇牆面">${d.walls.length?d.walls.map((f,i)=>`<option value="${escapeHTML(f.id)}" ${w?.id===f.id?'selected':''}>W${String(i+1).padStart(2,'0')} · ${escapeHTML(f.name)} ${f.enabled?(f.confirmed?'✓':'待確認'):'不計入'}</option>`).join(''):'<option>尚未建立牆面</option>'}</select>`;
+ if(w){
+  html+=`<p class="micro">${wallSourceNames[w.source]||'手動牆面'} · 淨長 ${S.ppm?fmt(WE.wallLength(w,S.ppm))+' m':'尚未校準'}</p>
+  <label class="wallcheck"><input type="checkbox" id="wEnabled" ${w.enabled?'checked':''}>此飾面納入計算</label>
+  <div class="inputrow two">${wallNumberLabel('牆高 m','wHeight',w.height,.2,20)}<button id="wEditWall" class="secondary">編輯名稱／尺寸</button></div>
+  <button id="wConfirm" class="${w.confirmed?'secondary':'primary'} full">${w.confirmed?'✓ 牆面已確認；點擊改回待確認':'確認此牆面與尺寸'}</button>
+  <div class="inlinebuttons"><button id="wConfirmAll">核對後確認全部</button><button id="wDelete">刪除此牆面</button></div>
+  <div class="divider"></div><div class="sectionhead"><h3>門窗與不鋪磚開口</h3><button id="wAddOpening" class="textbutton">＋ 新增</button></div>
+  <p class="micro">從圖中 A 端起量水平距離；高度由地面起量。重疊開口只扣一次。</p>
+  <div class="wallopeninglist">${w.openings.map(o=>`<div><span><b>${escapeHTML(o.name)}</b><small>${fmt(o.width)} × ${fmt(o.height)} m · 離地 ${fmt(o.y)} m</small></span><button data-opening="${escapeHTML(o.id)}">編輯</button></div>`).join('')||'<p class="micro">未設定開口；目前按整幅牆面計算。</p>'}</div>
+  <div class="divider"></div><h3>牆面排列風格</h3>
+  <div class="wallstylecards">${Object.entries(styleNames).map(([key,label])=>`<button class="${w.style.mode===key?'active':''}" data-wall-style="${key}"><span class="wallstyleicon ${key}"></span><b>${label}</b></button>`).join('')}</div>
+  <button id="wStyleEdit" class="secondary full">調整分界、腰線及套用範圍</button>
+  <p class="micro">${w.style.mode==='plain'?'整幅使用同一款瓷磚':`下半牆 ${fmt(w.style.split)} m`+(w.style.mode==='band'?` ＋ 腰線 ${fmt(w.style.bandHeight*1000,0)} mm`:'')} · 可逐幅設定或套用所有啟用牆面</p>
+  <h3>各區瓷磚規格與花紋</h3><div class="wallmateriallist">`;
+  let zs;try{zs=WE.zones(w);}catch(e){zs=[{key:'lower',name:'下半牆',material:w.style.lower},{key:'band',name:'腰線',material:w.style.band},{key:'upper',name:'上半牆',material:w.style.upper}];}
+  for(const z of zs){const m=d.materials.find(m=>m.id===z.material);html+=`<button class="wallmaterial" data-edit-wall-material="${escapeHTML(m.id)}"><canvas data-wall-swatch="${escapeHTML(m.id)}"></canvas><span><small>${z.name}</small><b>${escapeHTML(m.name)}</b><small>${m.width} × ${m.height} mm · ${m.angle}°</small><small>${m.price===null?'未輸入價格':money(m.price)+' / '+unitLabels[m.unit]}</small></span><span>✎</span></button>`;}
+  html+=`</div><button id="wNewMaterial" class="textbutton">＋ 新增獨立瓷磚款式</button>`;
+ }
+ html+=`<div class="divider"></div><h3>材料及整體報價</h3>
+ ${wallNumberLabel('牆面鋪貼人工 / m²','wLabor',d.wallLabor,0,1e8)}
+ <label class="wallcheck"><input type="checkbox" id="wIncludeFloor" ${d.includeFloor?'checked':''}>報價包含目前地面方案</label>
+ <button id="wQuote" class="primary full gap">輸出地面＋牆面報價</button>
+ <button id="wEstimate" class="secondary full gap">輸出牆面用量表（可未定價）</button>
+ <button id="wBackup" class="secondary full gap">儲存完整方案備份</button>
+ <p class="micro">門窗側邊、陽角收口、黏合劑等未自動加算。不同款式分開採購；同款合併備料及整箱進位。</p>
+ <div class="creator">Designed by Dennis Chung</div>`;
+ $('wallPanel').innerHTML=html;
+ $('wallQuickSelect').innerHTML=d.walls.length?d.walls.map((f,i)=>`<option value="${escapeHTML(f.id)}" ${w?.id===f.id?'selected':''}>W${String(i+1).padStart(2,'0')} · ${escapeHTML(f.name)}</option>`).join(''):'<option>尚未建立牆面</option>';
+ bindWallPanel();
+ $('wallCutaway').checked=d.cutaway;
+ $('wallPanel').querySelectorAll('[data-wall-swatch]').forEach(c=>{c.width=96;c.height=110;const m=d.materials.find(m=>m.id===c.dataset.wallSwatch);c.getContext('2d').drawImage(wallTexture(m),0,0,96,110);});
+ renderWallTakeoff();setWallView(wallView,false);
+}
+function wallChanged(refresh=true){invalidateWalls();save();if(refresh)renderWalls();if(tab==='three')update3D();if(tab==='report')renderReport();}
+function bindWallPanel(){
+ const d=wd(),w=selectedWall();
+ $('wallBackPreview').onclick=()=>$('wallPane').scrollIntoView({behavior:'smooth',block:'start'});
+ $('wApplyHeight').onclick=()=>{
+  if(!d.walls.length)return toast('請先建立牆面');
+  const h=Number($('wDefaultHeight').value);
+  if(!Number.isFinite(h)||h<.2||h>20)return toast('高度請輸入 0.2 至 20 米');
+  const targets=d.walls.filter(w=>w.enabled);
+  try{targets.forEach(w=>{const n={...w,height:h};WE.zones(n);if(S.ppm)WE.analyzeWall(n,S.ppm,d.materials);});}catch(e){return toast(e.message);}
+  askConfirm('套用 '+fmt(h)+' 米牆高？','會更改全部啟用牆面，並要求重新確認尺寸。',()=>{
+   remember();d.defaultHeight=h;targets.forEach(w=>{w.height=h;w.confirmed=false;});wallChanged();
+  });
+ };
+ $('wDetect').onclick=()=>detectWalls(false);$('wOutline').onclick=()=>outlineWalls();
+ $('wGoCalibrate').onclick=()=>{showTab('plan');setTool('calibrate');$('drawingPane').scrollIntoView({block:'start'});};
+ $('wDefaultHeight').onchange=e=>{const h=Number(e.target.value);if(!Number.isFinite(h)||h<.2||h>20){e.target.value=d.defaultHeight;return toast('高度請輸入 0.2 至 20 米');}d.defaultHeight=h;save();};
+ $('wSelect').onchange=e=>{wallSelected=e.target.value;renderWalls();};
+ $('wLabor').onchange=e=>{const n=Number(e.target.value);if(!Number.isFinite(n)||n<0||n>1e8){e.target.value=d.wallLabor;return toast('請輸入有效人工單價');}d.wallLabor=n;wallChanged();};
+ $('wIncludeFloor').onchange=e=>{d.includeFloor=e.target.checked;wallChanged();};
+ $('wQuote').onclick=()=>exportCombined(false);$('wEstimate').onclick=()=>exportCombined(true);$('wBackup').onclick=backup;
+ if(!w)return;
+ $('wEnabled').onchange=e=>{remember();w.enabled=e.target.checked;wallChanged();};
+ $('wHeight').onchange=e=>{
+  const h=Number(e.target.value),test={...w,height:h};
+  if(!Number.isFinite(h)||h<.2||h>20){e.target.value=w.height;return toast('牆高請輸入 0.2 至 20 米');}
+  try{WE.zones(test);if(S.ppm)WE.analyzeWall(test,S.ppm,d.materials);}catch(err){e.target.value=w.height;return toast(err.message);}
+  remember();w.height=h;w.confirmed=false;wallChanged();
+ };
+ $('wEditWall').onclick=editWall;
+ $('wConfirm').onclick=()=>{
+  if(!S.ppm)return toast('請先以兩點校準圖紙比例');
+  try{WE.analyzeWall(w,S.ppm,d.materials);}catch(e){return toast(e.message);}
+  remember();w.confirmed=!w.confirmed;wallChanged();
+ };
+ $('wConfirmAll').onclick=()=>askConfirm('確認所有啟用牆面？','請已逐幅核對完成面淨長、牆高及門窗。候選中心線並不等於可直接施工的淨尺寸。',()=>{
+  if(!S.ppm)return toast('請先校準比例');
+  for(const f of d.walls.filter(f=>f.enabled))try{WE.analyzeWall(f,S.ppm,d.materials);}catch(e){return toast(f.name+'：'+e.message);}
+  remember();d.walls.filter(f=>f.enabled).forEach(f=>f.confirmed=true);wallChanged();
+ });
+ $('wDelete').onclick=()=>askConfirm('刪除此牆面？',w.name,()=>{remember();d.walls=d.walls.filter(x=>x.id!==w.id);wallSelected=null;wallChanged();});
+ $('wAddOpening').onclick=()=>editOpening(null);
+ $('wallPanel').querySelectorAll('[data-opening]').forEach(b=>b.onclick=()=>editOpening(b.dataset.opening));
+ $('wallPanel').querySelectorAll('[data-wall-style]').forEach(b=>b.onclick=()=>editWallStyle(b.dataset.wallStyle));
+ $('wStyleEdit').onclick=()=>editWallStyle();
+ $('wallPanel').querySelectorAll('[data-edit-wall-material]').forEach(b=>b.onclick=()=>editWallMaterial(b.dataset.editWallMaterial));
+ $('wNewMaterial').onclick=()=>editWallMaterial(null);
+}
+function setWallView(next,refresh=true){
+ wallView=next;
+ $('wallMapWrap').hidden=$('wallMapTools').hidden=next!=='map';
+ $('wallElevationWrap').hidden=next!=='elevation';$('wallSceneWrap').hidden=$('wallSceneTools').hidden=next!=='scene';
+ document.querySelectorAll('[data-wall-view]').forEach(b=>b.classList.toggle('active',b.dataset.wallView===next));
+ $('wallViewCaption').textContent=next==='map'?'點選牆線；拖動端點時有水平／垂直對齊。':next==='scene'?'單指旋轉 · 雙指縮放 · 已確認牆面才進入空間預覽':'從 A 端向右看；高度由地面起量。灰白留空區為門窗。';
+ if(refresh||tab==='walls')requestAnimationFrame(()=>{if(next==='map')fitWallMap();else if(next==='elevation')drawElevation();else drawWallScene();});
+}
+function detectWalls(automatic=false){
+ if(!bgImage)return toast('請先匯入平面圖圖片');
+ const run=()=>{
+  busy(true,'正在辨識圖紙線條…');
+  setTimeout(()=>{
+   try{
+    const k=Math.min(1,960/Math.max(S.width,S.height)),c=document.createElement('canvas');c.width=Math.round(S.width*k);c.height=Math.round(S.height*k);
+    const g=c.getContext('2d',{willReadFrequently:true});g.fillStyle='white';g.fillRect(0,0,c.width,c.height);g.drawImage(bgImage,0,0,c.width,c.height);
+    const detected=WE.detect(g.getImageData(0,0,c.width,c.height),S.width,S.height,S.ppm);
+    remember();const d=wd();d.walls=detected.segments.map((a,i)=>({
+     id:WE.uid(),name:'圖紙牆面 '+(i+1),a:a.a,b:a.b,height:d.defaultHeight,enabled:true,confirmed:false,source:'raster',style:WE.clone(d.template),openings:[],confidence:a.confidence
+    }));
+    wallSelected=d.walls[0]?.id||null;wallChanged();wallView='map';
+    if(!automatic)showTab('walls');
+    toast(d.walls.length?`已提出 ${d.walls.length} 條候選牆線；請校準、逐幅確認並補門窗。${detected.truncated?'另有候選超過 80 幅上限，請分區處理。':''}`:'未找到可靠長線；請圈選地面後建立牆面，或手動補畫。');
+   }catch(e){console.error(e);toast('辨識未完成，請使用較清晰的平面圖或手動建立牆面。');}
+   finally{busy(false);}
+  },35);
+ };
+ if(wd().walls.length&&!automatic)askConfirm('重新辨識並替換牆面？','現有牆面、開口及逐牆排法將被取代。請先儲存 JSON 備份。',run);else run();
+}
+function outlineWalls(){
+ if(!S.ppm||!S.rooms.length)return toast('請先校準圖紙並圈選地面範圍');
+ const run=()=>{remember();wd().walls=WE.fromRooms(S.rooms,wd());wallSelected=null;wallView='map';wallChanged();toast('已按地面邊界建立候選牆面；開放邊界請刪除或關閉。');};
+ if(wd().walls.length)askConfirm('以地面邊界替換牆面？','邊界可能是開放空間，不代表全部都是真實牆面。现有逐牆資料會被取代。',run);else run();
+}
+async function wallDemo(){
+ askConfirm('載入牆面示範？','將取代目前方案。重要方案請先匯出備份。',async()=>{
+  const state=demoState();state.name='客飯廳 · 上下分色＋青花腰線';state.wallDesign=WE.defaults();
+  state.wallDesign.walls=WE.fromRooms(state.rooms,state.wallDesign);
+  state.wallDesign.walls.forEach((w,i)=>{w.confirmed=true;w.source='demo';w.name=['北牆 · 窗戶','東牆','南牆 · 門口','西牆'][i];});
+  state.wallDesign.walls[0].openings=[{id:WE.uid(),name:'窗戶',x:1.8,y:1.35,width:1.8,height:1.05}];
+  state.wallDesign.walls[2].openings=[{id:WE.uid(),name:'門口',x:.5,y:0,width:.9,height:2.1}];
+  await loadState(state);wallView='scene';showTab('walls');
+ });
+}
+function editWall(){
+ const w=selectedWall(),L=WE.wallLength(w,S.ppm);
+ modal('牆面名稱與完成面淨長',`<label>名稱<input id="weName" maxlength="60" value="${escapeHTML(w.name)}"></label>
+ ${wallNumberLabel('牆面淨長 m（由 A 端沿原方向調整 B 端）','weLength',fmt(L,3).replace(/,/g,''),.05,500)}
+ ${wallNumberLabel('牆高 m','weHeight',w.height,.2,20)}
+ <p class="micro">修改後需再次確認。也可回到「牆線」直接拖動兩端。每笔資料是一面飾面；不自動計算背面。</p>
+ <button id="weSave" class="primary full">儲存牆面</button>`);
+ $('weSave').onclick=()=>{
+  if(!S.ppm)return toast('先校準圖紙比例');
+  const length=Number($('weLength').value),height=Number($('weHeight').value);
+  if(!Number.isFinite(length)||length<.05||length>500||!Number.isFinite(height)||height<.2||height>20)return toast('請輸入有效牆長及高度');
+  const k=length/L,b=[w.a[0]+(w.b[0]-w.a[0])*k,w.a[1]+(w.b[1]-w.a[1])*k];
+  if(b.some(n=>n<0||n>12000))return toast('新端點超出圖紙座標範圍，請在圖上修改');
+  const n={...w,b,height,name:$('weName').value.trim()||w.name};
+  try{WE.analyzeWall(n,S.ppm,wd().materials);}catch(e){return toast(e.message);}
+  remember();Object.assign(w,n,{confirmed:false});closeModal();wallChanged();fitWallMap();
+ };
+}
+function editOpening(id){
+ const w=selectedWall(),o=w.openings.find(o=>o.id===id)||{id:WE.uid(),name:'門窗開口',x:0,y:0,width:.9,height:2.1};
+ modal(id?'編輯門窗開口':'新增門窗開口',`<p>牆長 ${fmt(WE.wallLength(w,S.ppm))} m × 牆高 ${fmt(w.height)} m。尺寸按完成面量度。</p>
+ <label>名稱<input id="woName" maxlength="60" value="${escapeHTML(o.name)}"></label><div class="quoteMeta">
+ ${wallNumberLabel('距離 A 端 m','woX',o.x,0,500)}${wallNumberLabel('離地高度 m','woY',o.y,0,20)}
+ ${wallNumberLabel('開口闊度 m','woW',o.width,.01,500)}${wallNumberLabel('開口高度 m','woH',o.height,.01,20)}</div>
+ <p class="micro">只扣除正面開口，窗台、門窗側邊及收口件不自動加算。跨越腰線的開口會按相交部分分區扣除。</p>
+ <div class="modalactions">${id?'<button id="woDelete" class="secondary">刪除此開口</button>':''}<button id="woSave" class="primary">儲存開口</button></div>`);
+ if(id)$('woDelete').onclick=()=>{remember();w.openings=w.openings.filter(x=>x.id!==id);w.confirmed=false;closeModal();wallChanged();};
+ $('woSave').onclick=()=>{
+  const n={id:o.id,name:$('woName').value.trim()||'門窗開口',x:Number($('woX').value),y:Number($('woY').value),width:Number($('woW').value),height:Number($('woH').value)};
+  if(![n.x,n.y,n.width,n.height].every(Number.isFinite)||n.x<0||n.y<0||n.width<.01||n.height<.01)return toast('請填寫有效的非負座標及開口尺寸');
+  if(!S.ppm)return toast('請先校準比例');
+  if(!id&&w.openings.length>=30)return toast('每幅牆面最多 30 個開口');
+  const openings=w.openings.filter(x=>x.id!==id).concat([n]);
+  try{WE.analyzeWall({...w,openings},S.ppm,wd().materials);}catch(e){return toast(e.message);}
+  remember();w.openings=openings;w.confirmed=false;closeModal();wallChanged();
+ };
+}
+function editWallStyle(mode=null){
+ const w=selectedWall(),s={...w.style,mode:mode||w.style.mode},d=wd();
+ const select=(id,key)=>`<label>${{lower:'整幅／下半牆',band:'中間腰線',upper:'上半牆'}[key]}<select id="${id}">${d.materials.map(m=>`<option value="${escapeHTML(m.id)}" ${s[key]===m.id?'selected':''}>${escapeHTML(m.name)} · ${m.width} × ${m.height}</option>`).join('')}</select></label>`;
+ modal('分區排法與瓷磚搭配',`<label>排列風格<select id="wsMode">${Object.entries(styleNames).map(([k,v])=>`<option value="${k}" ${s.mode===k?'selected':''}>${v}</option>`).join('')}</select></label>
+ <div class="quoteMeta">${wallNumberLabel('下半牆高度／腰線底標高 m','wsSplit',s.split,.05,20)}
+ ${wallNumberLabel('腰線高度 mm','wsBand',s.bandHeight*1000,50,3000,1)}</div>
+ <p class="micro">腰線從下半牆頂開始，上半牆填滿其餘高度。整幅同款時不使用分界；上下分色時不使用腰線高度。</p>
+ ${select('wsLower','lower')}${select('wsBandMaterial','band')}${select('wsUpper','upper')}
+ <label>套用範圍<select id="wsScope"><option value="one">只套用目前牆面</option><option value="all">全部啟用牆面＋新牆預設</option></select></label>
+ <button id="wsSave" class="primary full">套用排列風格</button>`);
+ $('wsSave').onclick=()=>{
+  const n={mode:$('wsMode').value,split:Number($('wsSplit').value),bandHeight:Number($('wsBand').value)/1000,lower:$('wsLower').value,upper:$('wsUpper').value,band:$('wsBandMaterial').value};
+  if(!Number.isFinite(n.split)||!Number.isFinite(n.bandHeight)||n.split<.05||n.split>20||n.bandHeight<.05||n.bandHeight>3)return toast('請填寫有效分界及腰線高度');
+  const all=$('wsScope').value==='all',targets=all?d.walls.filter(w=>w.enabled):[w];
+  try{targets.forEach(w=>WE.zones({...w,style:n}));}catch(e){return toast(e.message);}
+  remember();targets.forEach(w=>w.style=WE.clone(n));if(all)d.template=WE.clone(n);
+  closeModal();wallChanged();
+ };
+}
+function editWallMaterial(id){
+ const d=wd(),exists=d.materials.find(m=>m.id===id);
+ if(!exists&&d.materials.length>=24)return toast('每個方案最多 24 款牆磚');
+ const m=exists?WE.clone(exists):{...WE.clone(d.materials[0]),id:WE.uid(),name:'新瓷磚款式',price:null,textureData:null,texture:'marble'};
+ let newTexture=m.textureData;
+ modal(exists?'編輯牆磚款式':'新增獨立牆磚款式',`<p>同一款式在所有牆面的用量會合併。相同尺寸但不同花紋／價格，請分成獨立款式。</p>
+ <label>款式／型號<input id="wmName" maxlength="100" value="${escapeHTML(m.name)}"></label>
+ <label>供應商<input id="wmSupplier" maxlength="100" value="${escapeHTML(m.supplier)}"></label>
+ <div class="quoteMeta">${wallNumberLabel('瓷磚長度 mm','wmWidth',m.width,50,4000,1)}${wallNumberLabel('瓷磚高度 mm','wmHeight',m.height,50,4000,1)}</div>
+ <label>花紋<select id="wmTexture">${MATERIALS.concat([['custom','我的瓷磚照片']]).map(([k,n])=>`<option value="${k}" ${m.texture===k?'selected':''}>${n}</option>`).join('')}</select></label>
+ <button id="wmUpload" class="secondary full">上傳這款瓷磚的正面照片</button><input type="file" id="wmFile" accept="image/png,image/jpeg,image/webp" hidden>
+ <p class="micro" id="wmTextureStatus">${newTexture?'已有自訂照片':'照片只用於此款式；不影響其他花紋。'}</p>
+ <div class="quoteMeta"><label>鋪貼方向<select id="wmAngle">${[0,90,45].map(a=>`<option value="${a}" ${m.angle===a?'selected':''}>${a===0?'橫向':a===90?'直向':'斜鋪 45°'}</option>`).join('')}</select></label>
+ <label>排列<select id="wmStagger"><option value="0">直線對縫</option><option value=".5" ${m.stagger===.5?'selected':''}>二分之一錯縫</option></select></label>
+ ${wallNumberLabel('磚縫 mm','wmGrout',m.grout,0,20,.5)}${wallNumberLabel('額外備料 %','wmWaste',m.waste,0,50,1)}</div>
+ <div class="divider"></div><h3>供應商報價 · ${priceData().currency}</h3>
+ <div class="quoteMeta"><label>單價（未填＝未知）<input id="wmPrice" type="number" inputmode="decimal" min="0" max="100000000" step=".01" value="${m.price??''}"></label>
+ <label>單位<select id="wmUnit">${Object.entries(unitLabels).map(([k,v])=>`<option value="${k}" ${m.unit===k?'selected':''}>每${v}</option>`).join('')}</select></label>
+ ${wallNumberLabel('每箱張數','wmBox',m.perBox,1,100,1)}
+ <label>購買方式<select id="wmPurchase"><option value="box" ${m.purchase==='box'?'selected':''}>整箱購買</option><option value="piece" ${m.purchase==='piece'?'selected':''}>逐張購買</option></select></label></div>
+ <p class="micro">平方米單價按實際購買原磚面積計費；按箱計價時會強制整箱購買。</p>
+ <button id="wmSave" class="primary full">儲存款式並重新計算</button>`);
+ $('wmUpload').onclick=()=>$('wmFile').click();
+ $('wmFile').onchange=async e=>{const f=e.target.files[0];if(!f)return;try{
+  $('wmSave').disabled=true;const r=await compressImage(f,768,.9);newTexture=r.data;wallTextures.set(r.data,await loadImage(r.data));$('wmTexture').value='custom';$('wmTextureStatus').textContent='已載入：'+f.name;
+ }catch(err){toast('照片無法讀取，請使用 JPG、PNG 或 WebP');}finally{if($('wmSave'))$('wmSave').disabled=false;}};
+ $('wmSave').onclick=()=>{
+  const n={...m,name:$('wmName').value.trim()||'瓷磚',supplier:$('wmSupplier').value.trim(),width:Number($('wmWidth').value),height:Number($('wmHeight').value),texture:$('wmTexture').value,textureData:newTexture,
+   angle:Number($('wmAngle').value),stagger:Number($('wmStagger').value),grout:Number($('wmGrout').value),waste:Number($('wmWaste').value),price:$('wmPrice').value===''?null:Number($('wmPrice').value),unit:$('wmUnit').value,perBox:Number($('wmBox').value),purchase:$('wmPurchase').value};
+  if(n.unit==='box')n.purchase='box';
+  if(n.texture==='custom'&&!n.textureData)return toast('請先上傳這款瓷磚的照片');
+  const materials=exists?d.materials.map(x=>x.id===id?n:x):d.materials.concat([n]);
+  try{WE.validate({...d,materials},S);}catch(e){return toast('請核對：磚尺寸 50–4000 mm、每箱張數整數 1–100、備料 0–50%、有效單價。');}
+  remember();d.materials=materials;closeModal();wallChanged();
+  if(!exists)toast('款式已新增；在「分界、腰線」設定選用此款。');
+ };
+}
+function renderWallTakeoff(){
+ const wc=wallCalc();
+ const rows=wc.materials.map(g=>`<div class="wallcostrow"><div><b>${escapeHTML(g.material.name)}</b><small>${g.material.width} × ${g.material.height} mm · ${g.uses.length} 個分區</small></div>
+ <div class="wallcostnums"><span>排磚 <b>${g.count}</b> 張</span><span>備料後 <b>${g.q.recommended}</b> 張</span><span>購買 <b>${g.purchase}</b> 張${g.material.purchase==='box'?` / ${g.q.boxes} 箱`:''}</span></div>
+ <div class="wallcostbottom"><small>完整 ${g.full} ／ 切割 ${g.cut} · 淨面積 ${fmt(g.area)} m²</small><b>${g.amount===null?'未定價':money(g.amount)}</b></div></div>`).join('');
+ $('wallTakeoff').innerHTML=`<div class="walltakeoffhead"><h3>牆磚用量 · 按款式合併</h3><span>淨牆面 ${fmt(wc.net)} m²</span></div>${rows||'<div class="wallEmpty">確認至少一幅牆面後，才會產生有效用量。</div>'}
+ <div class="walltakeofftotal"><span>牆面材料小計</span><b>${wc.missing?'尚有 '+wc.missing+' 款未定價':money(wc.amount)}</b></div>
+ <p class="wallfootnote">每款先合併所有已確認飾面，再加備料並整箱進位。待確認與停用牆面未計；切割餘料不跨磚位重用。</p>`;
+}
+function fitWallMap(){
+ if(!$('wallMapCanvas')?.clientWidth||!S)return;
+ const c=$('wallMapCanvas'),pts=wd().walls.flatMap(w=>[w.a,w.b]),bb=E.bbox([[0,0],[S.width,S.height],...pts]);
+ const k=Math.min((c.clientWidth-35)/(bb[2]-bb[0]),(c.clientHeight-35)/(bb[3]-bb[1]));
+ wallMapView={k,x:(c.clientWidth-(bb[2]-bb[0])*k)/2-bb[0]*k,y:(c.clientHeight-(bb[3]-bb[1])*k)/2-bb[1]*k};drawWallMap();
+}
+function drawWallMap(){
+ const c=$('wallMapCanvas');if(!c?.clientWidth||!S)return;
+ const W=c.clientWidth,H=c.clientHeight,dpr=Math.min(devicePixelRatio||1,2);c.width=Math.round(W*dpr);c.height=Math.round(H*dpr);
+ const g=c.getContext('2d');g.setTransform(dpr,0,0,dpr,0,0);g.fillStyle='#f6f9fd';g.fillRect(0,0,W,H);
+ const v=wallMapView,screen=p=>[p[0]*v.k+v.x,p[1]*v.k+v.y];
+ if(bgImage){g.globalAlpha=.7;g.drawImage(bgImage,v.x,v.y,S.width*v.k,S.height*v.k);g.globalAlpha=1;}
+ for(let i=0;i<wd().walls.length;i++){
+  const w=wd().walls[i],a=screen(w.a),b=screen(w.b),sel=w.id===wallSelected;
+  g.strokeStyle=!w.enabled?'#b4becb':sel?'#0866e9':w.confirmed?'#25846b':'#de9730';g.lineWidth=sel?5:3;g.setLineDash(w.enabled?[]:[5,4]);g.beginPath();g.moveTo(...a);g.lineTo(...b);g.stroke();g.setLineDash([]);
+  g.fillStyle='white';g.strokeStyle=sel?'#0866e9':'#567087';for(const p of [a,b]){g.beginPath();g.arc(...p,sel?7:4,0,Math.PI*2);g.fill();g.stroke();}
+  g.font=(sel?'bold ':'')+'12px sans-serif';g.textAlign='center';const label='W'+String(i+1).padStart(2,'0'),x=(a[0]+b[0])/2,y=(a[1]+b[1])/2;
+  g.fillStyle='#ffffffeb';g.fillRect(x-21,y-25,42,19);g.fillStyle=sel?'#0866e9':'#172c49';g.fillText(label,x,y-11);
+  if(sel){g.font='bold 13px sans-serif';g.fillStyle='#0866e9';g.fillText('A',a[0]-12,a[1]-12);g.fillText('B',b[0]+12,b[1]-12);}
+ }
+ if(wallGuide){
+  const p=screen(wallGuide);g.setLineDash([5,5]);g.strokeStyle='#3887ee';g.lineWidth=1;g.beginPath();g.moveTo(p[0],0);g.lineTo(p[0],H);g.moveTo(0,p[1]);g.lineTo(W,p[1]);g.stroke();g.setLineDash([]);
+  if(wallDraft.length){const a=screen(wallDraft[0]);g.strokeStyle='#0866e9';g.lineWidth=3;g.beginPath();g.moveTo(...a);g.lineTo(...p);g.stroke();}
+ }
+}
+function paintElevation(c,f,width,height,pixelRatio=1){
+ c.width=Math.round(width*pixelRatio);c.height=Math.round(height*pixelRatio);const g=c.getContext('2d');g.setTransform(pixelRatio,0,0,pixelRatio,0,0);g.fillStyle='#f5f8fd';g.fillRect(0,0,width,height);
+ if(!f){g.font='18px sans-serif';g.fillStyle='#61758f';g.textAlign='center';g.fillText('選擇牆面，查看立面排磚',width/2,height/2);return;}
+ const w=f.wall,margin=58,k=Math.min((width-margin*2)/f.length,(height-115)/w.height),ox=(width-f.length*k)/2,oy=(height+w.height*k)/2-18;
+ const P=(x,y)=>[ox+x*k,oy-y*k],path=pts=>{g.moveTo(...P(...pts[0]));for(let i=1;i<pts.length;i++)g.lineTo(...P(...pts[i]));g.closePath();};
+ g.fillStyle='#c2cbd7';g.fillRect(ox,oy-w.height*k,f.length*k,w.height*k);
+ for(const zone of f.zones){
+  const tex=wallTexture(zone.material);
+  for(const tile of zone.layout.tiles){
+   g.save();g.beginPath();for(const p of tile.fragments)path(p.map(q=>[q[0],q[1]+zone.bottom]));g.clip();
+   const tl=P(tile.c*tile.x-tile.s*(tile.y+tile.h),tile.s*tile.x+tile.c*(tile.y+tile.h)+zone.bottom);
+   g.translate(tl[0],tl[1]);g.transform(tile.c,-tile.s,tile.s,tile.c,0,0);g.drawImage(tex,0,0,tile.w*k,tile.h*k);g.restore();
+  }
+ }
+ for(const o of w.openings){const p=P(o.x,o.y+o.height);g.fillStyle='#edf3fb';g.fillRect(p[0],p[1],o.width*k,o.height*k);g.strokeStyle='#8fa6c2';g.lineWidth=1.5;g.strokeRect(p[0],p[1],o.width*k,o.height*k);g.save();g.beginPath();g.rect(p[0],p[1],o.width*k,o.height*k);g.clip();g.fillStyle='#58708f';g.font='13px sans-serif';g.textAlign='center';g.fillText(o.name,p[0]+o.width*k/2,p[1]+o.height*k/2);g.restore();}
+ g.strokeStyle='#496584';g.lineWidth=1.2;g.strokeRect(ox,oy-w.height*k,f.length*k,w.height*k);
+ g.font='bold 15px sans-serif';g.fillStyle='#172c49';g.textAlign='center';g.fillText(w.name,width/2,25);
+ g.font='13px sans-serif';g.fillStyle='#61738c';g.fillText(w.confirmed?'已確認 · '+styleNames[w.style.mode]:'候選預覽 · 未計入用量',width/2,46);
+ g.fillStyle='#315f9c';g.font='bold 14px sans-serif';g.fillText('A',ox,oy+23);g.fillText('B',ox+f.length*k,oy+23);
+ g.font='14px sans-serif';g.fillText(fmt(f.length)+' m',width/2,oy+42);
+ g.save();g.translate(ox-22,oy-w.height*k/2);g.rotate(-Math.PI/2);g.fillText(fmt(w.height)+' m',0,0);g.restore();
+ for(const z of f.zones.slice(1)){const y=P(0,z.bottom)[1];g.strokeStyle='#0866e977';g.setLineDash([5,4]);g.beginPath();g.moveTo(ox,y);g.lineTo(ox+f.length*k,y);g.stroke();g.setLineDash([]);}
+ g.font='12px sans-serif';g.fillStyle='#607797';g.textAlign='right';g.fillText('Designed by Dennis Chung',width-12,height-12);
+}
+function selectedAnalysis(){
+ const w=selectedWall();if(!w||!S.ppm)return null;
+ try{return WE.analyzeWall(w,S.ppm,wd().materials);}catch(e){return null;}
+}
+function drawElevation(){
+ const c=$('wallElevationCanvas');if(!c?.clientWidth)return;
+ const dpr=Math.min(devicePixelRatio||1,2);paintElevation(c,selectedAnalysis(),c.clientWidth,c.clientHeight,dpr);
+}
+function drawWallScene(){
+ const c=$('wallSceneCanvas');if(!c?.clientWidth)return;
+ if(!wallScene)wallScene=new WallScene3D(c);
+ wallScene.setScene(reg,lay,S.settings,currentTexture(),wallCalc(),S.ppm,wallTexture,wd().cutaway);
+}
+function initWallEvents(){
+ $('wallQuickSelect').onchange=e=>{wallSelected=e.target.value;renderWalls();};
+ $('wallQuickSettings').onclick=()=>$('wallPanel').scrollIntoView({behavior:'smooth',block:'start'});
+ document.querySelectorAll('[data-wall-view]').forEach(b=>b.onclick=()=>setWallView(b.dataset.wallView));
+ document.querySelectorAll('[data-wall-tool]').forEach(b=>b.onclick=()=>{wallTool=b.dataset.wallTool;wallDraft=[];wallGuide=null;document.querySelectorAll('[data-wall-tool]').forEach(x=>x.classList.toggle('active',x===b));toast(wallTool==='add'?'點選牆面的 A 端，再點 B 端。':'點牆線可選取；拖動端點修改。');});
+ $('wallFit').onclick=fitWallMap;
+ for(const [id,f] of [['wallZoomIn',1.25],['wallZoomOut',.8]])$(id).onclick=()=>{const c=$('wallMapCanvas'),v=wallMapView;v.x=c.clientWidth/2-(c.clientWidth/2-v.x)*f;v.y=c.clientHeight/2-(c.clientHeight/2-v.y)*f;v.k*=f;drawWallMap();};
+ $('wallCutaway').onchange=e=>{wd().cutaway=e.target.checked;dirty3d=true;save();drawWallScene();};
+ $('wallSceneReset').onclick=()=>wallScene?.reset();
+ $('wallExportImage').onclick=()=>{
+  let c;if(wallView==='map')c=$('wallMapCanvas');else if(wallView==='scene'){drawWallScene();c=$('wallSceneCanvas');}else{drawElevation();c=$('wallElevationCanvas');}
+  download(dataURLBytes(c.toDataURL()),'image/png',safeName()+'-牆面-'+wallView+'.png');
+ };
+ const c=$('wallMapCanvas'),pts=new Map();let drag=null,start=null,last=null,pinch=null,pinched=false;
+ const point=e=>{const r=c.getBoundingClientRect(),v=wallMapView;return [(e.clientX-r.left-v.x)/v.k,(e.clientY-r.top-v.y)/v.k];};
+ const snap=p=>{
+  let out=[clamp(p[0],0,12000),clamp(p[1],0,12000)],tx=10/wallMapView.k,ty=tx;
+  const anchors=wd().walls.flatMap(w=>[...(drag?.wall===w.id&&drag.end==='a'?[]:[w.a]),...(drag?.wall===w.id&&drag.end==='b'?[]:[w.b])]).concat(wallDraft,S.rooms.flatMap(r=>r.points));
+  for(const a of anchors){const dx=Math.abs(p[0]-a[0]),dy=Math.abs(p[1]-a[1]);if(dx<tx){out[0]=a[0];tx=dx;}if(dy<ty){out[1]=a[1];ty=dy;}}
+  return out;
+ };
+ const distance=(p,a,b)=>{const vx=b[0]-a[0],vy=b[1]-a[1],t=clamp(((p[0]-a[0])*vx+(p[1]-a[1])*vy)/(vx*vx+vy*vy),0,1);return Math.hypot(p[0]-a[0]-t*vx,p[1]-a[1]-t*vy);};
+ const span=()=>{const a=[...pts.values()];return a.length<2?0:Math.hypot(a[0][0]-a[1][0],a[0][1]-a[1][1]);};
+ c.addEventListener('pointerdown',e=>{
+  e.preventDefault();c.setPointerCapture(e.pointerId);pts.set(e.pointerId,[e.clientX,e.clientY]);
+  if(pts.size>1){if(drag){const w=wd().walls.find(w=>w.id===drag.wall);w[drag.end]=drag.before;}drag=null;pinched=true;pinch=span();return;}
+  start=[e.clientX,e.clientY];last=start.slice();pinched=false;drag=null;
+  const p=point(e);
+  if(wallTool==='select'){let best=18/wallMapView.k;for(const w of wd().walls)for(const end of ['a','b']){const d=E.dist(p,w[end]);if(d<best){best=d;drag={wall:w.id,end,before:w[end].slice(),snapshot:JSON.stringify(S)};wallSelected=w.id;}}}
+  wallGuide=snap(p);drawWallMap();
+ });
+ c.addEventListener('pointermove',e=>{
+  if(!pts.has(e.pointerId)){if(wallTool==='add'&&e.pointerType==='mouse'){wallGuide=snap(point(e));drawWallMap();}return;}
+  pts.set(e.pointerId,[e.clientX,e.clientY]);
+  if(pts.size>1){const n=span();if(pinch>0&&n>0){const f=clamp(n/pinch,.8,1.25),v=wallMapView;v.x=c.clientWidth/2-(c.clientWidth/2-v.x)*f;v.y=c.clientHeight/2-(c.clientHeight/2-v.y)*f;v.k*=f;}pinch=n;drawWallMap();return;}
+  if(pinched)return;
+  wallGuide=snap(point(e));
+  if(drag){wd().walls.find(w=>w.id===drag.wall)[drag.end]=wallGuide.slice();drawWallMap();}
+  else if(wallTool==='select'&&last){wallMapView.x+=e.clientX-last[0];wallMapView.y+=e.clientY-last[1];drawWallMap();}
+  else drawWallMap();
+  last=[e.clientX,e.clientY];
+ });
+ const end=e=>{
+  if(!pts.has(e.pointerId))return;pts.delete(e.pointerId);if(pts.size)return;
+  const moved=start?Math.hypot(e.clientX-start[0],e.clientY-start[1]):0,p=point(e);
+  if(drag){
+   const w=wd().walls.find(w=>w.id===drag.wall);
+   if(e.type==='pointercancel'||E.dist(w.a,w.b)<2)w[drag.end]=drag.before;
+   else if(moved>3){history.push(drag.snapshot);if(history.length>20)history.shift();w.confirmed=false;}
+   drag=null;wallGuide=null;wallChanged();
+  }else if(!pinched&&e.type!=='pointercancel'&&moved<10){
+   if(wallTool==='add'){
+    wallDraft.push(snap(p));
+    if(wallDraft.length===2){
+     if(E.dist(...wallDraft)<2){wallDraft.pop();toast('兩個端點太近');}
+     else if(wd().walls.length>=80){wallDraft=[];toast('每個方案最多 80 幅牆面');}
+     else{remember();const w={id:WE.uid(),name:'手動牆面 '+(wd().walls.length+1),a:wallDraft[0],b:wallDraft[1],height:wd().defaultHeight,source:'manual',enabled:true,confirmed:false,style:WE.clone(wd().template),openings:[]};wd().walls.push(w);wallSelected=w.id;wallDraft=[];wallChanged();}
+    }drawWallMap();
+   }else{let best=18/wallMapView.k,winner=null;for(const w of wd().walls){const d=distance(p,w.a,w.b);if(d<best){best=d;winner=w;}}if(winner){wallSelected=winner.id;renderWalls();}}
+  }
+  start=last=null;pinch=null;
+ };
+ c.addEventListener('pointerup',end);c.addEventListener('pointercancel',end);
+ c.addEventListener('wheel',e=>{e.preventDefault();const f=Math.exp(-e.deltaY*.001),r=c.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top,v=wallMapView;v.x=x-(x-v.x)*f;v.y=y-(y-v.y)*f;v.k*=f;drawWallMap();},{passive:false});
+}
+function combinedTotals(){
+ const wc=wallCalc(),d=wd(),fees=priceData().fees,includeFloor=d.includeFloor;
+ let floorOption=null,floorError=null;
+ if(includeFloor){if(!S.ppm||!reg.parts.length||computeError)floorError='地面未完成校準或圈選';else try{floorOption=calculateOption(S.settings.width,S.settings.height);}catch(e){floorError='地面排磚無法計算';}}
+ const floorMat=includeFloor?floorOption?.amount??null:0;
+ const floorLabor=includeFloor?roundMoney(reg.area*fees.labor):0,wallLabor=roundMoney(wc.net*d.wallLabor);
+ const materialsKnown=(!includeFloor||floorMat!==null)&&wc.missing===0;
+ const subtotal=materialsKnown?roundMoney((floorMat||0)+wc.amount+floorLabor+wallLabor+fees.delivery+fees.other):null;
+ const appliedDiscount=subtotal===null?null:Math.min(subtotal,fees.discount),tax=subtotal===null?null:roundMoney((subtotal-appliedDiscount)*fees.tax/100);
+ const total=subtotal===null?null:roundMoney(subtotal-appliedDiscount+tax);
+ const problems=[];
+ if(!S.ppm)problems.push('圖纸比例未校準');
+ if(floorError)problems.push(floorError);
+ if(wc.pending)problems.push(wc.pending+' 幅啟用牆面待確認');
+ if(wc.errors.length)problems.push(...wc.errors.map(e=>e.wall+'：'+e.message));
+ if(!wc.faces.length&&!includeFloor)problems.push('沒有已確認的牆面');
+ if(!materialsKnown)problems.push('尚有瓷磚未輸入價格');
+ return {wc,floorOption,floorMat,floorLabor,wallLabor,subtotal,appliedDiscount,tax,total,problems,complete:problems.length===0};
+}
+function combinedSummaryHTML(){
+ const t=combinedTotals();
+ return `<div id="combinedSummary" class="wallCombined"><div class="eyebrow">FLOOR + WALL / 整體工程</div><h2>地面＋牆面總覽</h2>
+ <div class="wallcombinedrows"><span>地面材料</span><b>${wd().includeFloor?money(t.floorMat):'不包含'}</b><span>牆面材料</span><b>${t.wc.missing?'尚未定價':money(t.wc.amount)}</b>
+ <span>地面 / 牆面人工</span><b>${money(t.floorLabor)} / ${money(t.wallLabor)}</b></div>
+ <div class="wallGrand"><span>${t.complete?'報價總額':'報價未完成'}</span><b>${t.complete?money(t.total):'待核對'}</b></div>
+ ${t.problems.length?`<p>${t.problems.map(escapeHTML).join('；')}。不把未填單價當作免費。</p>`:'<p>包含設定的人工、運費、其他費用、折扣及稅項。</p>'}
+ <div class="walltools"><button data-edit-walls>編輯牆面</button><button data-combined-export>輸出整體報價</button></div>
+ <p class="micro">下方仍為地面各款比較；此卡才是地面＋牆面的整體金額。</p></div>`;
+}
+function combinedHTML(estimate=false){
+ const t=combinedTotals(),d=wd(),q=priceData().quote,fees=priceData().fees,esc=escapeHTML;
+ const row=(a,b,c,e)=>`<tr><td>${esc(a)}</td><td>${esc(b)}</td><td>${esc(c)}</td><td>${esc(e)}</td></tr>`;
+ let lines='';
+ if(d.includeFloor&&t.floorOption){const o=t.floorOption,r=o.record;lines+=row('地面 · '+(r.product||S.settings.width+' × '+S.settings.height+' mm'),r.unit==='box'?o.q.boxes+' 箱':r.unit==='m2'?fmt(o.purchaseArea,3)+' m²':o.purchase+' 張',money(r.price)+' / '+unitLabels[r.unit],money(o.amount));}
+ for(const g of t.wc.materials){const m=g.material;lines+=row('牆面 · '+m.name+' · '+m.width+' × '+m.height+' mm'+(m.supplier?' / '+m.supplier:''),m.unit==='box'?g.q.boxes+' 箱':m.unit==='m2'?fmt(g.purchaseArea,3)+' m²':g.purchase+' 張',money(m.price)+' / '+unitLabels[m.unit],money(g.amount));}
+ if(t.floorLabor)lines+=row('地面鋪貼人工',fmt(reg.area)+' m²',money(fees.labor)+' / m²',money(t.floorLabor));
+ if(t.wallLabor)lines+=row('牆面鋪貼人工',fmt(t.wc.net)+' m²',money(d.wallLabor)+' / m²',money(t.wallLabor));
+ if(fees.delivery)lines+=row('運費','1 項',money(fees.delivery),money(fees.delivery));
+ if(fees.other)lines+=row('其他費用','1 項',money(fees.other),money(fees.other));
+ const faceRows=t.wc.faces.map(f=>row(f.wall.name,fmt(f.length)+' × '+fmt(f.wall.height)+' m',fmt(f.excluded)+' m²',fmt(f.net)+' m²')).join('');
+ const matRows=t.wc.materials.map(g=>row(g.material.name+' / '+g.material.width+' × '+g.material.height+' mm',g.full+' 完整＋'+g.cut+' 切割',g.count+' → '+g.q.recommended+' 張',g.purchase+' 張'+(g.material.purchase==='box'?' / '+g.q.boxes+' 箱':''))).join('');
+ const zoneRows=t.wc.faces.flatMap(f=>f.zones.map(z=>row(f.wall.name+' / '+z.name,fmt(z.bottom)+'–'+fmt(z.top)+' m',z.material.name,fmt(z.region.area)+' m² / '+z.layout.count+' 張'))).join('');
+ let pics='';
+ for(const f of t.wc.faces.slice(0,12)){const c=document.createElement('canvas');paintElevation(c,f,1000,540);pics+=`<figure><img src="${c.toDataURL('image/jpeg',.86)}" alt="${esc(f.wall.name)}"><figcaption>${esc(f.wall.name)} · 開口 ${f.wall.openings.length} 個 · ${esc(styleNames[f.wall.style.mode])}</figcaption></figure>`;}
+ const date=new Date(q.date+'T12:00:00');date.setDate(date.getDate()+q.validDays);const until=[date.getFullYear(),String(date.getMonth()+1).padStart(2,'0'),String(date.getDate()).padStart(2,'0')].join('-');
+ return `<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(S.name)} · ${estimate?'用量估算':'地面及牆面報價'}</title><style>
+ @page{size:A4;margin:15mm}*{box-sizing:border-box}body{font:15px/1.7 Arial,"Microsoft JhengHei",sans-serif;color:#172c49;max-width:1000px;margin:30px auto;padding:0 20px}h1{font-size:29px}h2{font-size:21px;margin-top:30px}.head{display:flex;gap:15px;align-items:center;border-bottom:3px solid #0866e9;padding-bottom:20px}.head svg{width:50px;height:50px}.head b{font-size:28px}.head small{display:block;color:#5c718c}table{border-collapse:collapse;width:100%;font-size:14px}th,td{padding:12px 9px;border-bottom:1px solid #dce5f2;text-align:left;vertical-align:top}th{background:#edf4ff}td:last-child,th:last-child{text-align:right}.meta{display:grid;grid-template-columns:1fr 1fr;gap:12px;background:#f3f7fc;padding:20px}.meta b{display:block}.warn{padding:17px;background:#fff2dc;border:1px solid #edcf9d}.total{margin:25px 0 25px auto;max-width:450px}.total div{display:flex;justify-content:space-between;padding:7px;gap:12px}.grand{background:#e8f2ff;font-size:24px;font-weight:bold;color:#075ecf}.note{background:#f2f6fb;padding:20px;font-size:13px}figure{margin:15px 0;break-inside:avoid}img{width:100%;border:1px solid #e0e7f1}figcaption,footer{font-size:13px;color:#576c88}footer{border-top:1px solid #dce5f2;margin-top:30px;padding-top:15px}.pre{white-space:pre-wrap;overflow-wrap:anywhere}.print{background:#0866e9;color:white;padding:12px 20px;border:0;border-radius:9px;font-size:16px}.scroll{overflow:auto}@media print{body{margin:0;padding:0;font-size:12px}.print{display:none}table{font-size:11px}tr{break-inside:avoid}.elevations{break-before:page}}@media(max-width:600px){.meta{grid-template-columns:1fr}h1{font-size:25px}}
+ </style></head><body><div class="head">${document.querySelector('.newmark').innerHTML}<div><b>Tile Studio</b><small>Designed by Dennis Chung · 3.0</small></div></div>
+ <h1>${estimate?'地面／牆面用量估算表':'地面＋牆面瓷磚報價單'}</h1><button class="print" onclick="window.print()">列印／另存 PDF</button><h2>${esc(S.name)}</h2>
+ <div class="meta"><div><b>客戶</b>${esc(q.customer||'未填寫')}</div><div><b>報價編號</b>${esc(q.reference)}</div><div><b>報價人／聯絡</b>${esc(q.seller)} / ${esc(q.contact)}</div><div><b>日期／有效至</b>${esc(q.date)} / ${until}</div><div><b>工程地址</b>${esc(q.address||'未填寫')}</div><div><b>幣別</b>${esc(priceData().currency)}</div></div>
+ ${t.problems.length?`<p class="warn"><b>不是完整報價：</b>${t.problems.map(esc).join('；')}。未確認牆面不列入以下計算。</p>`:''}
+ <h2>材料及工程費用</h2><div class="scroll"><table><thead><tr><th>項目</th><th>購買／計價數量</th><th>單價</th><th>金額</th></tr></thead><tbody>${lines}</tbody></table></div>
+ <div class="total"><div><span>小計</span><b>${money(t.subtotal)}</b></div><div><span>折扣</span><b>${money(t.appliedDiscount)}</b></div><div><span>稅項 ${fees.tax}%</span><b>${money(t.tax)}</b></div><div class="grand"><span>${t.complete?'總額':'總額待確認'}</span><span>${t.complete?money(t.total):'—'}</span></div></div>
+ <h2>牆面面積及開口扣除</h2><p>${t.wc.faces.length} 幅已確認牆面 · 毛面積 ${fmt(t.wc.gross)} m² − 開口 ${fmt(t.wc.excluded)} m² = 淨面積 <b>${fmt(t.wc.net)} m²</b>。停用 ${t.wc.disabled} 幅，待確認 ${t.wc.pending} 幅。</p>
+ <table><thead><tr><th>牆面</th><th>淨長 × 高度</th><th>扣除開口</th><th>淨面積</th></tr></thead><tbody>${faceRows}</tbody></table>
+ <h2>各分區排磚</h2><table><thead><tr><th>牆面／分區</th><th>高度範圍</th><th>瓷磚款式</th><th>面積／排磚</th></tr></thead><tbody>${zoneRows}</tbody></table>
+ <h2>按款式合併採購</h2><table><thead><tr><th>款式／尺寸</th><th>完整／切割</th><th>排磚 → 備料後</th><th>最終購買</th></tr></thead><tbody>${matRows}</tbody></table>
+ <div class="note"><b>計算基礎及限制</b><br>每筆牆面是一個鋪貼面，不自動加倍計算牆背面。高度由用戶輸入；圖紙只用於比例及牆線。每個分區建立獨立排磚網格，再扣除實際相交的門窗，重疊開口只扣一次。跨牆同款合併加備料及整箱進位；不同款不共箱。磚縫包含在網格中；淨鋪貼面積包含磚縫。切割餘料不重用；門窗側邊、窗台、收口件、黏合劑及其他未列項目不自動加算。候選牆線可能誤判或漏判，施工採購前必須現場覆核。幣別僅為用戶選擇，不做匯率換算。</div>
+ <h2>備註及條款</h2><p class="pre">${esc(q.notes)}</p>
+ <section class="elevations"><h2>牆面立面排磚圖${t.wc.faces.length>12?'（附件前 12 幅）':''}</h2>${pics}</section>
+ <footer>Designed by Dennis Chung · Tile Studio 3.0 · 本機產生 · 非供應商即時報價或工程認證</footer></body></html>`;
+}
+function exportCombined(estimate=false){
+ const t=combinedTotals();
+ if(!estimate&&!t.complete)return toast('報價未完成：'+t.problems.join('；'));
+ if(estimate&&!t.wc.faces.length&&!t.floorOption)return toast('請先校準並確認至少一幅牆面，或完成地面範圍');
+ download(combinedHTML(estimate),'text/html',safeName()+(estimate?'-地面牆面用量估算.html':'-地面牆面報價單.html'));
+}
+Object.assign(window.TileApp,{
+ wallCalc,combinedTotals,combinedHTML,exportCombined,detectWalls,outlineWalls,wallDemo,renderWalls,wallChanged,
+ editWallStyle,editWallMaterial,editOpening,setWallView,drawElevation,drawWallScene,
+ getWallData:()=>wd(),getSelectedWall:()=>selectedWall(),
+ selectWall:id=>{wallSelected=id;renderWalls();}
+});
+
+// Keep public/native integration APIs pointing at the upgraded implementations.
+Object.assign(window.TileApp,{showTab,compute,loadState,validateState,importPlan,renderReport});
+
+</script><script>
 (async function init(){initEvents();let initial;try{const raw=localStorage.getItem(KEY);initial=raw?validateState(JSON.parse(raw)):demoState();}catch(e){initial=demoState();}await loadState(initial);showTab('home');window.__tileReady=true;})().catch(e=>{console.error(e);busy(false);modal('啟動時遇到問題','<p>請重新開啟 App。也可清除目前的本機方案，再載入示範。</p><button class="primary full" id="recoverBtn">重設本機方案</button>');$('recoverBtn').onclick=()=>{localStorage.removeItem(KEY);location.reload();};});
 
 </script>
